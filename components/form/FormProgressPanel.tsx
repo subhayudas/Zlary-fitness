@@ -16,17 +16,24 @@ import { cn } from "@/lib/utils";
 export function FormProgressPanel({
   locale,
   currentStep,
+  progress,
   className,
 }: {
   locale: Locale;
   currentStep: number;
+  /**
+   * Overrides the step-by-step fraction. The steps that ask one question at a
+   * time pass a finer value, so the bar moves on every answer instead of
+   * standing still through five of them.
+   */
+  progress?: number;
   className?: string;
 }) {
   const applyContent = getApplyContent(locale);
   const t = getUi(locale);
   const steps = applyContent.steps;
   const step = steps[currentStep];
-  const progress = (currentStep + 1) / steps.length;
+  const filled = progress ?? (currentStep + 1) / steps.length;
 
   return (
     <div className={cn("flex h-full flex-col", className)}>
@@ -83,7 +90,7 @@ export function FormProgressPanel({
       </ol>
 
       <div className="mt-auto pt-12">
-        <ProgressBar progress={progress} label={t.form.progressLabel} />
+        <ProgressBar progress={filled} label={t.form.progressLabel} />
         <p className="type-micro mt-4 text-ink/40">
           {t.form.stepOf(currentStep + 1, steps.length)}
         </p>

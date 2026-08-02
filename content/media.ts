@@ -75,24 +75,7 @@ export const media = {
     objectPosition: "50% 42%",
   }),
 
-  /* ------------------------------------------------------------ Nutrition */
-  nutritionContext: p({
-    id: "nutrition-context",
-    src: "/media/nutrition-context.webp",
-    alt: "Repas équilibré dressé dans une cuisine, en contexte de vie quotidienne.",
-    width: 1536,
-    height: 1024,
-    orientation: "landscape",
-    brief:
-      "Assiette réelle, non stylisée à l'excès — repas de tous les jours, éclairage naturel. Aucun aliment 'régime' cliché.",
-    recommended: "1600 × 1067 px · 3:2",
-    // Rendered as a wide strip, so the frame is biased low to keep the plate
-    // and the counter inside the crop rather than the ceiling.
-    focal: "Assiette au centre-bas.",
-    objectPosition: "50% 64%",
-  }),
-
-  /* ---------------------------------------------------------- Deliverables */
+  /* ---------------------------------------------------------------- Offer */
   deliverablesLifestyle: p({
     id: "deliverables-lifestyle",
     src: "/media/deliverables-lifestyle.webp",
@@ -324,7 +307,6 @@ const altDictionary: Record<Locale, Record<TranslatableAssetId, string>> = {
     hero: media.hero.alt,
     "outcomes-training": media.outcomesTraining.alt,
     "method-coaching": media.methodCoaching.alt,
-    "nutrition-context": media.nutritionContext.alt,
     "deliverables-lifestyle": media.deliverablesLifestyle.alt,
     "about-portrait": media.aboutPortrait.alt,
     "vsl-poster": media.vslPoster.alt,

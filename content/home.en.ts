@@ -60,23 +60,25 @@ export const problem = {
   ],
 };
 
-export const outcomes = {
-  label: "02 — WHAT YOU BUILD",
-  heading: "A transformation you can actually maintain.",
-  body: "Not an eight-week deprivation stint. A training and nutrition structure flexible enough to fit your real schedule, and precise enough to keep you progressing.",
-  cta: { label: "Discover the method", targetId: "methode" },
-  imageIndex: "01/04",
-  resultCard: {
-    label: "What changes",
-    items: ["More energy", "More structure", "More confidence"],
-  },
-  routineCard: {
-    label: "The three levers",
+export const offer = {
+  label: "02 — WHAT YOU GET",
+  heading: "Real coaching, not just a PDF.",
+  body: "A training and nutrition plan built for you, adjusted when your life changes, with a coach who answers between check-ins.",
+  covers: {
+    label: "The coaching covers",
     items: [
       { name: "Training", detail: "Progressive and adapted" },
       { name: "Nutrition", detail: "Flexible, nothing off-limits" },
       { name: "Habits", detail: "Built to last" },
     ],
+  },
+  resultCard: {
+    label: "What changes",
+    items: ["More energy", "More structure", "More confidence"],
+  },
+  closing: {
+    heading: "All of it, in one coaching package.",
+    cta: { label: "See if coaching is right for me", href: "/en/apply" },
   },
 };
 
@@ -97,53 +99,6 @@ export const method = {
   heading: "The plan adapts to your life. Not the other way around.",
   body: "Four steps, in this order. Each one exists to make the next one possible.",
   cta: { label: "Start my application", href: "/en/apply" },
-};
-
-export const nutrition = {
-  eyebrow: "NUTRITION",
-  heading: "A meal plan is a tool, not a prison.",
-  body: "The goal isn't for you to depend on a rigid menu forever. You'll learn to better understand your portions, your protein and the choices that let you keep progressing.",
-  secondary:
-    "Restaurants, travel and holidays are part of life. The strategy has to work in those situations too.",
-  cta: { label: "Discover the coaching", href: "/en/apply" },
-  pillars: [
-    { name: "Portions", detail: "Practical benchmarks, no mandatory scale" },
-    { name: "Protein", detail: "The base of every meal" },
-    { name: "Flexibility", detail: "No forbidden foods" },
-  ],
-};
-
-export const deliverables = {
-  eyebrow: "WHAT YOU GET",
-  heading: "Real coaching, not just a PDF.",
-  body: "The program is the starting point. What makes the difference is what happens between sessions.",
-  featured: {
-    title: "A plan that changes when your life changes",
-    body: "Your program isn't fixed. It's adjusted based on your progress, your schedule and the obstacles you actually run into.",
-  },
-};
-
-export const fit = {
-  eyebrow: "WHO IT'S FOR",
-  goodFit: {
-    heading: "This coaching is for you if…",
-    items: [
-      "You want a sustainable approach.",
-      "You're ready to follow a plan.",
-      "You want structure and accountability.",
-      "Your life is full, but you want to stop neglecting yourself.",
-      "You want to understand what you're doing.",
-    ],
-  },
-  notFit: {
-    heading: "It's probably not for you if…",
-    items: [
-      "You're looking for an overnight transformation.",
-      "You want an extreme diet.",
-      "You aren't willing to change a single habit.",
-      "You expect results without any personal commitment.",
-    ],
-  },
 };
 
 export const about = {

@@ -27,12 +27,10 @@ export const navCta = {
 /** Section ids used for in-page navigation. Keep in sync with the homepage. */
 export const sectionIds = {
   approach: "approche",
-  outcomes: "resultats-attendus",
   results: "transformations",
   method: "methode",
-  nutrition: "nutrition",
-  deliverables: "inclus",
-  fit: "pour-qui",
+  /** The single offer block: what the coaching includes. */
+  offer: "inclus",
   about: "a-propos",
   vslPreview: "presentation",
   faq: "faq",

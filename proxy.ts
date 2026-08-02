@@ -1,5 +1,6 @@
 import { NextResponse, type NextRequest } from "next/server";
 import { defaultLocale, isLocale } from "@/lib/i18n";
+import { LANGUAGE_COOKIE } from "@/lib/language-preference";
 
 /**
  * Locale rewriting.
@@ -18,11 +19,30 @@ import { defaultLocale, isLocale } from "@/lib/i18n";
  * is served directly — no extra round trip, and the browser URL never gains a
  * visible `/fr`.
  *
- * There is deliberately no `Accept-Language` redirect. Auto-switching language
- * on a marketing site sends a visitor somewhere they did not ask to go, splits
- * ad-campaign landing data, and makes crawlers see a different page than the
- * one they requested. The toggle in the navigation is the only way to change
- * language, and the choice is expressed in the URL.
+ * ---------------------------------------------------------------------------
+ * THE STORED LANGUAGE
+ * ---------------------------------------------------------------------------
+ * There is still no `Accept-Language` sniffing. Guessing at a language from a
+ * browser header sends a visitor somewhere they did not ask to go, splits
+ * ad-campaign landing data, and shows crawlers a different page than the one
+ * they requested.
+ *
+ * A cookie set by the language chooser is a different thing entirely: it is the
+ * visitor's own answer, given explicitly, and honouring it is the whole point
+ * of having asked. So an unprefixed path is redirected to `/en/…` when — and
+ * only when — that visitor previously chose English.
+ *
+ * Two deliberate limits:
+ *
+ *   · Only unprefixed paths are redirected. A URL that already names its
+ *     language (`/en/apply`, and `/fr/apply` internally) is honoured verbatim,
+ *     so a link shared between two people never lands them on different pages.
+ *   · Crawlers carry no cookie, so they always get the unprefixed French page.
+ *     `hreflang` remains the only thing telling them about the English one.
+ *
+ * The redirect is computed per request, ahead of any cached HTML — Next runs
+ * this before the response cache on every host it supports — so a visitor with
+ * a stored language can never be served another visitor's cached page.
  */
 export function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
@@ -31,6 +51,17 @@ export function proxy(request: NextRequest) {
   if (first && isLocale(first)) return NextResponse.next();
 
   const url = request.nextUrl.clone();
+  const stored = request.cookies.get(LANGUAGE_COOKIE)?.value;
+
+  /* The visitor asked for another language and this URL does not name one. */
+  if (stored && isLocale(stored) && stored !== defaultLocale) {
+    url.pathname = `/${stored}${pathname === "/" ? "" : pathname}`;
+    const response = NextResponse.redirect(url, 307);
+    // The destination depends on a cookie: never let a shared cache reuse it.
+    response.headers.set("Vary", "Cookie");
+    return response;
+  }
+
   url.pathname = `/${defaultLocale}${pathname === "/" ? "" : pathname}`;
 
   return NextResponse.rewrite(url);

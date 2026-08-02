@@ -76,29 +76,30 @@ export const applyContent = {
   body: "A few questions to understand your goal, your schedule and what has held you back so far. It takes about three minutes.",
   privacyNote:
     "Your answers are used only to prepare the call. No medical information is requested.",
+  /** Order must stay identical to the French list in `apply.ts`. */
   steps: [
     {
-      id: "contact",
-      index: "01",
-      title: "Contact",
-      lead: "How to reach you",
-      benefit:
-        "This information is used only to get back to you about your application.",
-    },
-    {
       id: "goal",
-      index: "02",
+      index: "01",
       title: "Goal",
       lead: "Where you want to go",
       benefit: "Your goal and your schedule determine how the program is built.",
     },
     {
       id: "fit",
-      index: "03",
+      index: "02",
       title: "Fit",
       lead: "Your situation",
       benefit:
         "These answers make it possible to see honestly whether the coaching suits you.",
+    },
+    {
+      id: "contact",
+      index: "03",
+      title: "Contact",
+      lead: "How to reach you",
+      benefit:
+        "This information is used only to get back to you about your application.",
     },
     {
       id: "consent",
@@ -113,7 +114,6 @@ export const applyContent = {
     email: "Email",
     phone: "Phone",
     instagramUsername: "Instagram username",
-    preferredLanguage: "Preferred language",
     primaryGoal: "What's your main goal?",
     trainingLevel: "What's your current level?",
     trainingFrequency: "How often are you training right now?",
@@ -128,6 +128,12 @@ export const applyContent = {
       "I agree to be contacted by Zlary Fitness about my application.",
     marketingConsent:
       "I'd like to occasionally receive tips and news by email. (optional)",
+  },
+  followUpLanguage: {
+    label: "Follow-up language",
+    value: (language: string) => `Follow-up will be in ${language}.`,
+    switchTo: (language: string) => `Switch to ${language}`,
+    hint: "This is the language you chose when you arrived. It's used for the site as much as for email.",
   },
   hints: {
     phone: "Used only if email doesn't work.",

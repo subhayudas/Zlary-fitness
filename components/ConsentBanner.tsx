@@ -5,6 +5,7 @@ import { getUi } from "@/content/ui";
 import { localePath, type Locale } from "@/lib/i18n";
 import { analyticsEnabled } from "@/lib/analytics";
 import { useConsent } from "@/lib/use-consent";
+import { useLanguagePreference } from "@/lib/use-language-preference";
 
 /**
  * Consent banner for measurement tags.
@@ -15,13 +16,19 @@ import { useConsent } from "@/lib/use-consent";
  * "Refuser" is given the same visual weight as "Accepter": a decline button
  * styled as an afterthought is a dark pattern, and under Québec's Law 25
  * refusing must be as easy as accepting.
+ *
+ * It also waits for the language chooser: two overlapping asks on a first visit
+ * is one too many, and a consent question is only meaningful once it is being
+ * read in a language the visitor chose.
  */
 export function ConsentBanner({ locale }: { locale: Locale }) {
   const { consent, hydrated, grant, deny } = useConsent();
+  const { preference, hydrated: languageHydrated } = useLanguagePreference();
   const t = getUi(locale).consent;
 
   if (!analyticsEnabled) return null;
   if (!hydrated || consent !== "unknown") return null;
+  if (!languageHydrated || preference === null) return null;
 
   return (
     <div

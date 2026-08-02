@@ -243,9 +243,10 @@ export function getApplicationFormSchema(locale: Locale) {
   return schemasByLocale[locale].form;
 }
 
+/** Per-step schemas in the order the steps are rendered. */
 export function getStepSchemas(locale: Locale) {
   const s = schemasByLocale[locale];
-  return [s.contactStep, s.goalStep, s.fitStep, s.consentStep] as const;
+  return [s.goalStep, s.fitStep, s.contactStep, s.consentStep] as const;
 }
 
 /* -------------------------------------------------------------------------- */
@@ -263,17 +264,62 @@ export type ApplicationData = z.output<typeof applicationSchema>;
 export type ApplicationFormValues = z.input<typeof applicationFormSchema>;
 export type ApplicationFormOutput = z.output<typeof applicationFormSchema>;
 
-/** Field names per step, in render order. Used to focus the first error. */
+/* -------------------------------------------------------------------------- */
+/* Step composition                                                            */
+/* -------------------------------------------------------------------------- */
+
+/**
+ * Field names per step, in render order.
+ *
+ * Used to validate and focus one step at a time, and — for the two steps that
+ * reveal their questions one after another — to decide which question comes
+ * next. The order inside `goalFields` and `fitFields` is therefore the order the
+ * visitor is asked, not just the order errors are reported in.
+ */
+export const goalFields = [
+  "primaryGoal",
+  "trainingLevel",
+  "trainingFrequency",
+  "desiredTimeline",
+  "biggestObstacle",
+] as const satisfies readonly (keyof ApplicationFormValues)[];
+
+/**
+ * `motivation` is last on purpose: it opens the step with three quick taps
+ * rather than with a blank text box, which is the highest-friction way to ask
+ * someone for anything. It is also the only question here that cannot carry the
+ * visitor forward on its own, so it is the natural place to hand over to the
+ * "Continue" button.
+ */
+export const fitFields = [
+  "supportNeeded",
+  "investmentReadiness",
+  "referralSource",
+  "motivation",
+] as const satisfies readonly (keyof ApplicationFormValues)[];
+
+/**
+ * `preferredLanguage` is deliberately absent: it is set from the visitor's
+ * stored language rather than answered here, so there is no control to focus
+ * and nothing a visitor could do about an error on it. It is still validated at
+ * submit, along with every other field.
+ */
+export const contactFields = [
+  "fullName",
+  "email",
+  "phone",
+  "instagramUsername",
+] as const satisfies readonly (keyof ApplicationFormValues)[];
+
+export const consentFields = [
+  "accuracyConfirmed",
+  "contactConsent",
+  "marketingConsent",
+] as const satisfies readonly (keyof ApplicationFormValues)[];
+
+/**
+ * Indexed by step number, so this order must match `applyContent.steps` in
+ * `content/apply.ts`. Contact sits third: the questions come before the ask.
+ */
 export const stepFields: readonly (readonly (keyof ApplicationFormValues)[])[] =
-  [
-    ["fullName", "email", "phone", "instagramUsername", "preferredLanguage"],
-    [
-      "primaryGoal",
-      "trainingLevel",
-      "trainingFrequency",
-      "desiredTimeline",
-      "biggestObstacle",
-    ],
-    ["motivation", "supportNeeded", "investmentReadiness", "referralSource"],
-    ["accuracyConfirmed", "contactConsent", "marketingConsent"],
-  ];
+  [goalFields, fitFields, contactFields, consentFields];

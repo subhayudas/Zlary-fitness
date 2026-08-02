@@ -17,8 +17,6 @@ export const mediaAlt = {
     "Weighted sled push on a track: a full-body strength movement in execution.",
   "method-coaching":
     "Zach correcting a client's form on the cable machine.",
-  "nutrition-context":
-    "A balanced meal plated in a kitchen, in an everyday setting.",
   "deliverables-lifestyle":
     "Zach crossing the gym floor between two training sessions.",
   "about-portrait":

@@ -23,7 +23,7 @@ déploiement Vercel.
 10. [Brancher Google Calendar](#10-brancher-google-calendar)
 11. [Configurer les analytics](#11-configurer-les-analytics)
 12. [Déployer sur Vercel](#12-déployer-sur-vercel)
-13. [Ajouter une version anglaise](#13-ajouter-une-version-anglaise)
+13. [Français et anglais](#13-français-et-anglais)
 14. [Système de design](#14-système-de-design)
 15. [Notes techniques](#15-notes-techniques)
 
@@ -395,24 +395,40 @@ Les en-têtes de sécurité (`X-Content-Type-Options`, `Referrer-Policy`,
 
 ---
 
-## 13. Ajouter une version anglaise
+## 13. Français et anglais
 
-Le site est pensé pour ça : **aucun texte n'est codé en dur dans un composant**,
-donc ajouter l'anglais ne demande aucune réécriture de l'interface.
+Le site est bilingue. Le français est la langue d'origine et reste **sans
+préfixe** (`/`, `/apply`, `/vsl`), l'anglais vit sous `/en/…`. Les deux versions
+sont générées à partir des mêmes composants : aucun texte n'est codé en dur, tout
+passe par `content/*.ts` (français) et `content/*.en.ts` (anglais), résolus par
+`lib/i18n.ts`.
 
-Marche à suivre :
+### Le choix de langue du visiteur
 
-1. Passer les routes sous `app/[locale]/` et ajouter `middleware.ts` pour la
-   détection de langue.
-2. Dupliquer chaque fichier de `content/` en `*.en.ts`.
-3. Créer `lib/i18n.ts` qui résout le bon dictionnaire selon la locale.
-4. Remplacer les imports directs (`import { hero } from "@/content/home"`) par
-   un accès via le dictionnaire.
-5. Ajouter les balises `hreflang` dans `alternates.languages`.
+À sa toute première visite, le visiteur voit une fenêtre bilingue qui lui demande
+sa langue (`components/LanguageGate.tsx`). Sa réponse est enregistrée
+**définitivement** dans son navigateur — `localStorage`, plus un cookie
+`zlary_locale` recopié à chaque visite (`lib/language-preference.ts`).
 
-Le formulaire enregistre déjà la langue préférée du candidat
-(`preferred_language`), et la FAQ indique que le coaching est offert dans les
-deux langues.
+Ce choix sert ensuite partout :
+
+| Où                       | Ce qui se passe                                                             |
+| ------------------------ | --------------------------------------------------------------------------- |
+| Visites suivantes        | `proxy.ts` envoie directement vers `/en/…` si l'anglais a été choisi         |
+| Formulaire               | la question « langue préférée » n'est plus posée : la réponse est déjà connue |
+| Base de données          | enregistrée dans `preferred_language` sur chaque candidature                  |
+| Courriels                | la confirmation au candidat est rédigée dans cette langue (`content/emails.ts`) |
+| Webhook CRM              | envoyée en clair dans le champ `locale`                                       |
+
+Le bouton **FR / EN** de la navigation reste maître : il change la langue *et*
+réécrit le choix enregistré. Dans le formulaire, un encadré rappelle la langue de
+suivi retenue et permet de la corriger sans perdre les réponses déjà saisies.
+
+Ce qui est volontairement **exclu** : aucune détection automatique par
+`Accept-Language`, et aucune redirection d'une URL qui nomme déjà sa langue
+(`/en/apply` reste `/en/apply` pour tout le monde). Un lien partagé mène donc
+toujours les deux personnes à la même page, et les robots d'indexation voient la
+version française avec ses balises `hreflang`.
 
 ---
 

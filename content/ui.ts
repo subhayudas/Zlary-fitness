@@ -60,6 +60,9 @@ export const ui = {
     stepOf: (current: number, total: number) => `Étape ${current} sur ${total}`,
     /** Rendered as "Étape 2 — Objectif". */
     stepNamed: (current: number, title: string) => `Étape ${current} — ${title}`,
+    /** Rendered as "Question 2 / 5" on the steps that ask one at a time. */
+    questionOf: (current: number, total: number) =>
+      `Question ${current} / ${total}`,
     privacyLink: "Politique de confidentialité",
   },
 
@@ -96,11 +99,6 @@ export const ui = {
     languages: "Langues",
     experience: "Expérience",
     platform: "Plateforme",
-  },
-
-  fit: {
-    sectionLabel: "À qui s'adresse le coaching",
-    honestly: "Honnêtement",
   },
 
   faq: {

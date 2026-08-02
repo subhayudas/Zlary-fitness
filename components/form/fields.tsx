@@ -1,6 +1,6 @@
 "use client";
 
-import type { ReactNode } from "react";
+import type { MouseEventHandler, ReactNode } from "react";
 import type { UseFormRegisterReturn } from "react-hook-form";
 import { Check } from "@/components/icons";
 import type { Option } from "@/content/apply";
@@ -150,10 +150,23 @@ export function ChoiceField({
   options,
   registration,
   columns = 1,
+  onChoose,
 }: BaseFieldProps & {
   options: readonly Option[];
   registration: UseFormRegisterReturn;
   columns?: 1 | 2;
+  /**
+   * Fired on the option card rather than on change, so the caller can tell a
+   * pointer press from a keyboard one and only carry the visitor forward on the
+   * first. Selecting with the keyboard has to stay separate from moving on, or
+   * arrowing through the options to read them would fire you past them.
+   *
+   * The card, not the radio: the radio is `sr-only`, so the element a press
+   * actually lands on is this label. Keyboard activation still reaches it, by
+   * bubbling up from the radio, and is told apart by `detail` — 0 from the
+   * keyboard, 1 or more from a pointer.
+   */
+  onChoose?: MouseEventHandler<HTMLLabelElement>;
 }) {
   const errorId = `${name}-error`;
   const hintId = `${name}-hint`;
@@ -173,7 +186,7 @@ export function ChoiceField({
         )}
       >
         {options.map((option) => (
-          <label key={option.value} className="choice-card">
+          <label key={option.value} className="choice-card" onClick={onChoose}>
             <input
               type="radio"
               value={option.value}

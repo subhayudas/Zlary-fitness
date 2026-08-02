@@ -42,6 +42,8 @@ export const ui = {
     progressLabel: "Form progress",
     stepOf: (current: number, total: number) => `Step ${current} of ${total}`,
     stepNamed: (current: number, title: string) => `Step ${current} — ${title}`,
+    questionOf: (current: number, total: number) =>
+      `Question ${current} / ${total}`,
     privacyLink: "Privacy policy",
   },
 
@@ -78,11 +80,6 @@ export const ui = {
     languages: "Languages",
     experience: "Experience",
     platform: "Platform",
-  },
-
-  fit: {
-    sectionLabel: "Who the coaching is for",
-    honestly: "Honestly",
   },
 
   faq: {

@@ -67,23 +67,32 @@ export const problem = {
   ],
 };
 
-export const outcomes = {
-  label: "02 — CE QUE TU CONSTRUIS",
-  heading: "Une transformation que tu peux maintenir.",
-  body: "Pas une privation de huit semaines. Une structure d'entraînement et de nutrition assez souple pour tenir dans ton horaire réel, et assez précise pour te faire progresser.",
-  cta: { label: "Découvrir la méthode", targetId: "methode" },
-  imageIndex: "01/04",
-  resultCard: {
-    label: "Ce qui change",
-    items: ["Plus d'énergie", "Plus de structure", "Plus de confiance"],
-  },
-  routineCard: {
-    label: "Les trois leviers",
+/**
+ * The offer — a single section that replaces the former "what you build" and
+ * "what you receive" blocks.
+ *
+ * One heading, one promise, one list. Everything a visitor needs to understand
+ * what they are buying should be readable without scrolling twice.
+ */
+export const offer = {
+  label: "02 — CE QUE TU REÇOIS",
+  heading: "Un coaching complet, pas simplement un PDF.",
+  body: "Un plan d'entraînement et de nutrition construit pour toi, ajusté quand ta vie change, avec un coach qui répond entre les suivis.",
+  covers: {
+    label: "Le coaching couvre",
     items: [
       { name: "Entraînement", detail: "Progressif et adapté" },
       { name: "Nutrition", detail: "Flexible, sans interdits" },
       { name: "Habitudes", detail: "Construites pour durer" },
     ],
+  },
+  resultCard: {
+    label: "Ce qui change",
+    items: ["Plus d'énergie", "Plus de structure", "Plus de confiance"],
+  },
+  closing: {
+    heading: "Tout ça, dans un seul accompagnement.",
+    cta: { label: "Voir si le coaching me convient", href: "/apply" },
   },
 };
 
@@ -104,53 +113,6 @@ export const method = {
   heading: "Le plan s'adapte à ta vie. Pas l'inverse.",
   body: "Quatre étapes, dans cet ordre. Chacune existe pour rendre la suivante possible.",
   cta: { label: "Commencer ma candidature", href: "/apply" },
-};
-
-export const nutrition = {
-  eyebrow: "NUTRITION",
-  heading: "Un plan alimentaire est un outil, pas une prison.",
-  body: "Le but n'est pas que tu dépendes d'un menu rigide pour toujours. Tu apprendras à mieux comprendre tes portions, tes protéines et les choix qui te permettent de progresser.",
-  secondary:
-    "Restaurants, voyages et vacances font partie de la vie. La stratégie doit fonctionner dans ces situations aussi.",
-  cta: { label: "Découvrir le coaching", href: "/apply" },
-  pillars: [
-    { name: "Portions", detail: "Repères concrets, pas de balance obligatoire" },
-    { name: "Protéines", detail: "La base de chaque repas" },
-    { name: "Flexibilité", detail: "Aucun aliment interdit" },
-  ],
-};
-
-export const deliverables = {
-  eyebrow: "CE QUE TU REÇOIS",
-  heading: "Un accompagnement, pas simplement un PDF.",
-  body: "Le programme est le point de départ. Ce qui fait la différence, c'est ce qui se passe entre les séances.",
-  featured: {
-    title: "Un plan qui change quand ta vie change",
-    body: "Ton programme n'est pas figé. Il est ajusté selon tes progrès, ton horaire et les obstacles que tu rencontres réellement.",
-  },
-};
-
-export const fit = {
-  eyebrow: "POUR QUI",
-  goodFit: {
-    heading: "Ce coaching est pour toi si…",
-    items: [
-      "Tu veux une approche durable.",
-      "Tu es prêt à appliquer un plan.",
-      "Tu veux de la structure et du suivi.",
-      "Tu as une vie chargée, mais tu veux arrêter de te négliger.",
-      "Tu veux comprendre ce que tu fais.",
-    ],
-  },
-  notFit: {
-    heading: "Ce n'est probablement pas pour toi si…",
-    items: [
-      "Tu cherches une transformation immédiate.",
-      "Tu veux une diète extrême.",
-      "Tu n'es prêt à modifier aucune habitude.",
-      "Tu attends des résultats sans engagement personnel.",
-    ],
-  },
 };
 
 export const about = {
@@ -189,12 +151,9 @@ import * as en from "./home.en";
 export type HomeContent = {
   hero: typeof hero;
   problem: typeof problem;
-  outcomes: typeof outcomes;
+  offer: typeof offer;
   resultsIntro: typeof resultsIntro;
   method: typeof method;
-  nutrition: typeof nutrition;
-  deliverables: typeof deliverables;
-  fit: typeof fit;
   about: typeof about;
   vslPreview: typeof vslPreview;
   faqIntro: typeof faqIntro;
@@ -205,12 +164,9 @@ const dictionary: Record<Locale, HomeContent> = {
   fr: {
     hero,
     problem,
-    outcomes,
+    offer,
     resultsIntro,
     method,
-    nutrition,
-    deliverables,
-    fit,
     about,
     vslPreview,
     faqIntro,

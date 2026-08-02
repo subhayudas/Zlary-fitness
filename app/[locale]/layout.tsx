@@ -3,6 +3,7 @@ import { Geist } from "next/font/google";
 import { notFound } from "next/navigation";
 import { AnalyticsHelper } from "@/components/AnalyticsHelper";
 import { ConsentBanner } from "@/components/ConsentBanner";
+import { LanguageGate } from "@/components/LanguageGate";
 import { OrganizationSchema } from "@/components/StructuredData";
 import { getRouteSeo, getSeoKeywords } from "@/content/seo";
 import { site, siteUrl } from "@/content/site";
@@ -131,6 +132,8 @@ export default async function RootLayout({
         {children}
 
         <OrganizationSchema locale={locale} />
+        {/* Asked first, and only ever once — the consent banner waits for it. */}
+        <LanguageGate locale={locale} />
         <ConsentBanner locale={locale} />
         <AnalyticsHelper />
       </body>

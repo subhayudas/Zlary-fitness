@@ -18,10 +18,22 @@ import {
 
 export type Option = { readonly value: string; readonly label: string };
 
+/**
+ * The applicant's language.
+ *
+ * No longer asked in the form — it is whatever the visitor chose in the
+ * language chooser on their first visit (see `lib/language-preference.ts`), and
+ * `components/form/FollowUpLanguage.tsx` shows it back to them.
+ *
+ * The `satisfies` clause is load-bearing: these values are the site's own
+ * locales, and the form, the database column and every outbound email all
+ * assume that. Renaming a locale without renaming these would break that
+ * assumption silently, so the compiler is asked to catch it instead.
+ */
 export const preferredLanguageOptions = [
   { value: "fr", label: "Français" },
   { value: "en", label: "Anglais" },
-] as const satisfies readonly Option[];
+] as const satisfies readonly { value: Locale; label: string }[];
 
 export const primaryGoalOptions = [
   { value: "fat_loss", label: "Perdre du gras" },
@@ -96,18 +108,20 @@ export const applyContent = {
   body: "Quelques questions pour comprendre ton objectif, ton horaire et ce qui t'a bloqué jusqu'ici. Compte environ trois minutes.",
   privacyNote:
     "Tes réponses servent uniquement à préparer l'appel. Aucune information médicale n'est demandée.",
+  /**
+   * Step order. This array *is* the order of the form — `stepFields` in
+   * `lib/validation.ts` is indexed by the same positions, so the two must be
+   * reordered together.
+   *
+   * Contact comes third on purpose: asking for a name and a phone number before
+   * anything else is the highest-friction way to open a form. The visitor first
+   * answers questions about themselves, and only hands over contact details once
+   * they have already invested a couple of minutes.
+   */
   steps: [
     {
-      id: "contact",
-      index: "01",
-      title: "Contact",
-      lead: "Pour te joindre",
-      benefit:
-        "Ces informations servent uniquement à te recontacter au sujet de ta candidature.",
-    },
-    {
       id: "goal",
-      index: "02",
+      index: "01",
       title: "Objectif",
       lead: "Où tu veux aller",
       benefit:
@@ -115,11 +129,19 @@ export const applyContent = {
     },
     {
       id: "fit",
-      index: "03",
+      index: "02",
       title: "Compatibilité",
       lead: "Ta situation",
       benefit:
         "Ces réponses permettent de voir honnêtement si l'accompagnement te convient.",
+    },
+    {
+      id: "contact",
+      index: "03",
+      title: "Contact",
+      lead: "Pour te joindre",
+      benefit:
+        "Ces informations servent uniquement à te recontacter au sujet de ta candidature.",
     },
     {
       id: "consent",
@@ -134,7 +156,6 @@ export const applyContent = {
     email: "Courriel",
     phone: "Téléphone",
     instagramUsername: "Nom d'utilisateur Instagram",
-    preferredLanguage: "Langue préférée",
     primaryGoal: "Quel est ton objectif principal?",
     trainingLevel: "Quel est ton niveau actuel?",
     trainingFrequency: "À quelle fréquence t'entraînes-tu en ce moment?",
@@ -150,6 +171,17 @@ export const applyContent = {
       "J'accepte d'être contacté par Zlary Fitness au sujet de ma candidature.",
     marketingConsent:
       "Je souhaite recevoir occasionnellement des conseils et des nouvelles par courriel. (facultatif)",
+  },
+  /**
+   * Replaces the old "Langue préférée" question. The language is already known
+   * — it is the one chosen on the first visit — so it is stated, not asked.
+   * `{language}` arrives already translated, from `languageLabel()`.
+   */
+  followUpLanguage: {
+    label: "Langue de suivi",
+    value: (language: string) => `Le suivi se fera en ${language.toLowerCase()}.`,
+    switchTo: (language: string) => `Plutôt en ${language.toLowerCase()}`,
+    hint: "C'est la langue choisie à ton arrivée sur le site. Elle sert autant à l'affichage qu'aux courriels.",
   },
   hints: {
     phone: "Utilisé uniquement si le courriel ne fonctionne pas.",
@@ -273,4 +305,18 @@ const contentDictionary: Record<Locale, typeof applyContent> = {
 
 export function getApplyContent(locale: Locale): typeof applyContent {
   return contentDictionary[locale];
+}
+
+/**
+ * The name of a language, written in the reader's language.
+ *
+ *   languageLabel("fr", "en") → "Anglais"
+ *   languageLabel("en", "en") → "English"
+ *
+ * Reuses the option labels rather than a second table, so the language named on
+ * screen and the language stored in `preferred_language` can never drift apart.
+ */
+export function languageLabel(readIn: Locale, language: Locale): string {
+  const options = getApplyOptions(readIn).preferredLanguage;
+  return options.find((option) => option.value === language)?.label ?? language;
 }

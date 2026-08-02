@@ -1,14 +1,11 @@
 import type { Metadata } from "next";
 import { Footer } from "@/components/Footer";
 import { AboutSection } from "@/components/sections/AboutSection";
-import { DeliverablesSection } from "@/components/sections/DeliverablesSection";
 import { EditorialHero } from "@/components/sections/EditorialHero";
 import { FaqSection } from "@/components/sections/FaqSection";
 import { FinalCtaSection } from "@/components/sections/FinalCtaSection";
-import { FitSection } from "@/components/sections/FitSection";
 import { MethodSection } from "@/components/sections/MethodSection";
-import { NutritionSection } from "@/components/sections/NutritionSection";
-import { OutcomesSection } from "@/components/sections/OutcomesSection";
+import { OfferSection } from "@/components/sections/OfferSection";
 import { ProblemSection } from "@/components/sections/ProblemSection";
 import { ResultsSection } from "@/components/sections/ResultsSection";
 import { VslPreviewSection } from "@/components/sections/VslPreviewSection";
@@ -64,12 +61,9 @@ export default async function HomePage({
 
       <main id="main" className="page-shell section-stack pt-4 md:pt-7">
         <ProblemSection locale={locale} />
-        <OutcomesSection locale={locale} />
+        <OfferSection locale={locale} />
         <ResultsSection locale={locale} />
         <MethodSection locale={locale} />
-        <NutritionSection locale={locale} />
-        <DeliverablesSection locale={locale} />
-        <FitSection locale={locale} />
         <AboutSection locale={locale} />
         <VslPreviewSection locale={locale} />
         <FaqSection locale={locale} />

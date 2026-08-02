@@ -11,6 +11,7 @@ import {
   stripLocale,
   type Locale,
 } from "@/lib/i18n";
+import { writeLanguagePreference } from "@/lib/language-preference";
 import { cn } from "@/lib/utils";
 
 /**
@@ -108,6 +109,15 @@ export function LanguageToggle({
   ) => {
     onNavigate?.();
 
+    /**
+     * This toggle is the only language control on the site, so using it *is*
+     * the visitor changing their mind. Recorded before the modifier-click check
+     * below: opening the other language in a new tab is the same decision, and
+     * leaving the old preference in place would have `proxy.ts` fighting the
+     * visitor on their next visit.
+     */
+    writeLanguagePreference(candidate);
+
     if (
       event.defaultPrevented ||
       event.metaKey ||
@@ -173,6 +183,15 @@ export function LanguageToggle({
             href={href}
             hrefLang={meta.hreflang}
             lang={meta.htmlLang}
+            /**
+             * The French href is unprefixed, so `proxy.ts` resolves it against
+             * the stored-language cookie. A prefetch would resolve it against
+             * the *old* cookie — before this click rewrote it — and the router
+             * would then have an English page cached under a French URL. Both
+             * pages are statically generated, so skipping the prefetch on one
+             * rarely-used control costs nothing measurable.
+             */
+            prefetch={false}
             tabIndex={focusable ? undefined : -1}
             onClick={(event) => navigate(event, href, candidate)}
             className={cn(

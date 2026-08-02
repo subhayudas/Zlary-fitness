@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import {
+  sendApplicantConfirmationEmail,
   sendApplicationEmail,
   sendApplicationWebhook,
 } from "@/lib/notifications";
@@ -161,13 +162,19 @@ export async function POST(request: Request) {
     return fail(502, "storage_failed");
   }
 
-  /* ---- Notifications (best effort, never blocking the result) ---------- */
-  const [email, webhook] = await Promise.all([
+  /* ---- Notifications (best effort, never blocking the result) ----------
+     The confirmation goes out in the applicant's own language — see
+     `lib/notifications.ts`. */
+  const [email, confirmation, webhook] = await Promise.all([
     sendApplicationEmail(data),
+    sendApplicantConfirmationEmail(data),
     sendApplicationWebhook(data),
   ]);
 
   if (!email.sent) devLog("email not sent", { reason: email.reason });
+  if (!confirmation.sent) {
+    devLog("confirmation not sent", { reason: confirmation.reason });
+  }
   if (!webhook.sent) devLog("webhook not sent", { reason: webhook.reason });
 
   return NextResponse.json({ ok: true, code: "stored" });
