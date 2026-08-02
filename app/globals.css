@@ -1,26 +1,854 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* ==========================================================================
+   ZLARY FITNESS — DESIGN SYSTEM
+   --------------------------------------------------------------------------
+   A single art-directed system: warm-grey canvas, large rounded white shells,
+   acid-lime feature panels, deep petroleum contrast areas, full-bleed
+   photography, concentric radii, almost no traditional shadows.
+
+   The site is deliberately light-only. There is no dark-mode variant: the
+   palette *is* the brand, and a dark inversion would break the lime/petroleum
+   relationship the whole layout depends on.
+   ========================================================================== */
+
+@theme {
+  /* ---- Palette -------------------------------------------------------- */
+  --color-canvas: #e7e9e1;
+  /* Slightly deeper canvas used for the outer ring of double-bezel cards. */
+  --color-canvas-deep: #dee1d7;
+  --color-surface: #f8f8f4;
+  --color-surface-pure: #ffffff;
+
+  --color-ink: #102d3a;
+  --color-ink-strong: #092532;
+  /* NOTE: the brief suggested #687579, which measures 3.89:1 against the
+     canvas — below the 4.5:1 required for body copy. Darkened to #5A686E,
+     which clears AA on canvas (4.63:1), surface (5.33:1) and white (5.68:1)
+     while keeping the same cool-grey character. */
+  --color-ink-muted: #5a686e;
+  /* Decorative only: rules, disabled glyphs, placeholders. Never body copy. */
+  --color-ink-faint: #8d979b;
+
+  --color-lime: #e6ff4d;
+  --color-lime-hover: #d8f83c;
+  --color-lime-soft: #f0ff89;
+
+  --color-line: rgba(16, 45, 58, 0.1);
+  --color-line-strong: rgba(16, 45, 58, 0.16);
+  --color-white-line: rgba(255, 255, 255, 0.2);
+  --color-overlay: rgba(6, 24, 30, 0.28);
+  --color-danger: #b4472f;
+
+  /* ---- Radii (concentric: inner always < outer) ------------------------ */
+  --radius-shell: 2.25rem; /* 36px — outer section shells */
+  --radius-shell-sm: 1.75rem; /* 28px — mobile shells */
+  --radius-media: 1.5rem; /* 24px — photography, inner cores */
+  --radius-card: 1.25rem; /* 20px — small cards */
+  --radius-chip: 0.875rem; /* 14px — chips */
+  --radius-pill: 999px;
+
+  /* ---- Type ------------------------------------------------------------ */
+  --font-sans:
+    var(--font-geist-sans), ui-sans-serif, system-ui, -apple-system, "Segoe UI",
+    sans-serif;
+
+  /* ---- Motion ---------------------------------------------------------- */
+  --ease-editorial: cubic-bezier(0.32, 0.72, 0, 1);
+
+  /* ---- Layout ---------------------------------------------------------- */
+  --container-page: 1560px;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+/* ==========================================================================
+   BASE
+   ========================================================================== */
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  * {
+    /* Grid/flex children must be allowed to shrink, or they force overflow. */
+    min-width: 0;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    /* Anchor targets clear the floating navigation island. */
+    scroll-padding-top: 6.5rem;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: var(--color-canvas);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    /* `clip`, not `hidden`, so position:sticky keeps working. */
+    overflow-x: clip;
+  }
+
+  ::selection {
+    background-color: var(--color-lime);
+    color: var(--color-ink-strong);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-ink);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  /* On petroleum and photographic surfaces the navy ring disappears. */
+  .on-dark :focus-visible,
+  .on-photo :focus-visible {
+    outline-color: var(--color-lime);
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  /* Native form controls must never look native here. */
+  input,
+  textarea,
+  select,
+  button {
+    font: inherit;
+    color: inherit;
+  }
+
+  select {
+    appearance: none;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* ==========================================================================
+   COMPONENTS
+   ========================================================================== */
+
+@layer components {
+  /* ---- Typography scale ------------------------------------------------
+     Hierarchy comes from scale, not weight. Nothing goes above 500. */
+
+  .type-hero {
+    font-size: clamp(3.5rem, 6.5vw, 7rem);
+    line-height: 0.94;
+    letter-spacing: -0.035em;
+    font-weight: 450;
+  }
+
+  .type-section {
+    font-size: clamp(2.5rem, 4.5vw, 5rem);
+    line-height: 0.96;
+    letter-spacing: -0.03em;
+    font-weight: 450;
+  }
+
+  .type-card {
+    font-size: clamp(1.6rem, 2.7vw, 3rem);
+    line-height: 1.03;
+    letter-spacing: -0.022em;
+    font-weight: 450;
+  }
+
+  .type-sub {
+    font-size: clamp(1.25rem, 1.6vw, 1.75rem);
+    line-height: 1.2;
+    letter-spacing: -0.018em;
+    font-weight: 450;
+  }
+
+  .type-body {
+    font-size: clamp(1rem, 1.05vw, 1.125rem);
+    line-height: 1.55;
+    letter-spacing: -0.006em;
+    font-weight: 400;
+  }
+
+  .type-body-sm {
+    font-size: 0.9375rem;
+    line-height: 1.55;
+    letter-spacing: -0.004em;
+  }
+
+  /* Compact uppercase technical label. Never used for body copy. */
+  .type-micro {
+    font-size: 0.6875rem;
+    line-height: 1.1;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  .type-micro-lg {
+    font-size: 0.75rem;
+    line-height: 1.1;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  /* Numeric indices: 01 / 02 / 03. Tabular so they never jitter. */
+  .type-index {
+    font-variant-numeric: tabular-nums;
+    letter-spacing: 0.04em;
+    font-weight: 450;
+  }
+
+  /* Short editorial measure — long lines are the fastest way to look generic. */
+  .measure {
+    max-width: 46ch;
+  }
+  .measure-sm {
+    max-width: 34ch;
+  }
+  .measure-lg {
+    max-width: 64ch;
+  }
+
+  /* ---- Layout ---------------------------------------------------------- */
+
+  .page-shell {
+    width: 100%;
+    max-width: var(--container-page);
+    margin-inline: auto;
+    padding-inline: 1rem;
+  }
+
+  @media (min-width: 768px) {
+    .page-shell {
+      padding-inline: 1.75rem;
+    }
+  }
+
+  @media (min-width: 1280px) {
+    .page-shell {
+      padding-inline: 3rem;
+    }
+  }
+
+  /* Vertical gap between the big rounded section shells. */
+  .section-stack > * + * {
+    margin-top: 1rem;
+  }
+
+  @media (min-width: 768px) {
+    .section-stack > * + * {
+      margin-top: 1.75rem;
+    }
+  }
+
+  @media (min-width: 1280px) {
+    .section-stack > * + * {
+      margin-top: 2.25rem;
+    }
+  }
+
+  /* ---- Double-bezel card construction ----------------------------------
+     Outer canvas-tinted enclosure + inner concentric core. No drop shadows. */
+
+  .bezel {
+    position: relative;
+    background-color: var(--color-canvas-deep);
+    border-radius: var(--radius-shell-sm);
+    padding: 5px;
+    box-shadow: inset 0 0 0 1px rgba(16, 45, 58, 0.06);
+  }
+
+  @media (min-width: 768px) {
+    .bezel {
+      border-radius: var(--radius-shell);
+      padding: 7px;
+    }
+  }
+
+  .bezel-core {
+    position: relative;
+    border-radius: calc(var(--radius-shell-sm) - 5px);
+    overflow: hidden;
+    box-shadow: inset 0 0 0 1px rgba(16, 45, 58, 0.05);
+  }
+
+  @media (min-width: 768px) {
+    .bezel-core {
+      border-radius: calc(var(--radius-shell) - 7px);
+    }
+  }
+
+  /* Subtle top highlight — reads as light falling on a physical surface. */
+  .bezel-core-light::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    pointer-events: none;
+    z-index: 1;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.65);
+  }
+
+  .bezel-core-dark::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    pointer-events: none;
+    z-index: 1;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  }
+
+  /* Inset hairlines.
+     Tailwind v4 replaced `ring-inset` with `inset-ring-*`; these named classes
+     keep the intent readable and avoid depending on either spelling. */
+  .hairline {
+    box-shadow: inset 0 0 0 1px var(--color-line);
+  }
+
+  .hairline-strong {
+    box-shadow: inset 0 0 0 1px var(--color-line-strong);
+  }
+
+  /* The faint ring around a bezel enclosure. */
+  .hairline-bezel {
+    box-shadow: inset 0 0 0 1px rgba(16, 45, 58, 0.06);
+  }
+
+  /* Thin editorial rules. */
+  .rule {
+    height: 1px;
+    width: 100%;
+    background-color: var(--color-line);
+  }
+
+  .rule-light {
+    height: 1px;
+    width: 100%;
+    background-color: var(--color-white-line);
+  }
+
+  .rule-ink {
+    height: 1px;
+    width: 100%;
+    background-color: rgba(16, 45, 58, 0.2);
+  }
+
+  /* ---- Buttons --------------------------------------------------------- */
+
+  .btn {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    border-radius: var(--radius-pill);
+    min-height: 3rem;
+    padding: 0.75rem 1.5rem;
+    font-size: 0.75rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-weight: 500;
+    text-align: center;
+    transition:
+      transform 0.45s var(--ease-editorial),
+      background-color 0.35s var(--ease-editorial),
+      color 0.35s var(--ease-editorial),
+      opacity 0.35s var(--ease-editorial);
+  }
+
+  @media (min-width: 768px) {
+    .btn {
+      min-height: 3.25rem;
+      padding: 0.875rem 1.75rem;
+    }
+  }
+
+  .btn:active {
+    transform: scale(0.975);
+  }
+
+  .btn-lime {
+    background-color: var(--color-lime);
+    color: var(--color-ink-strong);
+  }
+  .btn-lime:hover {
+    background-color: var(--color-lime-hover);
+  }
+
+  .btn-ink {
+    background-color: var(--color-ink);
+    color: var(--color-surface-pure);
+  }
+  .btn-ink:hover {
+    background-color: var(--color-ink-strong);
+  }
+
+  .btn-white {
+    background-color: var(--color-surface-pure);
+    color: var(--color-ink-strong);
+  }
+  .btn-white:hover {
+    background-color: var(--color-surface);
+  }
+
+  /* Secondary control sitting directly on photography. */
+  .btn-glass {
+    background-color: rgba(255, 255, 255, 0.92);
+    color: var(--color-ink-strong);
+    backdrop-filter: blur(6px);
+  }
+  .btn-glass:hover {
+    background-color: rgb(255, 255, 255);
+  }
+
+  .btn-outline {
+    background-color: transparent;
+    color: var(--color-ink);
+    box-shadow: inset 0 0 0 1px var(--color-line-strong);
+  }
+  .btn-outline:hover {
+    background-color: rgba(16, 45, 58, 0.04);
+  }
+
+  .btn-outline-light {
+    background-color: transparent;
+    color: var(--color-surface-pure);
+    box-shadow: inset 0 0 0 1px var(--color-white-line);
+  }
+  .btn-outline-light:hover {
+    background-color: rgba(255, 255, 255, 0.08);
+  }
+
+  .btn:disabled,
+  .btn[aria-disabled="true"] {
+    opacity: 0.5;
+    pointer-events: none;
+  }
+
+  /* The trailing circular arrow island. Moves diagonally on hover. */
+  .arrow-island {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex: none;
+    width: 1.75rem;
+    height: 1.75rem;
+    border-radius: var(--radius-pill);
+    background-color: currentColor;
+    overflow: hidden;
+  }
+
+  .arrow-island svg {
+    position: absolute;
+    width: 0.75rem;
+    height: 0.75rem;
+    transition: transform 0.55s var(--ease-editorial);
+  }
+
+  /* First glyph leaves to the upper-right… */
+  .group:hover .arrow-island svg:first-child,
+  .btn:hover .arrow-island svg:first-child {
+    transform: translate3d(0.9rem, -0.9rem, 0);
+  }
+
+  /* …as the second arrives from the lower-left. */
+  .arrow-island svg:last-child {
+    transform: translate3d(-0.9rem, 0.9rem, 0);
+  }
+  .group:hover .arrow-island svg:last-child,
+  .btn:hover .arrow-island svg:last-child {
+    transform: translate3d(0, 0, 0);
+  }
+
+  /* Text link with a precise underline reveal. */
+  .link-editorial {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding-bottom: 2px;
+  }
+
+  .link-editorial::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 1px;
+    width: 100%;
+    background-color: currentColor;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.5s var(--ease-editorial);
+  }
+
+  .link-editorial:hover::after {
+    transform: scaleX(1);
+  }
+
+  /* ---- Form controls --------------------------------------------------- */
+
+  .field-input {
+    width: 100%;
+    border-radius: var(--radius-card);
+    background-color: var(--color-surface);
+    padding: 1rem 1.125rem;
+    font-size: 1rem;
+    line-height: 1.4;
+    color: var(--color-ink-strong);
+    box-shadow: inset 0 0 0 1px var(--color-line);
+    transition:
+      box-shadow 0.35s var(--ease-editorial),
+      background-color 0.35s var(--ease-editorial);
+  }
+
+  @media (min-width: 768px) {
+    .field-input {
+      padding: 1.125rem 1.25rem;
+    }
+  }
+
+  .field-input::placeholder {
+    color: var(--color-ink-faint);
+  }
+
+  .field-input:hover {
+    box-shadow: inset 0 0 0 1px var(--color-line-strong);
+  }
+
+  .field-input:focus {
+    outline: none;
+    background-color: var(--color-surface-pure);
+    box-shadow:
+      inset 0 0 0 2px var(--color-ink),
+      0 0 0 4px var(--color-lime-soft);
+  }
+
+  .field-input[aria-invalid="true"] {
+    box-shadow: inset 0 0 0 1.5px var(--color-danger);
+  }
+  .field-input[aria-invalid="true"]:focus {
+    box-shadow:
+      inset 0 0 0 2px var(--color-danger),
+      0 0 0 4px rgba(180, 71, 47, 0.16);
+  }
+
+  /* Radio / checkbox cards — large, tappable, obviously selectable. */
+  .choice-card {
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.875rem;
+    width: 100%;
+    min-height: 3.25rem;
+    border-radius: var(--radius-card);
+    background-color: var(--color-surface);
+    padding: 1rem 1.125rem;
+    text-align: left;
+    cursor: pointer;
+    box-shadow: inset 0 0 0 1px var(--color-line);
+    transition:
+      background-color 0.35s var(--ease-editorial),
+      box-shadow 0.35s var(--ease-editorial);
+  }
+
+  .choice-card:hover {
+    background-color: var(--color-surface-pure);
+    box-shadow: inset 0 0 0 1px var(--color-line-strong);
+  }
+
+  .choice-card:has(input:checked) {
+    background-color: var(--color-lime);
+    box-shadow: inset 0 0 0 1.5px var(--color-ink);
+  }
+
+  .choice-card:has(input:focus-visible) {
+    outline: 2px solid var(--color-ink);
+    outline-offset: 3px;
+  }
+
+  .choice-marker {
+    flex: none;
+    width: 1.125rem;
+    height: 1.125rem;
+    margin-top: 0.1875rem;
+    border-radius: var(--radius-pill);
+    box-shadow: inset 0 0 0 1.5px var(--color-line-strong);
+    background-color: var(--color-surface-pure);
+    transition: box-shadow 0.3s var(--ease-editorial);
+  }
+
+  .choice-marker-square {
+    border-radius: 0.4375rem;
+  }
+
+  .choice-card:has(input:checked) .choice-marker {
+    box-shadow:
+      inset 0 0 0 1.5px var(--color-ink),
+      inset 0 0 0 5px var(--color-surface-pure);
+    background-color: var(--color-ink);
+  }
+
+  /* The checkbox variant fills solid so the tick reads against it. */
+  .choice-card:has(input:checked) .choice-marker-square {
+    box-shadow: inset 0 0 0 1.5px var(--color-ink);
+    background-color: var(--color-ink-strong);
+  }
+
+  .choice-check {
+    opacity: 0;
+    transition: opacity 0.25s var(--ease-editorial);
+  }
+
+  .choice-card:has(input:checked) .choice-check {
+    opacity: 1;
+  }
+
+  /* ---- Motion ----------------------------------------------------------
+     Only transform + opacity. Driven by IntersectionObserver, never scroll. */
+
+  .reveal {
+    opacity: 0;
+    transform: translate3d(0, 18px, 0);
+    transition:
+      opacity 0.9s var(--ease-editorial),
+      transform 0.9s var(--ease-editorial);
+    transition-delay: var(--reveal-delay, 0ms);
+  }
+
+  .reveal[data-visible="true"] {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+
+  /* Photography breathes very slightly on hover. */
+  .photo-zoom .photo-zoom-target {
+    transition: transform 1.1s var(--ease-editorial);
+  }
+
+  .photo-zoom:hover .photo-zoom-target {
+    transform: scale(1.035);
+  }
+
+  /* Gradient scrim placed behind text on photography only. */
+  .photo-scrim {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background:
+      linear-gradient(
+        to top,
+        rgba(6, 24, 30, 0.74) 0%,
+        rgba(6, 24, 30, 0.36) 30%,
+        rgba(6, 24, 30, 0) 64%
+      ),
+      linear-gradient(
+        to bottom,
+        rgba(6, 24, 30, 0.4) 0%,
+        rgba(6, 24, 30, 0) 32%
+      );
+  }
+
+  /* Hero scrim. Directional, unlike `.photo-scrim`.
+
+     The hero's subject holds the right third of the frame and the copy holds
+     the left, so contrast is bought where it is spent: heavy on the copy
+     column, gone by ~66%, leaving the runner at full brightness instead of
+     dimming the whole frame to protect text that only occupies half of it.
+
+     Narrow shells crop the footage so hard that the subject fills it and the
+     copy runs full width — there is no clear side left to protect, so below
+     `md` this falls back to the standard bottom-weighted scrim. */
+  .photo-scrim-hero {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    background:
+      linear-gradient(
+        to top,
+        rgba(6, 24, 30, 0.78) 0%,
+        rgba(6, 24, 30, 0.4) 32%,
+        rgba(6, 24, 30, 0) 66%
+      ),
+      linear-gradient(
+        to bottom,
+        rgba(6, 24, 30, 0.44) 0%,
+        rgba(6, 24, 30, 0) 34%
+      );
+  }
+
+  @media (min-width: 768px) {
+    .photo-scrim-hero {
+      background:
+        /* The reading surface, anchored to the copy column. */
+        linear-gradient(
+          to right,
+          rgba(6, 24, 30, 0.8) 0%,
+          rgba(6, 24, 30, 0.66) 30%,
+          rgba(6, 24, 30, 0.24) 52%,
+          rgba(6, 24, 30, 0) 66%
+        ),
+        /* Holds the overlaid navigation against a bright sky. */
+        linear-gradient(
+          to bottom,
+          rgba(6, 24, 30, 0.42) 0%,
+          rgba(6, 24, 30, 0) 26%
+        ),
+        /* A little weight along the floor so the trust line stays legible. */
+        linear-gradient(
+          to top,
+          rgba(6, 24, 30, 0.34) 0%,
+          rgba(6, 24, 30, 0) 30%
+        );
+    }
+  }
+
+  .photo-scrim-soft {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: linear-gradient(
+      to top,
+      rgba(6, 24, 30, 0.64) 0%,
+      rgba(6, 24, 30, 0.18) 48%,
+      rgba(6, 24, 30, 0) 80%
+    );
+  }
+
+  /* ---- Photographic backdrops -------------------------------------------
+     A photograph used as surface texture *behind* copy, never as content.
+
+     Restricted to deep-petroleum panels. White type on ink has roughly 15:1 of
+     contrast to spend, so a low-opacity image underneath it is free; the light
+     surfaces have no such headroom (see the note on --color-ink-muted above)
+     and must stay flat.
+
+     The photograph is darkened and desaturated before it is composited, so it
+     can only ever deepen the panel — it never lifts the background luminance
+     far enough to put white copy at risk. The mask then fades it out entirely
+     across the lower half, which is where the smallest type usually sits. */
+
+  .photo-backdrop {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    overflow: hidden;
+    border-radius: inherit;
+    pointer-events: none;
+    user-select: none;
+    opacity: 0.28;
+    -webkit-mask-image: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 1) 0%,
+      rgba(0, 0, 0, 0.55) 46%,
+      rgba(0, 0, 0, 0) 74%
+    );
+    mask-image: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 1) 0%,
+      rgba(0, 0, 0, 0.55) 46%,
+      rgba(0, 0, 0, 0) 74%
+    );
+  }
+
+  .photo-backdrop img {
+    position: absolute;
+    inset: 0;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    filter: saturate(0.6) brightness(0.62);
+  }
+
+  /* Full-bleed surfaces (the mobile menu) read better with the photograph
+     anchored to the top edge and a longer fade — there is more height to
+     travel and the type is large enough to take it. */
+  .photo-backdrop-tall {
+    opacity: 0.32;
+    -webkit-mask-image: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 1) 0%,
+      rgba(0, 0, 0, 0.5) 55%,
+      rgba(0, 0, 0, 0) 88%
+    );
+    mask-image: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 1) 0%,
+      rgba(0, 0, 0, 0.5) 55%,
+      rgba(0, 0, 0, 0) 88%
+    );
+  }
+
+  /* Panel content has to clear the backdrop's stacking context. */
+  .photo-backdrop-content {
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Surface used for photography that has not been delivered yet. */
+  .media-placeholder {
+    background-color: var(--color-canvas);
+    background-image: repeating-linear-gradient(
+      45deg,
+      rgba(16, 45, 58, 0.035) 0px,
+      rgba(16, 45, 58, 0.035) 1px,
+      transparent 1px,
+      transparent 11px
+    );
+  }
+
+  /* Skip link. */
+  .skip-link {
+    position: absolute;
+    top: 0.75rem;
+    left: 0.75rem;
+    z-index: 100;
+    transform: translate3d(0, -200%, 0);
+    transition: transform 0.35s var(--ease-editorial);
+  }
+  .skip-link:focus-visible {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+/* ==========================================================================
+   REDUCED MOTION
+   ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  /* Content must be visible immediately — never trapped at opacity 0. */
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .photo-zoom:hover .photo-zoom-target,
+  .group:hover .arrow-island svg,
+  .btn:hover .arrow-island svg {
+    transform: none !important;
+  }
+
+  .arrow-island svg:last-child {
+    display: none;
+  }
 }
