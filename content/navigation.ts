@@ -59,10 +59,12 @@ export const footerNav = {
     { label: "À propos", href: "/about" },
     { label: "FAQ", href: "/#faq" },
   ],
+  /* Deux entrées, pas trois. « Postuler » et « Réserver un appel » pointaient
+     au même endroit — `/book` ne fait que rediriger vers `#postuler` — donc la
+     colonne proposait un choix qui n'existait pas. */
   funnel: [
     { label: "Voir la présentation", href: "/vsl" },
-    { label: "Postuler", href: "/#postuler" },
-    { label: "Réserver un appel", href: "/book" },
+    { label: "Réserver un appel", href: "/#postuler" },
   ],
   legal: [
     { label: "Politique de confidentialité", href: "/privacy" },

@@ -67,7 +67,7 @@ export const faqItems: readonly FaqItem[] = [
     id: "langues",
     question: "Le coaching est-il offert en français et en anglais?",
     answer: confirmed(
-      "Oui. Tu peux indiquer ta langue préférée dans le formulaire de candidature, et l'accompagnement se déroule dans cette langue.",
+      "Oui. La langue choisie à ton arrivée sur le site est celle utilisée pour le suivi et pour l'accompagnement — tu peux la changer avec le bouton FR / EN, ou à la dernière étape du formulaire de réservation.",
     ),
   },
   {

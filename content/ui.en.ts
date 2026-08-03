@@ -9,7 +9,7 @@ export const ui = {
     seeInstagram: "See Instagram",
     writeOnInstagram: "Message on Instagram",
     homeLinkLabel: "back to home",
-    startApplication: "Start my application",
+    startApplication: "Book my call",
   },
 
   nav: {
@@ -49,7 +49,7 @@ export const ui = {
 
   results: {
     eyebrow: "TRANSFORMATIONS",
-    heading: "Results achieved inside genuinely full lives.",
+    heading: "Results achieved in genuinely full lives.",
     body: "Every journey shown here belongs to a real person and is published with their written consent. No numbers are added, no photo is retouched.",
     featuredLabel: "Featured journey",
     othersLabel: "Other transformations",
@@ -60,7 +60,7 @@ export const ui = {
     ctaHeading: "The next journey could be yours.",
     ctaBody:
       "Answer a few questions to see whether the coaching fits your situation.",
-    ctaLabel: "Start my application",
+    ctaLabel: "Book my call",
   },
 
   caseStudy: {
@@ -111,14 +111,6 @@ export const ui = {
     terms: "Terms",
   },
 
-  booking: {
-    newTabHeading: "Your calendar opens in a new tab.",
-    newTabBody:
-      "Pick a time, then come back here. You'll get an email confirmation with the link for the call.",
-    iframeTitle: "Booking calendar",
-    loading: "Loading the calendar…",
-  },
-
   legalPage: {
     tableOfContents: "Contents",
   },
@@ -138,6 +130,6 @@ export const ui = {
   schema: {
     jobTitle: "Online fitness and nutrition coach",
     serviceType: "Online fitness and nutrition coaching",
-    applicationChannel: "Online application",
+    applicationChannel: "Online call booking",
   },
 };

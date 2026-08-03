@@ -27,16 +27,16 @@ export const privacyContent = {
       id: "collecte",
       title: "Information collected",
       paragraphs: [
-        "The only form on the site is the coaching application form. It collects: your name, your email address, your phone number, your Instagram username (optional), your preferred language, and your answers about your training goal, your level, your current training frequency, your timeline, your obstacles, your motivation, the level of follow-up you want and how you heard about Zlary Fitness.",
-        "The form also records technical data related to your visit: the referring page, the campaign parameters present in the address (utm_source, utm_medium, utm_campaign, utm_content, utm_term) and the submission date.",
-        "No health information is requested: no medical history, no injuries, no medication, no weight, no body measurements. Please do not include any in the free-text fields.",
+        "The only form on the site is the call booking form. It collects: your name, your email address, your phone number, the language you chose for follow-up, the time slot you pick, and your answers to five questions — your main goal, where you are with your training, what has held you back so far, when you would like to start, and whether you are ready to invest in personalized coaching.",
+        "The form also records technical data related to your visit: the referring page, the campaign parameters present in the address (utm_source, utm_medium, utm_campaign, utm_content, utm_term), which page you started the booking from, and the submission date.",
+        "No health information is requested: no medical history, no injuries, no medication, no weight, no body measurements. There is no free-text field in the form.",
       ],
     },
     {
       id: "utilisation",
       title: "Use of the information",
       paragraphs: [
-        "Your answers are used to assess your application, prepare the call and get back to you about it. They are not sold, rented or traded.",
+        "Your answers are used to prepare the call, to confirm the appointment and to get back to you about it. They are not sold, rented or traded.",
         "If you ticked the optional marketing consent box, your email address may also be used to send you tips and news. You can withdraw that consent at any time: every message contains an unsubscribe link, and a simple request by email is equally sufficient.",
       ],
     },
@@ -44,7 +44,7 @@ export const privacyContent = {
       id: "sous-traitants",
       title: "Service providers and hosting",
       paragraphs: [
-        "The site is hosted on Vercel. Applications are stored in a Supabase database and a notification is sent by email through Resend. These providers process the data on behalf of Zlary Fitness and may host data outside Canada, including in the United States.",
+        "The site is hosted on Vercel. Bookings are stored in a Supabase database, the appointment is added to Zach's Google Calendar, and the confirmation and notification emails are sent through Resend. These providers process the data on behalf of Zlary Fitness and may host data outside Canada, including in the United States.",
         "If an analytics tool is enabled (Google Analytics, Google Tag Manager or Meta Pixel), it is loaded only after your explicit consent through the banner shown on your first visit. Until you have consented, no measurement or advertising script is loaded.",
       ],
     },
@@ -52,7 +52,7 @@ export const privacyContent = {
       id: "conservation",
       title: "Retention",
       paragraphs: [
-        "Applications are kept for as long as necessary to follow up on the request and manage the coaching relationship, then deleted.",
+        "Bookings are kept for as long as necessary to follow up on the request and manage the coaching relationship, then deleted.",
       ],
     },
     {
@@ -74,7 +74,7 @@ export const privacyContent = {
       id: "securite",
       title: "Security",
       paragraphs: [
-        "Data travels over HTTPS and is stored with providers applying recognised security measures. No system is infallible, but access to applications is restricted to the people who need it.",
+        "Data travels over HTTPS and is stored with providers applying recognised security measures. No system is infallible, but access to bookings is restricted to the people who need it.",
       ],
     },
   ],
@@ -92,8 +92,8 @@ export const termsContent = {
       id: "objet",
       title: "Purpose of the site",
       paragraphs: [
-        "This site presents the online fitness and nutrition coaching services of Zlary Fitness and allows you to submit an application. Submitting an application creates no obligation, either for you or for Zlary Fitness.",
-        "Booking a call slot does not mean your application has been accepted. Every application is read before the call, and coaching may be declined if it does not suit your situation.",
+        "This site presents the online fitness and nutrition coaching services of Zlary Fitness and allows you to book an introductory call. Booking a call creates no obligation, either for you or for Zlary Fitness.",
+        "Booking a call is not an acceptance into the program. Your answers are read before the call, and coaching may be declined if it does not suit your situation.",
       ],
     },
     {
@@ -123,7 +123,7 @@ export const termsContent = {
       id: "liens",
       title: "External links and services",
       paragraphs: [
-        "The site links to external services, including Instagram and the call booking tool. Zlary Fitness is not responsible for the content or the privacy practices of those services.",
+        "The site links to external services, including Instagram. Zlary Fitness is not responsible for the content or the privacy practices of those services.",
       ],
     },
     {
@@ -151,35 +151,35 @@ export const notFoundContent = {
   links: [
     { label: "Back to home", href: "/en" },
     { label: "Watch the presentation", href: "/en/vsl" },
-    { label: "Start my application", href: "/en/#postuler" },
+    { label: "Book a call", href: "/en/#postuler" },
   ],
 };
 
 export const thankYouContent = {
-  eyebrow: "APPLICATION RECEIVED",
-  heading: "That's sent. Here's what happens next.",
-  body: "Your application is on file. Zach reads it before the call so he arrives prepared.",
+  eyebrow: "CALL BOOKED",
+  heading: "That's booked. Here's what happens next.",
+  body: "Your answers are on file. Zach reads them before the call so he arrives prepared.",
   confirmation: {
     label: "Status",
-    value: "Application received",
+    value: "Call booked",
   },
   nextSteps: {
     heading: "What happens now",
     items: [
       {
         index: "01",
-        title: "Zach reads your application",
-        body: "Your answers about your goal, your schedule and your obstacles are reviewed before the call.",
+        title: "Zach reads your answers",
+        body: "What you said about your goal, your schedule and your obstacles is reviewed before the call.",
       },
       {
         index: "02",
         title: "Add the call to your calendar",
-        body: "If you booked a slot, the confirmation contains a link to add it to your calendar. Check your spam folder if you don't see it.",
+        body: "Your confirmation email carries the appointment as an attachment — open it to add the call to your calendar. Check your spam folder if you don't see it.",
       },
       {
         index: "03",
         title: "The transformation call",
-        body: "A conversation of about thirty minutes about your situation and how a plan could be built around it.",
+        body: "Zach calls you on the number you gave, at the time you picked, to talk through your situation and how a plan could be built around it.",
       },
     ],
   },
@@ -191,10 +191,13 @@ export const thankYouContent = {
       "Note what derailed your previous attempts.",
     ],
   },
+  /* Not "haven't booked yet — that's the last step". Picking a time is step 2
+     of 3, and nothing is booked at all until the whole flow is finished, so the
+     only person who reaches this page unbooked is someone who left partway. */
   notBooked: {
-    heading: "Haven't booked your call yet?",
-    body: "That's the last step. Pick the time that works for you.",
-    cta: { label: "Pick a time", href: "/en/book" },
+    heading: "Left before choosing a time?",
+    body: "Nothing is booked until you've picked a time and confirmed. It takes under two minutes to finish.",
+    cta: { label: "Pick a time", href: "/en/#postuler" },
   },
   instagram: {
     heading: "In the meantime",

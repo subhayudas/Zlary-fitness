@@ -134,13 +134,12 @@ export const ui = {
     terms: "Conditions",
   },
 
-  booking: {
-    newTabHeading: "Ton calendrier s'ouvre dans un nouvel onglet.",
-    newTabBody:
-      "Choisis un créneau, puis reviens ici. Tu recevras une confirmation par courriel avec le lien de l'appel.",
-    iframeTitle: "Calendrier de réservation",
-    loading: "Chargement du calendrier…",
-  },
+  /* No `booking` block any more. It described a framed third-party calendar
+     that opened in a new tab and emailed "the link for the call" — none of
+     which is true since the calendar became a step of the flow (`SlotPicker`)
+     and the call became a phone call. Nothing rendered it, so it was stale copy
+     contradicting the live flow. The calendar's own strings live in
+     `apply.ts` → `calendar`. */
 
   legalPage: {
     tableOfContents: "Sommaire",
@@ -162,7 +161,7 @@ export const ui = {
   schema: {
     jobTitle: "Coach fitness et nutrition en ligne",
     serviceType: "Coaching fitness et nutrition en ligne",
-    applicationChannel: "Candidature en ligne",
+    applicationChannel: "Réservation d'appel en ligne",
   },
 };
 

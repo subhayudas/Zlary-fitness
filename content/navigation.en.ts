@@ -12,13 +12,16 @@ import { site } from "./site";
 export const primaryNav: readonly NavLink[] = [
   { label: "Home", href: "/en" },
   { label: "Results", href: "/en/results" },
-  { label: "Coaching", href: "/en/#methode" },
+  /* "The method", not "Coaching": the link lands on the section headed "The
+     Zlary Method", and the footer already called the same anchor that. Two
+     names for one destination is the thing to avoid. */
+  { label: "The method", href: "/en/#methode" },
   { label: "About", href: "/en/about" },
   { label: "FAQ", href: "/en/#faq" },
 ];
 
 export const navCta = {
-  label: "Apply",
+  label: "Book a call",
   href: "/en/#postuler",
 };
 
@@ -30,10 +33,12 @@ export const footerNav = {
     { label: "About", href: "/en/about" },
     { label: "FAQ", href: "/en/#faq" },
   ],
+  /* Two entries, not three. "Apply" and "Book a call" were separate links to
+     the same place — `/book` only redirects to `#postuler` — so the column
+     offered a choice that did not exist. */
   funnel: [
     { label: "Watch the presentation", href: "/en/vsl" },
-    { label: "Apply", href: "/en/#postuler" },
-    { label: "Book a call", href: "/en/book" },
+    { label: "Book a call", href: "/en/#postuler" },
   ],
   legal: [
     { label: "Privacy policy", href: "/en/privacy" },

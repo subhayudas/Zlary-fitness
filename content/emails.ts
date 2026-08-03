@@ -49,8 +49,12 @@ const fr: EmailCopy = {
   subject: (date) => `Ton appel est confirmé — ${date}`,
   eyebrow: "APPEL CONFIRMÉ",
   greeting: (firstName) => `C'est réservé, ${firstName}.`,
+  /* Ne promet pas « le seul message automatique que tu recevras » : la case
+     marketing facultative du formulaire, si elle est cochée, en apporte
+     d'autres. La promesse porte sur ce rendez-vous, pas sur la boîte de
+     réception. */
   intro:
-    "Ton appel transformation est confirmé. Zach lit tes réponses avant de t'appeler — ceci est le seul message automatique que tu recevras.",
+    "Ton appel transformation est confirmé. Zach lit tes réponses avant de t'appeler — aucun autre courriel ne te sera envoyé au sujet de ce rendez-vous.",
   detailsLabel: "Ton rendez-vous",
   whenLabel: "Quand",
   durationLabel: "Durée",
@@ -81,7 +85,7 @@ const en: EmailCopy = {
   eyebrow: "CALL CONFIRMED",
   greeting: (firstName) => `You're booked, ${firstName}.`,
   intro:
-    "Your transformation call is confirmed. Zach reads your answers before he calls — this is the only automated message you'll get.",
+    "Your transformation call is confirmed. Zach reads your answers before he calls — and you won't get another email about this appointment.",
   detailsLabel: "Your appointment",
   whenLabel: "When",
   durationLabel: "Length",

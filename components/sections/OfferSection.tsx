@@ -34,7 +34,16 @@ export function OfferSection({ locale }: { locale: Locale }) {
   const pending = getDeliverables(locale).filter((d) => !d.confirmedByCoach);
 
   return (
-    <SectionShell id={sectionIds.offer} ariaLabelledBy="offer-title">
+    <SectionShell
+      id={sectionIds.offer}
+      ariaLabelledBy="offer-title"
+      /* This block carries more than any other section — a promise, a scope
+         list, a photograph, eight deliverables and a close — so it takes the
+         `lg` shell's horizontal padding, which keeps its content column aligned
+         with every neighbouring section, on a shorter vertical rhythm. */
+      padding="none"
+      innerClassName="px-6 py-7 md:px-12 md:py-9 lg:px-16 lg:py-11 xl:px-20 xl:py-12"
+    >
       {/* Header: the promise on the left, the proof photograph on the right. */}
       <div className="grid gap-3 lg:grid-cols-12 lg:gap-4">
         <Reveal className="lg:col-span-7 lg:pr-6">
@@ -43,19 +52,19 @@ export function OfferSection({ locale }: { locale: Locale }) {
           <EditorialHeading
             as="h2"
             id="offer-title"
-            className="mt-5 text-balance"
+            className="mt-4 text-balance"
           >
             {offer.heading}
           </EditorialHeading>
 
-          <p className="measure-lg mt-5 text-pretty text-base leading-relaxed text-ink-muted md:mt-6 md:text-lg">
+          <p className="measure-lg mt-4 text-pretty text-base leading-relaxed text-ink-muted md:mt-5 md:text-lg">
             {offer.body}
           </p>
 
           {/* The three domains the coaching covers — the whole scope in a line. */}
-          <div className="mt-7 md:mt-8">
+          <div className="mt-6">
             <p className="type-micro text-ink/40">{offer.covers.label}</p>
-            <dl className="mt-3.5 grid gap-px overflow-hidden rounded-card bg-ink/10 sm:grid-cols-3">
+            <dl className="mt-3 grid gap-px overflow-hidden rounded-card bg-ink/10 sm:grid-cols-3">
               {offer.covers.items.map((item) => (
                 <div
                   key={item.name}
@@ -89,13 +98,16 @@ export function OfferSection({ locale }: { locale: Locale }) {
               /* `lg:min-h` is a floor, not a target: from `lg` the photo
                  matches whatever height the copy column ends up at. Keeping the
                  floor below that height stops it padding the section out. */
-              className="h-[16rem] w-full sm:h-[22rem] lg:h-full lg:min-h-[24rem]"
+              className="h-[17.5rem] w-full sm:h-[22rem] lg:h-full lg:min-h-[24rem]"
             />
 
+            {/* Floats at every width, not just `lg`. Sitting the card below the
+                photo on a phone cost its full height again in scroll to say the
+                same three words. */}
             <FloatingMetricCard
               label={offer.resultCard.label}
               tone="lime"
-              className="mt-3 lg:absolute lg:bottom-5 lg:left-5 lg:right-5 lg:mt-0"
+              className="absolute inset-x-3 bottom-3 lg:inset-x-5 lg:bottom-5"
             >
               <ul className="flex flex-wrap gap-x-5 gap-y-2">
                 {offer.resultCard.items.map((item) => (
@@ -112,49 +124,59 @@ export function OfferSection({ locale }: { locale: Locale }) {
         </Reveal>
       </div>
 
-      {/* Everything included, as equal tiles. */}
-      <div className="mt-8 grid gap-2.5 sm:grid-cols-2 lg:mt-10 lg:grid-cols-4 lg:gap-3">
-        {included.map((item, index) => {
+      {/* Everything included, as equal tiles.
+
+          One divided block rather than eight separate cards: the 1px `gap`
+          against the container's tint draws every rule, so no tile carries its
+          own ring, radius or outer margin. That is the same construction as the
+          `covers` list above, and it buys back the gutters those eight cards
+          each spent on their own edge. */}
+      {/* Revealed as one block. Staggering the tiles individually would slide
+          them off the 1px rules that now join them, tearing the grid apart for
+          the length of the animation. */}
+      <Reveal className="mt-7 grid gap-px overflow-hidden rounded-card bg-ink/10 sm:grid-cols-2 lg:mt-8 lg:grid-cols-4">
+        {included.map((item) => {
           const Glyph =
             deliverableIcons[item.id as keyof typeof deliverableIcons] ??
             deliverableIcons["training-program"];
 
           return (
-            <Reveal key={item.id} delay={(index % 4) * 50}>
-              {/* Below `lg` the glyph sits beside the title rather than above
-                  it. Stacked, eight cards cost about 400px of extra scroll on
-                  a phone for decoration nobody reads. */}
-              <div className="hairline flex h-full gap-3.5 rounded-card bg-surface p-4 sm:p-5 lg:block">
-                <span
-                  aria-hidden="true"
-                  className="mt-0.5 shrink-0 text-ink/35 lg:mt-0 lg:block"
-                >
-                  <Glyph className="size-6" />
-                </span>
-                <div>
-                  {/* Reserved for two lines from `lg` up, where the four-column
-                      grid makes some titles wrap and others not. Without it the
-                      descriptions start at different heights across a row,
-                      which is what breaks a list you are meant to scan. */}
-                  <h3 className="text-pretty text-[1.0625rem] leading-snug tracking-[-0.02em] text-ink lg:mt-4 lg:min-h-[3rem]">
-                    {item.title}
-                  </h3>
-                  {/* `leading-normal`, not `relaxed`: eight of these stacked on
-                      a phone, and the looser line box adds a screen of scroll
-                      across the grid for no gain at 14px. */}
-                  <p className="mt-2 text-pretty text-[0.875rem] leading-normal text-ink-muted">
-                    {item.body}
-                  </p>
-                </div>
+            /* Below `lg` the glyph sits beside the title rather than above it.
+               Stacked, eight cards cost about 400px of extra scroll on a phone
+               for decoration nobody reads. */
+            <div
+              key={item.id}
+              className="flex h-full gap-3.5 bg-surface px-4 py-3.5 sm:px-5 sm:py-4 lg:block lg:p-5"
+            >
+              <span
+                aria-hidden="true"
+                className="mt-0.5 shrink-0 text-ink/35 lg:mt-0 lg:block"
+              >
+                <Glyph className="size-6" />
+              </span>
+              <div>
+                {/* Reserved for two lines from `lg` up, where the four-column
+                    grid makes some titles wrap and others not. Without it the
+                    descriptions start at different heights across a row, which
+                    is what breaks a list you are meant to scan. */}
+                <h3 className="text-pretty text-[1.0625rem] leading-snug tracking-[-0.02em] text-ink lg:mt-4 lg:min-h-[3rem]">
+                  {item.title}
+                </h3>
+                {/* `leading-normal`, not `relaxed`: eight of these stacked on a
+                    phone, and the looser line box adds a screen of scroll
+                    across the grid for no gain at 14px. */}
+                <p className="mt-2 text-pretty text-[0.875rem] leading-normal text-ink-muted">
+                  {item.body}
+                </p>
               </div>
-            </Reveal>
+            </div>
           );
         })}
-      </div>
+      </Reveal>
 
       {/* One close, at the end of the scan. */}
       <Reveal delay={80}>
-        <LimeFeaturePanel className="mt-2.5 flex flex-col items-start gap-5 p-6 sm:p-7 lg:mt-3 lg:flex-row lg:items-center lg:justify-between lg:gap-8 lg:p-9">
+        <LimeFeaturePanel className="mt-2.5 flex flex-col items-start gap-4 p-5 sm:p-6 lg:mt-3 lg:flex-row lg:items-center lg:justify-between lg:gap-8 lg:p-7">
           <EditorialHeading
             as="p"
             scale="sub"

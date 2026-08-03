@@ -98,7 +98,7 @@ export const applyContent = {
     },
     biggestObstacle: {
       label: "What's held you back so far?",
-      hint: "Be honest: this is the most useful answer in the whole thing.",
+      hint: "Be honest: it's the most useful answer you'll give here.",
       columns: 2,
     },
     desiredTimeline: {
@@ -115,7 +115,7 @@ export const applyContent = {
   calendar: {
     label: "Pick your time",
     body: (minutes: number) =>
-      `${minutes} minutes one-to-one with Zach, by call. Choose a date, then a time.`,
+      `${minutes} minutes one-to-one with Zach, over the phone. Choose a date, then a time.`,
     dateLabel: "Date",
     timeLabel: "Time",
     timeZoneNote: (zone: string) => `Times shown in ${zone}.`,
@@ -146,7 +146,7 @@ export const applyContent = {
     label: "Follow-up language",
     value: (language: string) => `Follow-up will be in ${language}.`,
     switchTo: (language: string) => `Switch to ${language}`,
-    hint: "This is the language you chose when you arrived. It's used for the site as much as for email.",
+    hint: "This is the language you chose when you arrived. It's used for the site and for any email you get.",
   },
 
   hints: {
@@ -168,7 +168,7 @@ export const applyContent = {
     body: (email: string) =>
       `The invitation is on its way to ${email}, and the appointment is on Zach's calendar.`,
     bodyWithoutEmail:
-      "Your time is booked and on Zach's calendar. The confirmation email couldn't be sent — note the appointment down on your side.",
+      "Your time is booked and on Zach's calendar. The confirmation email couldn't be sent — make a note of the appointment on your side.",
     summary: {
       heading: "Your appointment",
       eventTitle: "Transformation call — Zlary Fitness",

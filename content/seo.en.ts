@@ -45,13 +45,13 @@ export const routeSeoCopy = {
       "Pick a time to talk through your goals, where you are now and how the coaching could help.",
   },
   thankYou: {
-    title: "Application confirmed | Zlary Fitness",
-    description: "Your Zlary Fitness coaching application has been received.",
+    title: "Call confirmed | Zlary Fitness",
+    description: "Your call with Zach is booked. Here's what happens next.",
   },
   privacy: {
     title: "Privacy policy | Zlary Fitness",
     description:
-      "How Zlary Fitness collects, uses and protects the personal information submitted through the application form.",
+      "How Zlary Fitness collects, uses and protects the personal information submitted through the call booking form.",
   },
   terms: {
     title: "Terms of use | Zlary Fitness",

@@ -81,15 +81,15 @@ export const routeSeo = {
   },
   thankYou: {
     path: "/thank-you",
-    title: "Candidature confirmée | Zlary Fitness",
-    description: "Ta candidature au coaching Zlary Fitness a bien été reçue.",
+    title: "Appel confirmé | Zlary Fitness",
+    description: "Ton appel avec Zach est réservé. Voici ce qui se passe ensuite.",
     noindex: true,
   },
   privacy: {
     path: "/privacy",
     title: "Politique de confidentialité | Zlary Fitness",
     description:
-      "Comment Zlary Fitness recueille, utilise et protège les renseignements personnels transmis par le formulaire de candidature.",
+      "Comment Zlary Fitness recueille, utilise et protège les renseignements personnels transmis par le formulaire de réservation d'appel.",
     priority: 0.3,
     changeFrequency: "yearly",
   },

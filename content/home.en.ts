@@ -17,7 +17,10 @@ export const hero = {
   support:
     "Personalized coaching for busy people who want to build a better physique, get their energy back and create habits that last — without extreme dieting.",
   primaryCta: { label: "See if coaching is right for me", href: "/en/#postuler" },
-  secondaryCta: { label: "See the method", href: "/en/vsl" },
+  // Named for what the link opens, not for the section it sounds like: the page
+  // already has a "The Zlary Method" block at #methode, and calling this "See
+  // the method" sent the two names to two different places.
+  secondaryCta: { label: "Watch the presentation", href: "/en/vsl" },
   trustLine: "Personalized training · Flexible nutrition · One-on-one support",
   chip: {
     label: "Coach",
@@ -77,7 +80,7 @@ export const method = {
   eyebrow: "THE ZLARY METHOD",
   heading: "The plan adapts to your life. Not the other way around.",
   body: "Four steps, in this order. Each one exists to make the next one possible.",
-  cta: { label: "Start my application", href: "/en/#postuler" },
+  cta: { label: "Book my call", href: "/en/#postuler" },
 };
 
 export const about = {

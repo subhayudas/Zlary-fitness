@@ -63,8 +63,8 @@ export default async function HomePage({
         <OfferSection locale={locale} />
         <MethodSection locale={locale} />
         <ResultsSection locale={locale} />
-        <ApplySection locale={locale} />
         <FaqSection locale={locale} />
+        <ApplySection locale={locale} />
       </main>
 
       <div className="page-shell pb-3 md:pb-4">
