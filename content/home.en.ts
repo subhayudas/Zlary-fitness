@@ -95,5 +95,6 @@ export const faqIntro = {
 
 export const finalCta = {
   heading: "Ready to build a plan that works with your life?",
-  
+  body: "Answer a few questions so we can check whether the coaching matches your goals.",
+  note: "It only takes a few minutes. No medical information is requested.",
 };
