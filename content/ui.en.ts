@@ -74,6 +74,22 @@ export const ui = {
     everyday: "Day to day",
   },
 
+  transformations: {
+    sectionLabel: "Client transformations",
+    before: "Before",
+    after: "After",
+    dragHint: "Drag to compare",
+    sliderLabel: "Compare the before and after photo",
+    sliderValueText: (percent: number) =>
+      `${percent}% of the “before” photo visible`,
+    previous: "Previous transformation",
+    next: "Next transformation",
+    select: (n: number) => `View transformation ${n}`,
+    counter: (current: number, total: number) =>
+      `Transformation ${current} of ${total}`,
+    weightLabel: "Reported weight",
+  },
+
   about: {
     cardLabel: "Coaching",
     certification: "Certification",

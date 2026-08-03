@@ -93,6 +93,26 @@ export const ui = {
     everyday: "Au quotidien",
   },
 
+  /** The draggable before/after gallery. */
+  transformations: {
+    sectionLabel: "Transformations clients",
+    before: "Avant",
+    after: "Après",
+    /** Teaches the gesture. Sits under the frame, next to the counter. */
+    dragHint: "Glisse pour comparer",
+    /** Accessible name of the divider, which is a real range control. */
+    sliderLabel: "Comparer la photo avant et la photo après",
+    /** `aria-valuetext`: a bare percentage would announce nothing useful. */
+    sliderValueText: (percent: number) =>
+      `${percent} % de la photo « avant » visible`,
+    previous: "Transformation précédente",
+    next: "Transformation suivante",
+    select: (n: number) => `Voir la transformation ${n}`,
+    counter: (current: number, total: number) =>
+      `Transformation ${current} sur ${total}`,
+    weightLabel: "Poids rapporté",
+  },
+
   about: {
     cardLabel: "Accompagnement",
     certification: "Certification",

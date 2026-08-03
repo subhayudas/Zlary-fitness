@@ -61,10 +61,10 @@ export default async function HomePage({
       <main id="main" className="page-shell section-stack pt-4 md:pt-7">
         <ProblemSection locale={locale} />
         <OfferSection locale={locale} />
-        <ResultsSection locale={locale} />
         <MethodSection locale={locale} />
-        <FaqSection locale={locale} />
+        <ResultsSection locale={locale} />
         <ApplySection locale={locale} />
+        <FaqSection locale={locale} />
       </main>
 
       <div className="page-shell pb-3 md:pb-4">

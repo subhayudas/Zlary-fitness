@@ -751,6 +751,229 @@
     animation: question-in 0.5s var(--ease-editorial) both;
   }
 
+  /* ---- Transformation comparison slider --------------------------------
+     Two small animations, both scoped to `components/TransformationGallery`.
+
+     The knob has no affordance of its own once the visitor has stopped
+     looking at it, so it nudges itself sideways on a long cycle — the same
+     signal a physical handle gives by being obviously loose. The gesture hint
+     sweep that runs once on first view lives in the component, because it has
+     to drive React state rather than paint.
+
+     Both are reset by the reduced-motion block at the foot of this file: the
+     nudge stops, and `both` on the counter keeps the number visible instead of
+     stranding it at opacity 0. */
+
+  @keyframes ta-knob-nudge {
+    0%,
+    58%,
+    100% {
+      transform: translate3d(0, 0, 0);
+    }
+    70% {
+      transform: translate3d(3px, 0, 0);
+    }
+    84% {
+      transform: translate3d(-3px, 0, 0);
+    }
+  }
+
+  .ta-knob {
+    /* Centring is on the parent: Tailwind centres with the `translate`
+       property and this animates `transform`, so keeping them on separate
+       elements stops the two from composing into a doubled offset. */
+    animation: ta-knob-nudge 4.5s var(--ease-editorial) 1.5s infinite;
+    box-shadow: 0 2px 14px rgba(6, 24, 30, 0.3);
+  }
+
+  @keyframes ta-count-in {
+    from {
+      opacity: 0;
+      transform: translate3d(0, 0.32em, 0);
+    }
+    to {
+      opacity: 1;
+      transform: translate3d(0, 0, 0);
+    }
+  }
+
+  .ta-count-in {
+    animation: ta-count-in 0.55s var(--ease-editorial) both;
+  }
+
+  /* A rule that draws itself in from the left once its `.reveal` lands.
+     Inherits the reveal's own delay, so it stays in step with the block. */
+  .rule-draw {
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 1.1s var(--ease-editorial);
+    transition-delay: var(--reveal-delay, 0ms);
+  }
+
+  .reveal[data-visible="true"] .rule-draw {
+    transform: scaleX(1);
+  }
+
+  /* One word of a heading that assembles word by word. See `StaggeredWords` —
+     the words are inline-block atoms wrapping exactly where the plain text did,
+     so nothing here can change the height of a heading. */
+  .stagger-word {
+    display: inline-block;
+    opacity: 0;
+    transform: translate3d(0, 0.3em, 0);
+    transition:
+      opacity 0.75s var(--ease-editorial),
+      transform 0.75s var(--ease-editorial);
+    transition-delay: calc(
+      var(--reveal-delay, 0ms) + var(--stagger-index, 0) * 55ms
+    );
+  }
+
+  .reveal[data-visible="true"] .stagger-word {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+
+  /* ---- Problem statements -----------------------------------------------
+     A spotlight that walks the list as the visitor scrolls, and follows the
+     pointer when there is one. Driven from `ProblemStatements`, which sets
+     `data-active` on the live row.
+
+     Nothing in here is allowed to change the size of the band: the rail, the
+     marker, the indices and the tint are all absolutely positioned, and the
+     rest is opacity and transform. The rail and indices ride in the empty
+     column-7 gutter, so they only exist where that gutter does. */
+
+  .statement-list {
+    position: relative;
+  }
+
+  .statement-rail,
+  .statement-marker {
+    position: absolute;
+    top: 0;
+    left: -2.5rem;
+    display: none;
+    pointer-events: none;
+  }
+
+  .statement-rail {
+    width: 1px;
+    height: 100%;
+    background-color: var(--color-line);
+  }
+
+  /* A short lime segment sliding along the rail. Fixed length, pure translate:
+     no scaling, so the pill keeps its shape between rows of different heights. */
+  .statement-marker {
+    margin-left: -1px;
+    width: 3px;
+    height: 2.25rem;
+    border-radius: var(--radius-pill);
+    background-color: var(--color-lime);
+    opacity: 0;
+    will-change: transform;
+    transition:
+      transform 0.6s var(--ease-editorial),
+      opacity 0.5s var(--ease-editorial);
+  }
+
+  /* Held back until the first measurement lands, so it never flashes at 0. */
+  .statement-marker[data-ready="true"] {
+    opacity: 1;
+  }
+
+  @media (min-width: 1024px) {
+    .statement-rail,
+    .statement-marker {
+      display: block;
+    }
+  }
+
+  .statement-row {
+    position: relative;
+  }
+
+  /* The tint behind the live row. Bleeds past the copy on both sides so it
+     reads as a highlight rather than as a box. */
+  .statement-row::before {
+    content: "";
+    position: absolute;
+    top: 1px;
+    right: -0.875rem;
+    bottom: 0;
+    left: -0.875rem;
+    border-radius: var(--radius-chip);
+    background-color: rgba(16, 45, 58, 0.03);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.5s var(--ease-editorial);
+  }
+
+  .statement-row[data-active="true"]::before {
+    opacity: 1;
+  }
+
+  /* Ink drawn over the hairline, left to right. */
+  .statement-line {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background-color: var(--color-ink);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.65s var(--ease-editorial);
+  }
+
+  .statement-row[data-active="true"] .statement-line {
+    transform: scaleX(1);
+  }
+
+  /* Index in the gutter, aligned to the first line of the copy. */
+  .statement-index {
+    position: absolute;
+    top: 1.75rem;
+    right: calc(100% + 3.25rem);
+    display: none;
+    font-size: 0.6875rem;
+    line-height: 1.1;
+    color: var(--color-ink-faint);
+    transition:
+      color 0.5s var(--ease-editorial),
+      transform 0.5s var(--ease-editorial);
+  }
+
+  @media (min-width: 1024px) {
+    .statement-index {
+      display: block;
+    }
+  }
+
+  .statement-row[data-active="true"] .statement-index {
+    color: var(--color-ink);
+    transform: translate3d(3px, 0, 0);
+  }
+
+  /* The colour lives here rather than on a utility class: Tailwind's utilities
+     layer outranks this one, so a `text-ink/70` on the element would win over
+     the active state no matter how specific this selector got.
+     0.7 measures 5.1:1 on white — the resting state still clears AA on its own,
+     because a visitor who stops scrolling leaves three rows sitting in it. */
+  .statement-copy {
+    position: relative;
+    color: rgba(16, 45, 58, 0.7);
+    transition:
+      color 0.5s var(--ease-editorial),
+      transform 0.6s var(--ease-editorial);
+  }
+
+  .statement-row[data-active="true"] .statement-copy {
+    color: var(--color-ink-strong);
+    transform: translate3d(5px, 0, 0);
+  }
+
   /* Photography breathes very slightly on hover. */
   .photo-zoom .photo-zoom-target {
     transition: transform 1.1s var(--ease-editorial);
@@ -960,9 +1183,28 @@
     scroll-behavior: auto !important;
   }
 
-  /* Content must be visible immediately — never trapped at opacity 0. */
+  /* Content must be visible immediately — never trapped at opacity 0.
+     `.reveal` is forced visible here without its `data-visible` ever flipping,
+     so anything keyed off that attribute has to be released explicitly or it
+     stays at its resting state forever — invisible words, an undrawn rule. */
   .reveal {
     opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .stagger-word {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .rule-draw {
+    transform: scaleX(1) !important;
+  }
+
+  /* The spotlight itself stays — `data-active` is set by script either way, and
+     with transitions cut it simply switches. Only its nudge is dropped. */
+  .statement-row[data-active="true"] .statement-copy,
+  .statement-row[data-active="true"] .statement-index {
     transform: none !important;
   }
 

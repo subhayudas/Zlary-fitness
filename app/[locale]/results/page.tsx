@@ -4,6 +4,7 @@ import { Footer } from "@/components/Footer";
 import { ResultCard } from "@/components/ResultCard";
 import { SiteHeader } from "@/components/nav/SiteHeader";
 import { BreadcrumbSchema } from "@/components/StructuredData";
+import { TransformationGallery } from "@/components/TransformationGallery";
 import { MediaFrame } from "@/components/ui/MediaFrame";
 import { LimeFeaturePanel, Panel } from "@/components/ui/panels";
 import { PillCTA } from "@/components/ui/PillCTA";
@@ -20,6 +21,7 @@ import { getMedia } from "@/content/media";
 import { applyHref } from "@/content/navigation";
 import { getRouteSeo } from "@/content/seo";
 import { site } from "@/content/site";
+import { getTransformations } from "@/content/transformations";
 import { getUi } from "@/content/ui";
 import { languageAlternates, localePath } from "@/lib/i18n";
 import { resolveLocale } from "@/lib/route-locale";
@@ -66,6 +68,7 @@ export default async function ResultsPage({
   const locale = await resolveLocale(params);
   const media = getMedia(locale);
   const t = getUi(locale);
+  const transformations = getTransformations(locale);
   const hasResults = approvedCaseStudies.length > 0;
 
   return (
@@ -105,6 +108,26 @@ export default async function ResultsPage({
             </div>
           </Reveal>
         </SectionShell>
+
+        {/* Draggable before/after comparisons. This is the photography, and
+            on this page it comes before the written case studies — a visitor
+            who clicked "results" wants to see them, not read first. */}
+        {transformations.length > 0 ? (
+          <SectionShell padding="md" ariaLabelledBy="transformations-title">
+            <h2 id="transformations-title" className="type-micro text-ink/40">
+              {t.transformations.sectionLabel}
+            </h2>
+            <Rule className="mt-5" />
+
+            <Reveal>
+              <TransformationGallery
+                locale={locale}
+                items={transformations}
+                className="mt-12 md:mt-14"
+              />
+            </Reveal>
+          </SectionShell>
+        ) : null}
 
         {hasResults && featuredCaseStudy ? (
           <>
@@ -158,15 +181,21 @@ export default async function ResultsPage({
               </SectionShell>
             ) : null}
 
-            <SectionShell padding="sm">
-              <Panel tone="surface" className="p-7 sm:p-9">
-                <p className="max-w-[70ch] text-[0.8125rem] leading-relaxed text-ink-muted">
-                  {getResultsDisclaimer(locale)}
-                </p>
-              </Panel>
-            </SectionShell>
           </>
-        ) : (
+        ) : null}
+
+        {/* One disclaimer for the page, whichever kind of proof is on it. */}
+        {hasResults || transformations.length > 0 ? (
+          <SectionShell padding="sm">
+            <Panel tone="surface" className="p-7 sm:p-9">
+              <p className="max-w-[70ch] text-[0.8125rem] leading-relaxed text-ink-muted">
+                {getResultsDisclaimer(locale)}
+              </p>
+            </Panel>
+          </SectionShell>
+        ) : null}
+
+        {!hasResults && transformations.length === 0 ? (
           <SectionShell padding="md" ariaLabelledBy="empty-title">
             <h2 id="empty-title" className="sr-only">
               {t.results.sectionLabel}
@@ -190,7 +219,7 @@ export default async function ResultsPage({
               />
             </Reveal>
           </SectionShell>
-        )}
+        ) : null}
 
         {/* Closing CTA. */}
         <SectionShell padding="sm" ariaLabelledBy="results-cta-title">

@@ -1,31 +1,32 @@
-import { FeaturedCaseStudy, ResultsEmptyState } from "@/components/FeaturedCaseStudy";
-import { ResultCard } from "@/components/ResultCard";
+import { ResultsEmptyState } from "@/components/FeaturedCaseStudy";
+import { TransformationGallery } from "@/components/TransformationGallery";
 import { PillCTA } from "@/components/ui/PillCTA";
 import { Reveal } from "@/components/ui/Reveal";
 import { SectionShell } from "@/components/ui/SectionShell";
 import { EditorialHeading, Rule } from "@/components/ui/typography";
-import {
-  featuredCaseStudy,
-  getResultsDisclaimer,
-  supportingCaseStudies,
-} from "@/content/case-studies";
+import { getResultsDisclaimer } from "@/content/case-studies";
 import { getHome } from "@/content/home";
 import { sectionIds } from "@/content/navigation";
 import { site } from "@/content/site";
+import { getTransformations } from "@/content/transformations";
 import type { Locale } from "@/lib/i18n";
 
 /**
  * Client results preview.
  *
- * Renders one featured case study plus up to two supporting ones — and only
- * entries with `approved: true`. When nothing is approved, the section shows a
- * polished empty state rather than inventing proof.
+ * The proof is the photography, so the section is one draggable before/after
+ * comparison rather than a stack of cards — it stays roughly a screen tall on
+ * a phone, which is the only length a preview section earns.
+ *
+ * Only transformations with `approved: true` reach this component. With none
+ * approved it falls back to the designed empty state rather than inventing
+ * proof.
  */
 export function ResultsSection({ locale }: { locale: Locale }) {
   const { resultsIntro } = getHome(locale);
   const resultsDisclaimer = getResultsDisclaimer(locale);
-  const supporting = supportingCaseStudies.slice(0, 2);
-  const hasResults = Boolean(featuredCaseStudy);
+  const transformations = getTransformations(locale);
+  const hasResults = transformations.length > 0;
 
   return (
     <SectionShell id={sectionIds.results} ariaLabelledBy="results-title">
@@ -50,23 +51,13 @@ export function ResultsSection({ locale }: { locale: Locale }) {
 
       <Rule className="my-12 md:my-16" />
 
-      {hasResults && featuredCaseStudy ? (
+      {hasResults ? (
         <>
           <Reveal>
-            <FeaturedCaseStudy locale={locale} study={featuredCaseStudy} />
+            <TransformationGallery locale={locale} items={transformations} />
           </Reveal>
 
-          {supporting.length > 0 ? (
-            <div className="mt-4 grid gap-4 md:mt-6 md:grid-cols-2">
-              {supporting.map((study, index) => (
-                <Reveal key={study.id} delay={index * 90}>
-                  <ResultCard locale={locale} study={study} className="h-full" />
-                </Reveal>
-              ))}
-            </div>
-          ) : null}
-
-          <p className="mt-10 max-w-[64ch] text-[0.8125rem] leading-relaxed text-ink/50">
+          <p className="mt-12 max-w-[64ch] text-[0.8125rem] leading-relaxed text-ink/50 md:mt-14">
             {resultsDisclaimer}
           </p>
         </>
