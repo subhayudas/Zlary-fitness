@@ -120,8 +120,6 @@ export const faqIntro = {
  */
 export const finalCta = {
   heading: "Prêt à construire un plan qui fonctionne avec ta vie?",
-  body: "Réponds à quelques questions pour vérifier si l'accompagnement correspond à tes objectifs.",
-  note: "Quelques minutes suffisent. Aucune information médicale n'est demandée.",
 };
 
 /* -------------------------------------------------------------------------- */
