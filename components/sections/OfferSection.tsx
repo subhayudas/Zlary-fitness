@@ -43,27 +43,34 @@ export function OfferSection({ locale }: { locale: Locale }) {
           <EditorialHeading
             as="h2"
             id="offer-title"
-            className="mt-6 text-balance"
+            className="mt-5 text-balance"
           >
             {offer.heading}
           </EditorialHeading>
 
-          <p className="measure-lg mt-7 text-pretty text-base leading-relaxed text-ink-muted md:mt-8 md:text-lg">
+          <p className="measure-lg mt-5 text-pretty text-base leading-relaxed text-ink-muted md:mt-6 md:text-lg">
             {offer.body}
           </p>
 
           {/* The three domains the coaching covers — the whole scope in a line. */}
-          <div className="mt-9 md:mt-11">
+          <div className="mt-7 md:mt-8">
             <p className="type-micro text-ink/40">{offer.covers.label}</p>
-            <dl className="mt-4 grid gap-px overflow-hidden rounded-card bg-ink/10 sm:grid-cols-3">
+            <dl className="mt-3.5 grid gap-px overflow-hidden rounded-card bg-ink/10 sm:grid-cols-3">
               {offer.covers.items.map((item) => (
-                <div key={item.name} className="bg-surface-pure px-5 py-4">
+                <div
+                  key={item.name}
+                  /* Below `sm` the pair reads as one line — name left, detail
+                     right — rather than stacking. Three items stacked cost 220px
+                     of phone scroll to say what fits in three rows of 43. From
+                     `sm` the grid gives each its own column and they stack. */
+                  className="flex items-baseline justify-between gap-4 bg-surface-pure px-5 py-3 sm:block sm:py-4"
+                >
                   <dt className="text-[0.9375rem] leading-tight text-ink">
                     {item.name}
                   </dt>
                   {/* Sentence case, not the uppercase micro label: at this width
                       the tracking of `type-micro` forces a second line. */}
-                  <dd className="mt-1.5 text-[0.8125rem] leading-tight text-ink/45">
+                  <dd className="shrink-0 text-right text-[0.8125rem] leading-tight text-ink/45 sm:mt-1.5 sm:text-left">
                     {item.detail}
                   </dd>
                 </div>
@@ -79,7 +86,10 @@ export function OfferSection({ locale }: { locale: Locale }) {
               sizes="(max-width: 1024px) 100vw, 40vw"
               placeholderTone="ink"
               placeholderDetail="minimal"
-              className="h-[20rem] w-full sm:h-[26rem] lg:h-full lg:min-h-[28rem]"
+              /* `lg:min-h` is a floor, not a target: from `lg` the photo
+                 matches whatever height the copy column ends up at. Keeping the
+                 floor below that height stops it padding the section out. */
+              className="h-[16rem] w-full sm:h-[22rem] lg:h-full lg:min-h-[24rem]"
             />
 
             <FloatingMetricCard
@@ -103,7 +113,7 @@ export function OfferSection({ locale }: { locale: Locale }) {
       </div>
 
       {/* Everything included, as equal tiles. */}
-      <div className="mt-12 grid gap-3 sm:grid-cols-2 lg:mt-16 lg:grid-cols-4 lg:gap-4">
+      <div className="mt-8 grid gap-2.5 sm:grid-cols-2 lg:mt-10 lg:grid-cols-4 lg:gap-3">
         {included.map((item, index) => {
           const Glyph =
             deliverableIcons[item.id as keyof typeof deliverableIcons] ??
@@ -114,7 +124,7 @@ export function OfferSection({ locale }: { locale: Locale }) {
               {/* Below `lg` the glyph sits beside the title rather than above
                   it. Stacked, eight cards cost about 400px of extra scroll on
                   a phone for decoration nobody reads. */}
-              <div className="hairline flex h-full gap-4 rounded-card bg-surface p-5 sm:p-6 lg:block">
+              <div className="hairline flex h-full gap-3.5 rounded-card bg-surface p-4 sm:p-5 lg:block">
                 <span
                   aria-hidden="true"
                   className="mt-0.5 shrink-0 text-ink/35 lg:mt-0 lg:block"
@@ -126,10 +136,13 @@ export function OfferSection({ locale }: { locale: Locale }) {
                       grid makes some titles wrap and others not. Without it the
                       descriptions start at different heights across a row,
                       which is what breaks a list you are meant to scan. */}
-                  <h3 className="text-pretty text-[1.0625rem] leading-snug tracking-[-0.02em] text-ink lg:mt-5 lg:min-h-[3rem]">
+                  <h3 className="text-pretty text-[1.0625rem] leading-snug tracking-[-0.02em] text-ink lg:mt-4 lg:min-h-[3rem]">
                     {item.title}
                   </h3>
-                  <p className="mt-2.5 text-pretty text-[0.875rem] leading-relaxed text-ink-muted">
+                  {/* `leading-normal`, not `relaxed`: eight of these stacked on
+                      a phone, and the looser line box adds a screen of scroll
+                      across the grid for no gain at 14px. */}
+                  <p className="mt-2 text-pretty text-[0.875rem] leading-normal text-ink-muted">
                     {item.body}
                   </p>
                 </div>
@@ -141,7 +154,7 @@ export function OfferSection({ locale }: { locale: Locale }) {
 
       {/* One close, at the end of the scan. */}
       <Reveal delay={80}>
-        <LimeFeaturePanel className="mt-3 flex flex-col items-start gap-7 p-7 sm:p-9 lg:mt-4 lg:flex-row lg:items-center lg:justify-between lg:gap-10 lg:p-11">
+        <LimeFeaturePanel className="mt-2.5 flex flex-col items-start gap-5 p-6 sm:p-7 lg:mt-3 lg:flex-row lg:items-center lg:justify-between lg:gap-8 lg:p-9">
           <EditorialHeading
             as="p"
             scale="sub"
