@@ -44,6 +44,28 @@ const nextConfig: NextConfig = {
   async headers() {
     return [{ source: "/:path*", headers: securityHeaders }];
   },
+
+  /**
+   * The application form used to be a page of its own. It is now a section of
+   * the homepage, so /apply is a permanent redirect into that section rather
+   * than a route — every ad, email and Instagram link already pointing at it
+   * keeps working.
+   *
+   * Redirects run before `proxy.ts`, so the unprefixed French path is matched
+   * here before the locale rewrite ever sees it. `/fr/apply` is listed because
+   * that internal form is reachable directly if someone types it.
+   *
+   * Query strings are carried over by Next and re-attached ahead of the
+   * fragment (`/apply?source=vsl` → `/?source=vsl#postuler`), which is what the
+   * form's attribution capture reads.
+   */
+  async redirects() {
+    return [
+      { source: "/apply", destination: "/#postuler", permanent: true },
+      { source: "/fr/apply", destination: "/#postuler", permanent: true },
+      { source: "/en/apply", destination: "/en#postuler", permanent: true },
+    ];
+  },
 };
 
 export default nextConfig;

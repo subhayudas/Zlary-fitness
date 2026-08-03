@@ -1,5 +1,5 @@
 /**
- * Coaching application — questions, options and step copy.
+ * Booking flow — questions, options and screen copy.
  *
  * The option `value`s are stored in the database and used by the Zod schema in
  * `lib/validation.ts`, so changing a value is a breaking change. Changing a
@@ -7,7 +7,7 @@
  *
  * Deliberately NOT collected: any medical history, injuries, medication,
  * weight, body-fat or health conditions. Collecting health data creates
- * obligations we do not want and is not needed to qualify an application.
+ * obligations we do not want and is not needed to book a call.
  */
 
 import type { Locale } from "@/lib/i18n";
@@ -21,12 +21,12 @@ export type Option = { readonly value: string; readonly label: string };
 /**
  * The applicant's language.
  *
- * No longer asked in the form — it is whatever the visitor chose in the
+ * No longer asked in the flow — it is whatever the visitor chose in the
  * language chooser on their first visit (see `lib/language-preference.ts`), and
  * `components/form/FollowUpLanguage.tsx` shows it back to them.
  *
  * The `satisfies` clause is load-bearing: these values are the site's own
- * locales, and the form, the database column and every outbound email all
+ * locales, and the flow, the database column and every outbound email all
  * assume that. Renaming a locale without renaming these would break that
  * assumption silently, so the compiler is asked to catch it instead.
  */
@@ -51,20 +51,6 @@ export const trainingLevelOptions = [
   { value: "returning", label: "Je reprends après une longue pause" },
 ] as const satisfies readonly Option[];
 
-export const trainingFrequencyOptions = [
-  { value: "0", label: "Aucune séance actuellement" },
-  { value: "1-2", label: "1 à 2 séances par semaine" },
-  { value: "3-4", label: "3 à 4 séances par semaine" },
-  { value: "5+", label: "5 séances et plus par semaine" },
-] as const satisfies readonly Option[];
-
-export const desiredTimelineOptions = [
-  { value: "asap", label: "Je veux commencer tout de suite" },
-  { value: "1_month", label: "Dans le prochain mois" },
-  { value: "3_months", label: "Dans les trois prochains mois" },
-  { value: "exploring", label: "Je m'informe pour l'instant" },
-] as const satisfies readonly Option[];
-
 export const obstacleOptions = [
   { value: "schedule", label: "Mon horaire est imprévisible" },
   { value: "consistency", label: "Je manque de constance" },
@@ -75,10 +61,11 @@ export const obstacleOptions = [
   { value: "other", label: "Autre" },
 ] as const satisfies readonly Option[];
 
-export const supportNeededOptions = [
-  { value: "structure_only", label: "Surtout un plan clair à suivre" },
-  { value: "structure_accountability", label: "Un plan et de la responsabilisation" },
-  { value: "close_guidance", label: "Un suivi rapproché et des ajustements fréquents" },
+export const desiredTimelineOptions = [
+  { value: "asap", label: "Je veux commencer tout de suite" },
+  { value: "1_month", label: "Dans le prochain mois" },
+  { value: "3_months", label: "Dans les trois prochains mois" },
+  { value: "exploring", label: "Je m'informe pour l'instant" },
 ] as const satisfies readonly Option[];
 
 export const investmentReadinessOptions = [
@@ -87,91 +74,123 @@ export const investmentReadinessOptions = [
   { value: "not_yet", label: "Pas pour le moment" },
 ] as const satisfies readonly Option[];
 
-export const referralSourceOptions = [
-  { value: "instagram", label: "Instagram" },
-  { value: "google", label: "Recherche Google" },
-  { value: "referral", label: "Recommandation d'une connaissance" },
-  { value: "vsl", label: "La vidéo de présentation" },
-  { value: "other", label: "Autre" },
-] as const satisfies readonly Option[];
-
-export const values = <T extends readonly Option[]>(options: T) =>
-  options.map((o) => o.value) as unknown as [string, ...string[]];
-
 /* -------------------------------------------------------------------------- */
-/* Step copy                                                                   */
+/* Screen copy                                                                 */
 /* -------------------------------------------------------------------------- */
 
 export const applyContent = {
-  eyebrow: "CANDIDATURE COACHING",
-  heading: "Voyons si l'accompagnement correspond à ta situation.",
-  body: "Quelques questions pour comprendre ton objectif, ton horaire et ce qui t'a bloqué jusqu'ici. Compte environ trois minutes.",
+  eyebrow: "RÉSERVER UN APPEL",
+  heading: "Réserve ton appel transformation.",
+  body: "Cinq questions rapides, puis tu choisis ton créneau. Compte moins de deux minutes — et tu repars avec un rendez-vous confirmé, pas avec une candidature en attente.",
   privacyNote:
     "Tes réponses servent uniquement à préparer l'appel. Aucune information médicale n'est demandée.",
+
   /**
-   * Step order. This array *is* the order of the form — `stepFields` in
-   * `lib/validation.ts` is indexed by the same positions, so the two must be
-   * reordered together.
+   * The three phases shown in the side panel and the mobile header.
    *
-   * Contact comes third on purpose: asking for a name and a phone number before
-   * anything else is the highest-friction way to open a form. The visitor first
-   * answers questions about themselves, and only hands over contact details once
-   * they have already invested a couple of minutes.
+   * The five questions are one phase, not five steps: a progress list that
+   * counted every question would make a ninety-second flow look like a form.
+   * The questions still advance the bar individually — see `BookingFlow`.
+   *
+   * Contact is last on purpose, and after the calendar. Asking for a name and a
+   * phone number before anything else is the highest-friction way to open a
+   * flow; asking once someone has already picked a time is the lowest.
    */
-  steps: [
+  phases: [
     {
-      id: "goal",
+      id: "questions",
       index: "01",
-      title: "Objectif",
-      lead: "Où tu veux aller",
+      title: "Ta situation",
+      lead: "Où tu en es",
       benefit:
-        "Ton objectif et ton horaire déterminent la structure du programme.",
+        "Cinq questions pour que Zach arrive à l'appel en sachant déjà de quoi vous allez parler.",
     },
     {
-      id: "fit",
+      id: "slot",
       index: "02",
-      title: "Compatibilité",
-      lead: "Ta situation",
+      title: "Ton créneau",
+      lead: "Quand vous parlez",
       benefit:
-        "Ces réponses permettent de voir honnêtement si l'accompagnement te convient.",
+        "Choisis le moment qui te convient. Les créneaux affichés sont ceux réellement libres dans l'agenda de Zach.",
     },
     {
       id: "contact",
       index: "03",
-      title: "Contact",
+      title: "Tes coordonnées",
       lead: "Pour te joindre",
       benefit:
-        "Ces informations servent uniquement à te recontacter au sujet de ta candidature.",
-    },
-    {
-      id: "consent",
-      index: "04",
-      title: "Confirmation",
-      lead: "Dernière étape",
-      benefit: "Une dernière vérification avant l'envoi.",
+        "Uniquement pour confirmer l'appel et te l'envoyer dans ton calendrier.",
     },
   ],
+
+  /**
+   * The qualifying questions, keyed by the field they fill. The *order* they are
+   * asked in lives in `questionFields` in `lib/validation.ts` — one list, so the
+   * order and the validation can never drift apart.
+   */
+  questions: {
+    primaryGoal: {
+      label: "Quel est ton objectif principal?",
+      columns: 2,
+    },
+    trainingLevel: {
+      label: "Où en es-tu dans ton entraînement?",
+      columns: 1,
+    },
+    biggestObstacle: {
+      label: "Qu'est-ce qui t'a bloqué jusqu'ici?",
+      hint: "Sois honnête : c'est l'information la plus utile de tout le questionnaire.",
+      columns: 2,
+    },
+    desiredTimeline: {
+      label: "Quand souhaites-tu commencer?",
+      columns: 2,
+    },
+    investmentReadiness: {
+      label: "Es-tu prêt à investir dans un accompagnement personnalisé?",
+      /**
+       * The reassurance is the point of the question. It tags the lead so Zach
+       * knows which conversation he is walking into — it does not decide who
+       * gets to book, and saying so out loud is what keeps the honest answer
+       * honest.
+       */
+      hint: "Le tarif est présenté pendant l'appel. Ta réponse ne change rien à ta possibilité de réserver — elle aide seulement Zach à préparer la discussion.",
+      columns: 1,
+    },
+  },
+
+  /** The calendar screen. */
+  calendar: {
+    label: "Choisis ton créneau",
+    body: (minutes: number) =>
+      `${minutes} minutes en tête-à-tête avec Zach, par appel. Choisis une date, puis une heure.`,
+    dateLabel: "Date",
+    timeLabel: "Heure",
+    /** Named on screen so nobody books 17:00 in the wrong time zone. */
+    timeZoneNote: (zone: string) => `Heures affichées en ${zone}.`,
+    localNote: (time: string, zone: string) => `Soit ${time} chez toi (${zone}).`,
+    loading: "Chargement des disponibilités…",
+    selected: (date: string, time: string) => `${date} à ${time}`,
+    change: "Changer",
+    empty: {
+      heading: "Aucun créneau disponible pour le moment.",
+      body: "L'agenda des prochaines semaines est complet. Écris à Zach sur Instagram et il te trouvera un moment.",
+    },
+    failed: {
+      heading: "Le calendrier n'a pas pu être chargé.",
+      body: "Réessaie dans un instant. Si ça persiste, écris à Zach sur Instagram.",
+      retry: "Réessayer",
+    },
+  },
+
   labels: {
     fullName: "Nom complet",
     email: "Courriel",
     phone: "Téléphone",
-    instagramUsername: "Nom d'utilisateur Instagram",
-    primaryGoal: "Quel est ton objectif principal?",
-    trainingLevel: "Quel est ton niveau actuel?",
-    trainingFrequency: "À quelle fréquence t'entraînes-tu en ce moment?",
-    desiredTimeline: "Quand souhaites-tu commencer?",
-    biggestObstacle: "Quel est ton plus grand obstacle?",
-    motivation: "Pourquoi cet objectif est-il important maintenant?",
-    supportNeeded: "De quel niveau de suivi as-tu besoin?",
-    investmentReadiness:
-      "Es-tu prêt à investir dans un accompagnement personnalisé?",
-    referralSource: "Comment as-tu connu Zlary Fitness?",
-    accuracyConfirmed: "Je confirme que les informations fournies sont exactes.",
-    contactConsent:
-      "J'accepte d'être contacté par Zlary Fitness au sujet de ma candidature.",
     marketingConsent:
       "Je souhaite recevoir occasionnellement des conseils et des nouvelles par courriel. (facultatif)",
   },
+
   /**
    * Replaces the old "Langue préférée" question. The language is already known
    * — it is the one chosen on the first visit — so it is stated, not asked.
@@ -183,38 +202,76 @@ export const applyContent = {
     switchTo: (language: string) => `Plutôt en ${language.toLowerCase()}`,
     hint: "C'est la langue choisie à ton arrivée sur le site. Elle sert autant à l'affichage qu'aux courriels.",
   },
+
   hints: {
-    phone: "Utilisé uniquement si le courriel ne fonctionne pas.",
-    instagramUsername:
-      "Facultatif. Avec ou sans le @ — cela aide Zach à mettre un visage sur ta candidature.",
-    biggestObstacle:
-      "Sois honnête : c'est l'information la plus utile de tout le formulaire.",
-    motivation:
-      "Deux ou trois phrases suffisent. Ce qui a changé, ou ce que tu ne veux plus vivre.",
-    investmentReadiness:
-      "Le tarif est présenté pendant l'appel. Cette question sert à ne faire perdre de temps à personne.",
+    phone: "Zach t'appelle à ce numéro. Utilisé uniquement pour cet appel.",
+    email: "La confirmation et l'invitation calendrier y sont envoyées.",
   },
+
   placeholders: {
     fullName: "Prénom et nom",
     email: "ton@courriel.com",
     phone: "(514) 000-0000",
-    instagramUsername: "@tonpseudo",
-    motivation: "Ce qui te pousse à t'y mettre maintenant…",
   },
+
+  /** Shown under the confirm button rather than as a checkbox to tick. */
+  consentNote: "En confirmant, tu acceptes d'être contacté au sujet de cet appel.",
+
+  /** The final screen. Not a step — the flow is over by the time it appears. */
+  confirmation: {
+    eyebrow: "APPEL CONFIRMÉ",
+    heading: (firstName: string) => `C'est réservé, ${firstName}.`,
+    body: (email: string) =>
+      `L'invitation est partie vers ${email} et le rendez-vous est inscrit dans l'agenda de Zach.`,
+    /** When the confirmation email could not go out, the screen says so. */
+    bodyWithoutEmail:
+      "Ton créneau est réservé et inscrit dans l'agenda de Zach. La confirmation par courriel n'a pas pu partir — note le rendez-vous de ton côté.",
+    summary: {
+      heading: "Ton rendez-vous",
+      /** Title of the entry the visitor downloads into their own calendar. */
+      eventTitle: "Appel transformation — Zlary Fitness",
+      when: "Quand",
+      duration: "Durée",
+      minutes: (minutes: number) => `${minutes} minutes`,
+      where: "Où",
+      defaultWhere: "Appel téléphonique — Zach t'appelle au numéro fourni.",
+      who: "Avec",
+      coach: "Zach — Zlary Fitness",
+      contact: "Confirmation envoyée à",
+    },
+    addToCalendar: "Ajouter à mon calendrier",
+    openEvent: "Voir l'événement",
+    prepare: {
+      heading: "Avant l'appel",
+      items: [
+        "Prévois un endroit calme où tu peux parler librement.",
+        "Aie une idée du nombre de séances réaliste dans ta semaine.",
+        "Note les questions que tu veux poser.",
+      ],
+    },
+    /** Important: booking a call is not an acceptance. Keep this wording honest. */
+    notice:
+      "Réserver un créneau ne constitue pas une acceptation dans le programme. Zach lit tes réponses avant l'appel et te dira franchement si l'accompagnement correspond à ta situation.",
+    backHome: "Retour au site",
+  },
+
   actions: {
     next: "Continuer",
     back: "Retour",
-    submit: "Envoyer ma candidature",
-    submitting: "Envoi en cours…",
+    confirm: "Confirmer mon rendez-vous",
+    confirming: "Confirmation en cours…",
   },
+
   errors: {
     generic:
-      "Impossible d'envoyer ta candidature pour le moment. Réessaie dans quelques instants.",
-    rateLimited:
-      "Trop de tentatives. Attends une minute avant de réessayer.",
-    network:
-      "La connexion a échoué. Vérifie ton accès Internet et réessaie.",
-    stepIncomplete: "Vérifie les champs indiqués avant de continuer.",
+      "Impossible de confirmer ton rendez-vous pour le moment. Réessaie dans quelques instants.",
+    rateLimited: "Trop de tentatives. Attends une minute avant de réessayer.",
+    network: "La connexion a échoué. Vérifie ton accès Internet et réessaie.",
+    /** The one error the visitor can actually fix, so it says what to do. */
+    slotTaken:
+      "Ce créneau vient d'être réservé. Choisis-en un autre — le calendrier est à jour.",
+    slotExpired:
+      "Ce créneau n'est plus proposé. Choisis-en un autre dans le calendrier.",
   },
 };
 
@@ -241,24 +298,18 @@ export type ApplyOptions = {
   preferredLanguage: readonly Option[];
   primaryGoal: readonly Option[];
   trainingLevel: readonly Option[];
-  trainingFrequency: readonly Option[];
+  biggestObstacle: readonly Option[];
   desiredTimeline: readonly Option[];
-  obstacle: readonly Option[];
-  supportNeeded: readonly Option[];
   investmentReadiness: readonly Option[];
-  referralSource: readonly Option[];
 };
 
 const frOptions: ApplyOptions = {
   preferredLanguage: preferredLanguageOptions,
   primaryGoal: primaryGoalOptions,
   trainingLevel: trainingLevelOptions,
-  trainingFrequency: trainingFrequencyOptions,
+  biggestObstacle: obstacleOptions,
   desiredTimeline: desiredTimelineOptions,
-  obstacle: obstacleOptions,
-  supportNeeded: supportNeededOptions,
   investmentReadiness: investmentReadinessOptions,
-  referralSource: referralSourceOptions,
 };
 
 const enOptions: ApplyOptions = {
@@ -271,26 +322,14 @@ const enOptions: ApplyOptions = {
     trainingLevelOptions,
     enOptionLabels.trainingLevel,
   ),
-  trainingFrequency: localizeOptions(
-    trainingFrequencyOptions,
-    enOptionLabels.trainingFrequency,
-  ),
+  biggestObstacle: localizeOptions(obstacleOptions, enOptionLabels.obstacle),
   desiredTimeline: localizeOptions(
     desiredTimelineOptions,
     enOptionLabels.desiredTimeline,
   ),
-  obstacle: localizeOptions(obstacleOptions, enOptionLabels.obstacle),
-  supportNeeded: localizeOptions(
-    supportNeededOptions,
-    enOptionLabels.supportNeeded,
-  ),
   investmentReadiness: localizeOptions(
     investmentReadinessOptions,
     enOptionLabels.investmentReadiness,
-  ),
-  referralSource: localizeOptions(
-    referralSourceOptions,
-    enOptionLabels.referralSource,
   ),
 };
 

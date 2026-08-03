@@ -17,7 +17,7 @@ export const vslContent = {
   support:
     "Discover the approach used to build a strategy around your work, your schedule and your real life.",
   backLabel: "Back",
-  cta: { label: "Apply for coaching", href: "/en/apply?source=vsl" },
+  cta: { label: "Apply for coaching", href: "/en/?source=vsl#postuler" },
   placeholder: {
     heading: "Presentation coming soon",
     body: "The video is being prepared. In the meantime you can already complete the application — it takes a few minutes and lets us check whether the coaching fits your situation.",

@@ -6,9 +6,6 @@ import {
   type Option,
   preferredLanguageOptions,
   primaryGoalOptions,
-  referralSourceOptions,
-  supportNeededOptions,
-  trainingFrequencyOptions,
   trainingLevelOptions,
 } from "@/content/apply";
 import { defaultLocale, type Locale } from "@/lib/i18n";
@@ -40,9 +37,8 @@ export type ValidationMessages = {
   emailInvalid: string;
   emailTooLong: string;
   phoneInvalid: string;
-  motivationMin: string;
-  accuracyRequired: string;
-  contactConsentRequired: string;
+  slotRequired: string;
+  slotInvalid: string;
   submissionIdInvalid: string;
 };
 
@@ -54,10 +50,8 @@ const messagesByLocale: Record<Locale, ValidationMessages> = {
     emailInvalid: "Cette adresse courriel n'est pas valide.",
     emailTooLong: "Adresse trop longue.",
     phoneInvalid: "Indique un numéro de téléphone valide.",
-    motivationMin: "Écris quelques phrases — au moins 20 caractères.",
-    accuracyRequired: "Confirme que tes informations sont exactes.",
-    contactConsentRequired:
-      "Ton accord est nécessaire pour pouvoir te répondre.",
+    slotRequired: "Choisis un créneau pour continuer.",
+    slotInvalid: "Ce créneau n'est plus disponible. Choisis-en un autre.",
     submissionIdInvalid: "Identifiant de soumission invalide.",
   },
   en: {
@@ -67,9 +61,8 @@ const messagesByLocale: Record<Locale, ValidationMessages> = {
     emailInvalid: "That email address isn't valid.",
     emailTooLong: "That address is too long.",
     phoneInvalid: "Enter a valid phone number.",
-    motivationMin: "Write a few sentences — at least 20 characters.",
-    accuracyRequired: "Confirm that your information is accurate.",
-    contactConsentRequired: "We need your agreement in order to reply to you.",
+    slotRequired: "Pick a time to continue.",
+    slotInvalid: "That time is no longer available. Please pick another.",
     submissionIdInvalid: "Invalid submission identifier.",
   },
 };
@@ -80,17 +73,6 @@ const cleanText = (value: unknown) =>
     ? value
         .replace(/[\u0000-\u001F\u007F]/g, " ")
         .replace(/\s+/g, " ")
-        .trim()
-    : value;
-
-/** Same, but keeps newlines so long-form answers retain their paragraphs. */
-const cleanMultiline = (value: unknown) =>
-  typeof value === "string"
-    ? value
-        .replace(/\r\n?/g, "\n")
-        .replace(/[\u0000-\u0008\u000B\u000C\u000E-\u001F\u007F]/g, " ")
-        .replace(/[ \t]+/g, " ")
-        .replace(/\n{3,}/g, "\n\n")
         .trim()
     : value;
 
@@ -116,10 +98,25 @@ function buildSchemas(m: ValidationMessages) {
     );
 
   /* ------------------------------------------------------------------------ */
-  /* Per-step schemas — the multi-step form validates one step at a time       */
+  /* Per-section schemas — the flow validates one screen at a time             */
   /* ------------------------------------------------------------------------ */
 
-  const contactStep = z.object({
+  /**
+   * The five qualifying questions, in the order they are asked.
+   *
+   * `investmentReadiness` is here like any other answer and, deliberately, is
+   * not a gate: whatever it says, the visitor reaches the calendar. It tags the
+   * lead so the coach can prepare — it does not decide who gets to talk to him.
+   */
+  const questions = z.object({
+    primaryGoal: enumField(primaryGoalOptions),
+    trainingLevel: enumField(trainingLevelOptions),
+    biggestObstacle: enumField(obstacleOptions),
+    desiredTimeline: enumField(desiredTimelineOptions),
+    investmentReadiness: enumField(investmentReadinessOptions),
+  });
+
+  const contact = z.object({
     fullName: z.preprocess(
       cleanText,
       z.string().min(2, m.fullNameMin).max(120, m.maxChars(120)),
@@ -136,40 +133,28 @@ function buildSchemas(m: ValidationMessages) {
         .max(32, m.maxChars(32))
         .regex(/^[+(\d][\d\s\-().]{6,}$/, m.phoneInvalid),
     ),
-    instagramUsername: optionalString(64),
     preferredLanguage: enumField(preferredLanguageOptions),
-  });
-
-  const goalStep = z.object({
-    primaryGoal: enumField(primaryGoalOptions),
-    trainingLevel: enumField(trainingLevelOptions),
-    trainingFrequency: enumField(trainingFrequencyOptions),
-    desiredTimeline: enumField(desiredTimelineOptions),
-    biggestObstacle: enumField(obstacleOptions),
-  });
-
-  const fitStep = z.object({
-    motivation: z.preprocess(
-      cleanMultiline,
-      z.string().min(20, m.motivationMin).max(1500, m.maxChars(1500)),
-    ),
-    supportNeeded: enumField(supportNeededOptions),
-    investmentReadiness: enumField(investmentReadinessOptions),
-    referralSource: enumField(referralSourceOptions),
+    /** Opt-in only, and separate from the booking itself. */
+    marketingConsent: z.boolean().default(false),
   });
 
   /**
-   * Consent uses `boolean().refine(...)` rather than `literal(true)` so the
-   * *input* type stays `boolean` — a checkbox has to be able to start unchecked.
+   * The chosen slot, as the instant it starts.
+   *
+   * Normalised to `toISOString()` form so the value that reaches the database is
+   * the same string the availability endpoint generated, whatever the browser
+   * sent. Being a real, free, offered slot is checked in the route against
+   * `lib/schedule.ts` — a shape check cannot know what is still available.
    */
-  const consentStep = z.object({
-    accuracyConfirmed: z.boolean().refine((value) => value === true, {
-      error: m.accuracyRequired,
-    }),
-    contactConsent: z.boolean().refine((value) => value === true, {
-      error: m.contactConsentRequired,
-    }),
-    marketingConsent: z.boolean().default(false),
+  const slot = z.object({
+    slotStart: z.preprocess(
+      cleanText,
+      z
+        .string()
+        .min(1, m.slotRequired)
+        .refine((value) => !Number.isNaN(Date.parse(value)), m.slotInvalid)
+        .transform((value) => new Date(value).toISOString()),
+    ),
   });
 
   const attributionShape = {
@@ -179,7 +164,7 @@ function buildSchemas(m: ValidationMessages) {
     utm_content: optionalString(180),
     utm_term: optionalString(180),
     referrer: optionalString(500),
-    /** Which funnel the application came from: "landing" | "vsl" | … */
+    /** Which funnel the booking came from: "landing" | "vsl" | … */
     source: optionalString(60),
   };
 
@@ -202,17 +187,15 @@ function buildSchemas(m: ValidationMessages) {
   };
 
   return {
-    contactStep,
-    goalStep,
-    fitStep,
-    consentStep,
+    questions,
+    contact,
+    slot,
 
     /** What the API route accepts. */
-    application: z.object({
-      ...contactStep.shape,
-      ...goalStep.shape,
-      ...fitStep.shape,
-      ...consentStep.shape,
+    booking: z.object({
+      ...questions.shape,
+      ...slot.shape,
+      ...contact.shape,
       ...attributionShape,
       ...antiSpamShape,
     }),
@@ -220,14 +203,13 @@ function buildSchemas(m: ValidationMessages) {
     /**
      * Client-side form shape.
      *
-     * Includes the honeypot so it can be registered like any other field; the
-     * attribution fields are injected at submit time rather than rendered.
+     * The slot is absent on purpose: it is chosen through a calendar rather than
+     * typed into a field, so the flow holds it in component state and sends it
+     * alongside these values. Attribution is injected at submit time.
      */
     form: z.object({
-      ...contactStep.shape,
-      ...goalStep.shape,
-      ...fitStep.shape,
-      ...consentStep.shape,
+      ...questions.shape,
+      ...contact.shape,
       company: antiSpamShape.company,
     }),
   };
@@ -239,14 +221,13 @@ const schemasByLocale = {
 } satisfies Record<Locale, ReturnType<typeof buildSchemas>>;
 
 /** The form schema whose messages are in the reader's language. */
-export function getApplicationFormSchema(locale: Locale) {
+export function getBookingFormSchema(locale: Locale) {
   return schemasByLocale[locale].form;
 }
 
-/** Per-step schemas in the order the steps are rendered. */
-export function getStepSchemas(locale: Locale) {
-  const s = schemasByLocale[locale];
-  return [s.goalStep, s.fitStep, s.contactStep, s.consentStep] as const;
+/** Messages the flow needs outside a field — the calendar's own errors. */
+export function getValidationMessages(locale: Locale): ValidationMessages {
+  return messagesByLocale[locale];
 }
 
 /* -------------------------------------------------------------------------- */
@@ -255,71 +236,43 @@ export function getStepSchemas(locale: Locale) {
 
 const serverSchemas = schemasByLocale[defaultLocale];
 
-export const applicationSchema = serverSchemas.application;
-export const applicationFormSchema = serverSchemas.form;
+export const bookingSchema = serverSchemas.booking;
+export const bookingFormSchema = serverSchemas.form;
 
-export type ApplicationInput = z.input<typeof applicationSchema>;
-export type ApplicationData = z.output<typeof applicationSchema>;
+export type BookingInput = z.input<typeof bookingSchema>;
+export type BookingData = z.output<typeof bookingSchema>;
 
-export type ApplicationFormValues = z.input<typeof applicationFormSchema>;
-export type ApplicationFormOutput = z.output<typeof applicationFormSchema>;
+export type BookingFormValues = z.input<typeof bookingFormSchema>;
+export type BookingFormOutput = z.output<typeof bookingFormSchema>;
 
 /* -------------------------------------------------------------------------- */
-/* Step composition                                                            */
+/* Flow composition                                                            */
 /* -------------------------------------------------------------------------- */
 
 /**
- * Field names per step, in render order.
+ * The qualifying questions, in the order they are asked.
  *
- * Used to validate and focus one step at a time, and — for the two steps that
- * reveal their questions one after another — to decide which question comes
- * next. The order inside `goalFields` and `fitFields` is therefore the order the
- * visitor is asked, not just the order errors are reported in.
+ * This array *is* the order of the flow's first phase — one question per
+ * screen — and `applyContent.questions` in `content/apply.ts` is keyed by the
+ * same names, so adding a question means adding it in both places.
  */
-export const goalFields = [
+export const questionFields = [
   "primaryGoal",
   "trainingLevel",
-  "trainingFrequency",
-  "desiredTimeline",
   "biggestObstacle",
-] as const satisfies readonly (keyof ApplicationFormValues)[];
-
-/**
- * `motivation` is last on purpose: it opens the step with three quick taps
- * rather than with a blank text box, which is the highest-friction way to ask
- * someone for anything. It is also the only question here that cannot carry the
- * visitor forward on its own, so it is the natural place to hand over to the
- * "Continue" button.
- */
-export const fitFields = [
-  "supportNeeded",
+  "desiredTimeline",
   "investmentReadiness",
-  "referralSource",
-  "motivation",
-] as const satisfies readonly (keyof ApplicationFormValues)[];
+] as const satisfies readonly (keyof BookingFormValues)[];
+
+export type QuestionField = (typeof questionFields)[number];
 
 /**
- * `preferredLanguage` is deliberately absent: it is set from the visitor's
- * stored language rather than answered here, so there is no control to focus
- * and nothing a visitor could do about an error on it. It is still validated at
+ * The contact screen has no list of its own: it shows every one of its fields at
+ * once, so react-hook-form validates the whole form on submit and there is
+ * nothing to step through.
+ *
+ * `preferredLanguage` is not among them. It is set from the visitor's stored
+ * language rather than answered here, so there is no control to focus and
+ * nothing a visitor could do about an error on it — it is still validated at
  * submit, along with every other field.
  */
-export const contactFields = [
-  "fullName",
-  "email",
-  "phone",
-  "instagramUsername",
-] as const satisfies readonly (keyof ApplicationFormValues)[];
-
-export const consentFields = [
-  "accuracyConfirmed",
-  "contactConsent",
-  "marketingConsent",
-] as const satisfies readonly (keyof ApplicationFormValues)[];
-
-/**
- * Indexed by step number, so this order must match `applyContent.steps` in
- * `content/apply.ts`. Contact sits third: the questions come before the ask.
- */
-export const stepFields: readonly (readonly (keyof ApplicationFormValues)[])[] =
-  [goalFields, fitFields, contactFields, consentFields];

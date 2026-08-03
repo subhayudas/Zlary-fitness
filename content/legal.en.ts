@@ -151,7 +151,7 @@ export const notFoundContent = {
   links: [
     { label: "Back to home", href: "/en" },
     { label: "Watch the presentation", href: "/en/vsl" },
-    { label: "Start my application", href: "/en/apply" },
+    { label: "Start my application", href: "/en/#postuler" },
   ],
 };
 

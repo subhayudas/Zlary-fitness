@@ -6,9 +6,9 @@ import { SectionShell } from "@/components/ui/SectionShell";
 import { EditorialHeading } from "@/components/ui/typography";
 import { getFaqItems, getVisibleFaqItems } from "@/content/faq";
 import { getHome } from "@/content/home";
-import { sectionIds } from "@/content/navigation";
+import { applyHref, sectionIds } from "@/content/navigation";
 import { getUi } from "@/content/ui";
-import { localePath, type Locale } from "@/lib/i18n";
+import type { Locale } from "@/lib/i18n";
 
 /**
  * FAQ: heading on the left, accordion on the right, a lot of whitespace between.
@@ -48,7 +48,7 @@ export function FaqSection({ locale }: { locale: Locale }) {
 
               <div className="mt-8">
                 <EditorialLink
-                  href={localePath("/apply", locale)}
+                  href={applyHref(locale)}
                   className="text-ink/70 hover:text-ink"
                 >
                   {t.faq.askOnCall}

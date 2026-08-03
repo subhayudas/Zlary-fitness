@@ -23,11 +23,14 @@ export type AnalyticsEvent =
   | "vsl_open"
   | "vsl_start"
   | "vsl_progress"
-  | "application_start"
-  | "application_step_complete"
-  | "application_submit"
-  | "application_error"
-  | "booking_page_view"
+  /**
+   * The booking funnel, in order: the flow opens, each phase completes, and it
+   * ends on `booking_complete` — which now fires only once a slot is genuinely
+   * reserved, not merely once a form was sent.
+   */
+  | "booking_start"
+  | "booking_step_complete"
+  | "booking_error"
   | "booking_link_click"
   | "booking_complete";
 
@@ -78,9 +81,13 @@ export function writeConsent(state: Exclude<ConsentState, "unknown">) {
   window.dispatchEvent(new CustomEvent(CONSENT_EVENT, { detail: state }));
 }
 
-/** Meta's standard events; anything else is sent as a custom event. */
+/**
+ * Meta's standard events; anything else is sent as a custom event.
+ *
+ * A completed booking is both: it is the lead *and* the appointment, because
+ * the funnel no longer separates the two.
+ */
 const META_STANDARD: Partial<Record<AnalyticsEvent, string>> = {
-  application_submit: "Lead",
   booking_complete: "Schedule",
 };
 

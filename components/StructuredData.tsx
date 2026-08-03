@@ -1,9 +1,10 @@
 import { getVisibleFaqItems } from "@/content/faq";
+import { applyHref } from "@/content/navigation";
 import { absoluteUrl, getSiteCopy, siteUrl, site } from "@/content/site";
 import type { FaqItem } from "@/content/types";
 import { getUi } from "@/content/ui";
 import { getVslConfig } from "@/content/vsl";
-import { localeMeta, localePath, locales, type Locale } from "@/lib/i18n";
+import { localeMeta, locales, type Locale } from "@/lib/i18n";
 
 /**
  * JSON-LD structured data.
@@ -64,7 +65,7 @@ export function OrganizationSchema({ locale }: { locale: Locale }) {
     // Online-only: no postal address is asserted because none is verified.
     availableChannel: {
       "@type": "ServiceChannel",
-      serviceUrl: absoluteUrl(localePath("/apply", locale)),
+      serviceUrl: absoluteUrl(applyHref(locale)),
       name: t.applicationChannel,
     },
   };

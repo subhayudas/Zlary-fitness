@@ -56,12 +56,12 @@ export const routeSeo = {
     priority: 0.8,
     changeFrequency: "monthly",
   },
-  apply: {
-    path: "/apply",
-    title: "Candidature Coaching | Zlary Fitness",
+  about: {
+    path: "/about",
+    title: "À propos de Zach | Coach Fitness en Ligne | Zlary Fitness",
     description:
-      "Remplis ta candidature pour le coaching fitness et nutrition en ligne de Zlary Fitness. Quelques questions pour vérifier si l'accompagnement te convient.",
-    priority: 0.9,
+      "Zach accompagne les personnes occupées qui veulent améliorer leur physique sans transformer leur vie en régime permanent. Son approche, ses certifications, sa méthode.",
+    priority: 0.7,
     changeFrequency: "yearly",
   },
   results: {

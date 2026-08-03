@@ -13,7 +13,7 @@ import { EditorialHeading, Rule } from "@/components/ui/typography";
 import { approvedCaseStudies, getResultsDisclaimer } from "@/content/case-studies";
 import { getVslFaqItems } from "@/content/faq";
 import { getMedia } from "@/content/media";
-import { getNav } from "@/content/navigation";
+import { applyHref, getNav } from "@/content/navigation";
 import { getRouteSeo } from "@/content/seo";
 import { getSiteCopy, site } from "@/content/site";
 import { getUi } from "@/content/ui";
@@ -75,7 +75,7 @@ export default async function VslPage({
         backLabel={vslContent.backLabel}
         cta={{
           label: navCta.label,
-          href: `${localePath("/apply", locale)}?source=vsl`,
+          href: applyHref(locale, "vsl"),
         }}
       />
 

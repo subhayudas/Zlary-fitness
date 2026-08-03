@@ -4,7 +4,7 @@ import { createClient, type SupabaseClient } from "@supabase/supabase-js";
  * Server-only Supabase access.
  *
  * The service-role key bypasses row-level security, so it must never reach the
- * browser. This module is imported exclusively from the API route, and the key
+ * browser. This module is imported exclusively from the API routes, and the key
  * is read from a non-`NEXT_PUBLIC_` variable so Next.js cannot inline it into
  * client bundles.
  */
@@ -37,31 +37,56 @@ export function getSupabaseAdmin(): SupabaseStatus {
   return { configured: true, client: cached };
 }
 
+/**
+ * One row per lead, and — since the funnel ends on a booked slot rather than on
+ * a form — that row now carries the appointment too. The table keeps its
+ * original name so the history stays in one place.
+ */
 export const APPLICATIONS_TABLE = "coaching_applications";
 
-/** Row shape written by the API route. Mirrors the SQL migration exactly. */
-export type ApplicationRow = {
+/**
+ * Statuses that still hold their slot. Anything outside this list has released
+ * it, which is exactly what the partial unique index in migration 0002 encodes.
+ */
+export const LIVE_BOOKING_STATUSES = [
+  "new",
+  "reviewing",
+  "booked",
+  "accepted",
+  "completed",
+  "no_show",
+] as const;
+
+/** Row shape written by the booking route. Mirrors the SQL migrations exactly. */
+export type BookingRow = {
   full_name: string;
   email: string;
   phone: string;
-  instagram_username: string | null;
   preferred_language: string;
+
   primary_goal: string;
   training_level: string;
-  training_frequency: string;
-  desired_timeline: string;
   biggest_obstacle: string;
-  motivation: string;
-  support_needed: string;
+  desired_timeline: string;
   investment_readiness: string;
-  referral_source: string;
+
   marketing_consent: boolean;
+
+  slot_start: string;
+  slot_end: string;
+  booking_timezone: string;
+  calendar_event_id: string | null;
+  calendar_event_link: string | null;
+  invite_sent: boolean;
+  lead_quality: string;
+
   utm_source: string | null;
   utm_medium: string | null;
   utm_campaign: string | null;
   utm_content: string | null;
   utm_term: string | null;
   referrer: string | null;
+
   status: string;
   submission_id: string | null;
 };

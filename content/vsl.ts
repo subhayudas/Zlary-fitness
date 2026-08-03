@@ -103,7 +103,7 @@ export const vslContent = {
   support:
     "Découvre l'approche utilisée pour construire une stratégie autour de ton travail, de ton horaire et de ta vraie vie.",
   backLabel: "Retour",
-  cta: { label: "Postuler pour le coaching", href: "/apply?source=vsl" },
+  cta: { label: "Postuler pour le coaching", href: "/?source=vsl#postuler" },
   placeholder: {
     heading: "Présentation bientôt disponible",
     body: "La vidéo est en préparation. En attendant, tu peux déjà remplir la candidature — elle prend quelques minutes et permet de vérifier si l'accompagnement correspond à ta situation.",

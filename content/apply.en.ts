@@ -1,5 +1,5 @@
 /**
- * Coaching application — English.
+ * Booking flow — English.
  *
  * ---------------------------------------------------------------------------
  * ONLY LABELS ARE TRANSLATED, NEVER VALUES
@@ -30,18 +30,6 @@ export const optionLabels = {
     advanced: "Advanced — I've trained seriously for years",
     returning: "Coming back after a long break",
   },
-  trainingFrequency: {
-    "0": "No sessions right now",
-    "1-2": "1 to 2 sessions a week",
-    "3-4": "3 to 4 sessions a week",
-    "5+": "5 or more sessions a week",
-  },
-  desiredTimeline: {
-    asap: "I want to start right away",
-    "1_month": "Within the next month",
-    "3_months": "Within the next three months",
-    exploring: "Just gathering information for now",
-  },
   obstacle: {
     schedule: "My schedule is unpredictable",
     consistency: "I struggle with consistency",
@@ -51,119 +39,178 @@ export const optionLabels = {
     plateau: "I've plateaued despite the effort",
     other: "Other",
   },
-  supportNeeded: {
-    structure_only: "Mainly a clear plan to follow",
-    structure_accountability: "A plan and accountability",
-    close_guidance: "Close follow-up and frequent adjustments",
+  desiredTimeline: {
+    asap: "I want to start right away",
+    "1_month": "Within the next month",
+    "3_months": "Within the next three months",
+    exploring: "Just gathering information for now",
   },
   investmentReadiness: {
     ready: "Yes, I'm ready to invest in personalized coaching",
     depends: "It depends on what the coaching includes",
     not_yet: "Not right now",
   },
-  referralSource: {
-    instagram: "Instagram",
-    google: "Google search",
-    referral: "Someone recommended it",
-    vsl: "The presentation video",
-    other: "Other",
-  },
 };
 
 export const applyContent = {
-  eyebrow: "COACHING APPLICATION",
-  heading: "Let's see whether the coaching fits your situation.",
-  body: "A few questions to understand your goal, your schedule and what has held you back so far. It takes about three minutes.",
+  eyebrow: "BOOK A CALL",
+  heading: "Book your transformation call.",
+  body: "Five quick questions, then you pick your time. Under two minutes — and you leave with a confirmed appointment, not an application sitting in a queue.",
   privacyNote:
     "Your answers are used only to prepare the call. No medical information is requested.",
+
   /** Order must stay identical to the French list in `apply.ts`. */
-  steps: [
+  phases: [
     {
-      id: "goal",
+      id: "questions",
       index: "01",
-      title: "Goal",
-      lead: "Where you want to go",
-      benefit: "Your goal and your schedule determine how the program is built.",
+      title: "Your situation",
+      lead: "Where you are",
+      benefit:
+        "Five questions so Zach arrives at the call already knowing what you'll be talking about.",
     },
     {
-      id: "fit",
+      id: "slot",
       index: "02",
-      title: "Fit",
-      lead: "Your situation",
+      title: "Your time",
+      lead: "When you talk",
       benefit:
-        "These answers make it possible to see honestly whether the coaching suits you.",
+        "Pick whatever suits you. The times shown are the ones genuinely free in Zach's calendar.",
     },
     {
       id: "contact",
       index: "03",
-      title: "Contact",
+      title: "Your details",
       lead: "How to reach you",
       benefit:
-        "This information is used only to get back to you about your application.",
-    },
-    {
-      id: "consent",
-      index: "04",
-      title: "Confirmation",
-      lead: "Last step",
-      benefit: "One final check before sending.",
+        "Only to confirm the call and send it to your calendar.",
     },
   ],
+
+  questions: {
+    primaryGoal: {
+      label: "What's your main goal?",
+      columns: 2,
+    },
+    trainingLevel: {
+      label: "Where are you with your training?",
+      columns: 1,
+    },
+    biggestObstacle: {
+      label: "What's held you back so far?",
+      hint: "Be honest: this is the most useful answer in the whole thing.",
+      columns: 2,
+    },
+    desiredTimeline: {
+      label: "When would you like to start?",
+      columns: 2,
+    },
+    investmentReadiness: {
+      label: "Are you ready to invest in personalized coaching?",
+      hint: "Pricing is discussed on the call. Your answer doesn't affect whether you can book — it only helps Zach prepare the conversation.",
+      columns: 1,
+    },
+  },
+
+  calendar: {
+    label: "Pick your time",
+    body: (minutes: number) =>
+      `${minutes} minutes one-to-one with Zach, by call. Choose a date, then a time.`,
+    dateLabel: "Date",
+    timeLabel: "Time",
+    timeZoneNote: (zone: string) => `Times shown in ${zone}.`,
+    localNote: (time: string, zone: string) => `That's ${time} where you are (${zone}).`,
+    loading: "Loading available times…",
+    selected: (date: string, time: string) => `${date} at ${time}`,
+    change: "Change",
+    empty: {
+      heading: "No times are available right now.",
+      body: "The next few weeks are fully booked. Message Zach on Instagram and he'll find you a slot.",
+    },
+    failed: {
+      heading: "The calendar couldn't be loaded.",
+      body: "Try again in a moment. If it keeps happening, message Zach on Instagram.",
+      retry: "Try again",
+    },
+  },
+
   labels: {
     fullName: "Full name",
     email: "Email",
     phone: "Phone",
-    instagramUsername: "Instagram username",
-    primaryGoal: "What's your main goal?",
-    trainingLevel: "What's your current level?",
-    trainingFrequency: "How often are you training right now?",
-    desiredTimeline: "When would you like to start?",
-    biggestObstacle: "What's your biggest obstacle?",
-    motivation: "Why does this goal matter now?",
-    supportNeeded: "How much follow-up do you need?",
-    investmentReadiness: "Are you ready to invest in personalized coaching?",
-    referralSource: "How did you hear about Zlary Fitness?",
-    accuracyConfirmed: "I confirm the information provided is accurate.",
-    contactConsent:
-      "I agree to be contacted by Zlary Fitness about my application.",
     marketingConsent:
       "I'd like to occasionally receive tips and news by email. (optional)",
   },
+
   followUpLanguage: {
     label: "Follow-up language",
     value: (language: string) => `Follow-up will be in ${language}.`,
     switchTo: (language: string) => `Switch to ${language}`,
     hint: "This is the language you chose when you arrived. It's used for the site as much as for email.",
   },
+
   hints: {
-    phone: "Used only if email doesn't work.",
-    instagramUsername:
-      "Optional. With or without the @ — it helps Zach put a face to your application.",
-    biggestObstacle:
-      "Be honest: this is the most useful information in the whole form.",
-    motivation:
-      "Two or three sentences is enough. What changed, or what you no longer want to live with.",
-    investmentReadiness:
-      "Pricing is discussed on the call. This question is here so nobody wastes anybody's time.",
+    phone: "Zach calls you on this number. Used only for this call.",
+    email: "The confirmation and the calendar invite go here.",
   },
+
   placeholders: {
     fullName: "First and last name",
     email: "your@email.com",
     phone: "(514) 000-0000",
-    instagramUsername: "@yourhandle",
-    motivation: "What's pushing you to start now…",
   },
+
+  consentNote: "By confirming, you agree to be contacted about this call.",
+
+  confirmation: {
+    eyebrow: "CALL CONFIRMED",
+    heading: (firstName: string) => `You're booked, ${firstName}.`,
+    body: (email: string) =>
+      `The invitation is on its way to ${email}, and the appointment is on Zach's calendar.`,
+    bodyWithoutEmail:
+      "Your time is booked and on Zach's calendar. The confirmation email couldn't be sent — note the appointment down on your side.",
+    summary: {
+      heading: "Your appointment",
+      eventTitle: "Transformation call — Zlary Fitness",
+      when: "When",
+      duration: "Length",
+      minutes: (minutes: number) => `${minutes} minutes`,
+      where: "Where",
+      defaultWhere: "Phone call — Zach calls you on the number you gave.",
+      who: "With",
+      coach: "Zach — Zlary Fitness",
+      contact: "Confirmation sent to",
+    },
+    addToCalendar: "Add to my calendar",
+    openEvent: "View the event",
+    prepare: {
+      heading: "Before the call",
+      items: [
+        "Find somewhere quiet where you can talk freely.",
+        "Have a realistic idea of how many sessions fit your week.",
+        "Note down the questions you want to ask.",
+      ],
+    },
+    notice:
+      "Booking a call is not an acceptance into the program. Zach reads your answers before the call and will tell you straight whether the coaching fits your situation.",
+    backHome: "Back to the site",
+  },
+
   actions: {
     next: "Continue",
     back: "Back",
-    submit: "Send my application",
-    submitting: "Sending…",
+    confirm: "Confirm my appointment",
+    confirming: "Confirming…",
   },
+
   errors: {
     generic:
-      "We can't send your application right now. Try again in a few moments.",
+      "We can't confirm your appointment right now. Try again in a few moments.",
     rateLimited: "Too many attempts. Wait a minute before trying again.",
     network: "The connection failed. Check your internet access and try again.",
-    stepIncomplete: "Check the highlighted fields before continuing.",
+    slotTaken:
+      "That time was just taken. Pick another one — the calendar is up to date.",
+    slotExpired:
+      "That time is no longer offered. Pick another one from the calendar.",
   },
 };

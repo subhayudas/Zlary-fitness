@@ -17,6 +17,7 @@ import {
   supportingCaseStudies,
 } from "@/content/case-studies";
 import { getMedia } from "@/content/media";
+import { applyHref } from "@/content/navigation";
 import { getRouteSeo } from "@/content/seo";
 import { site } from "@/content/site";
 import { getUi } from "@/content/ui";
@@ -208,7 +209,7 @@ export default async function ResultsPage({
               </p>
               <div className="mt-9 flex justify-center">
                 <PillCTA
-                  href={localePath("/apply", locale)}
+                  href={applyHref(locale)}
                   variant="white"
                   withArrow
                   event="primary_cta_click"

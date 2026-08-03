@@ -8,14 +8,22 @@ import { SectionShell } from "@/components/ui/SectionShell";
 import { EditorialHeading, Rule } from "@/components/ui/typography";
 import { getHome } from "@/content/home";
 import { getMedia } from "@/content/media";
-import { sectionIds } from "@/content/navigation";
+import { applyHref, sectionIds } from "@/content/navigation";
 import { certifications, getSiteCopy, site } from "@/content/site";
 import { isConfirmed, onlyConfirmed } from "@/content/types";
 import { getUi } from "@/content/ui";
-import { localePath, type Locale } from "@/lib/i18n";
+import type { Locale } from "@/lib/i18n";
 
 /**
  * About Zach.
+ *
+ * Lives on `/about` rather than on the homepage: it is the one block a visitor
+ * seeks out deliberately, and the landing page reads better going from the
+ * method straight to the FAQ and the application.
+ *
+ * It keeps the `#a-propos` id so links shared while it was still a homepage
+ * section resolve to something, and its heading is an `h1` because it is now
+ * the main content of its own page.
  *
  * The floating information card lists only facts that have actually been
  * confirmed — certifications, languages, platform. If none are confirmed the
@@ -104,7 +112,7 @@ export function AboutSection({ locale }: { locale: Locale }) {
             <p className="type-micro text-ink/40">{about.eyebrow}</p>
 
             <EditorialHeading
-              as="h2"
+              as="h1"
               id="about-title"
               scale="card"
               className="mt-7 text-balance"
@@ -149,7 +157,7 @@ export function AboutSection({ locale }: { locale: Locale }) {
 
               {/* Lime circular arrow control. */}
               <Link
-                href={localePath("/apply", locale)}
+                href={applyHref(locale)}
                 aria-label={t.common.startApplication}
                 className="group flex size-14 shrink-0 items-center justify-center rounded-pill bg-lime text-ink-strong transition-colors duration-300 ease-editorial hover:bg-lime-hover"
               >

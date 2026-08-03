@@ -1,4 +1,4 @@
-import type { Locale } from "@/lib/i18n";
+import { localePath, type Locale } from "@/lib/i18n";
 import type { NavLink } from "./types";
 import { site } from "./site";
 
@@ -15,13 +15,13 @@ export const primaryNav: readonly NavLink[] = [
   { label: "Accueil", href: "/" },
   { label: "Résultats", href: "/results" },
   { label: "Coaching", href: "/#methode" },
-  { label: "À propos", href: "/#a-propos" },
+  { label: "À propos", href: "/about" },
   { label: "FAQ", href: "/#faq" },
 ];
 
 export const navCta = {
   label: "Postuler",
-  href: "/apply",
+  href: "/#postuler",
 };
 
 /** Section ids used for in-page navigation. Keep in sync with the homepage. */
@@ -31,23 +31,37 @@ export const sectionIds = {
   method: "methode",
   /** The single offer block: what the coaching includes. */
   offer: "inclus",
+  /** Lives on /about now, but keeps its id so old `#a-propos` links resolve. */
   about: "a-propos",
-  vslPreview: "presentation",
   faq: "faq",
   apply: "postuler",
 } as const;
+
+/**
+ * Link to the application form.
+ *
+ * The form is a section of the homepage rather than a route of its own, so
+ * every CTA on the site is an anchor into it. `source` rides along as a query
+ * parameter because `MultiStepApplication` reads it off `location.search` for
+ * attribution — and a query has to come before the fragment to survive.
+ */
+export function applyHref(locale: Locale, source?: string): string {
+  const base = localePath("/", locale);
+  const query = source ? `?source=${encodeURIComponent(source)}` : "";
+  return `${base}${query}#${sectionIds.apply}`;
+}
 
 export const footerNav = {
   site: [
     { label: "Accueil", href: "/" },
     { label: "Résultats", href: "/results" },
     { label: "La méthode", href: "/#methode" },
-    { label: "À propos", href: "/#a-propos" },
+    { label: "À propos", href: "/about" },
     { label: "FAQ", href: "/#faq" },
   ],
   funnel: [
     { label: "Voir la présentation", href: "/vsl" },
-    { label: "Postuler", href: "/apply" },
+    { label: "Postuler", href: "/#postuler" },
     { label: "Réserver un appel", href: "/book" },
   ],
   legal: [

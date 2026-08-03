@@ -7,23 +7,27 @@ import type { Locale } from "@/lib/i18n";
 import { cn } from "@/lib/utils";
 
 /**
- * Left-hand context panel for the application form.
+ * Left-hand context panel for the booking flow.
  *
- * Shows where the visitor is, what is left, and why the current step exists.
+ * Shows where the visitor is, what is left, and why the current phase exists.
  * The progress bar animates `transform: scaleX()` rather than `width`, so it
  * never triggers layout.
+ *
+ * Three phases, not eight screens: a list that ticked off every question would
+ * make a ninety-second flow look like paperwork. The bar underneath still moves
+ * on every answer — see `progress`.
  */
 export function FormProgressPanel({
   locale,
-  currentStep,
+  currentPhase,
   progress,
   className,
 }: {
   locale: Locale;
-  currentStep: number;
+  currentPhase: number;
   /**
-   * Overrides the step-by-step fraction. The steps that ask one question at a
-   * time pass a finer value, so the bar moves on every answer instead of
+   * Overrides the phase-by-phase fraction. The phase that asks one question at a
+   * time passes a finer value, so the bar moves on every answer instead of
    * standing still through five of them.
    */
   progress?: number;
@@ -31,9 +35,9 @@ export function FormProgressPanel({
 }) {
   const applyContent = getApplyContent(locale);
   const t = getUi(locale);
-  const steps = applyContent.steps;
-  const step = steps[currentStep];
-  const filled = progress ?? (currentStep + 1) / steps.length;
+  const steps = applyContent.phases;
+  const step = steps[currentPhase];
+  const filled = progress ?? (currentPhase + 1) / steps.length;
 
   return (
     <div className={cn("flex h-full flex-col", className)}>
@@ -49,11 +53,11 @@ export function FormProgressPanel({
         </p>
       </div>
 
-      {/* Step list — desktop only. */}
+      {/* Phase list — desktop only. */}
       <ol className="mt-12 space-y-4">
         {steps.map((entry, index) => {
-          const done = index < currentStep;
-          const active = index === currentStep;
+          const done = index < currentPhase;
+          const active = index === currentPhase;
 
           return (
             <li key={entry.id} className="flex items-center gap-3.5">
@@ -92,7 +96,7 @@ export function FormProgressPanel({
       <div className="mt-auto pt-12">
         <ProgressBar progress={filled} label={t.form.progressLabel} />
         <p className="type-micro mt-4 text-ink/40">
-          {t.form.stepOf(currentStep + 1, steps.length)}
+          {t.form.stepOf(currentPhase + 1, steps.length)}
         </p>
       </div>
     </div>

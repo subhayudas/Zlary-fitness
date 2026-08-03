@@ -170,7 +170,7 @@ export const notFoundContent = {
   links: [
     { label: "Retour à l'accueil", href: "/" },
     { label: "Voir la présentation", href: "/vsl" },
-    { label: "Commencer ma candidature", href: "/apply" },
+    { label: "Commencer ma candidature", href: "/#postuler" },
   ],
 };
 

@@ -19,7 +19,7 @@ export const hero = {
   headlineLines: ["Transforme ton corps", "sans mettre ta vie sur pause."],
   support:
     "Un accompagnement personnalisé pour les personnes occupées qui veulent construire un meilleur physique, retrouver leur énergie et créer des habitudes durables — sans régimes extrêmes.",
-  primaryCta: { label: "Voir si le coaching me convient", href: "/apply" },
+  primaryCta: { label: "Voir si le coaching me convient", href: "/#postuler" },
   secondaryCta: { label: "Voir la méthode", href: "/vsl" },
   trustLine: "Entraînement personnalisé · Nutrition flexible · Suivi individuel",
   chip: {
@@ -29,41 +29,25 @@ export const hero = {
   },
 };
 
+/**
+ * The problem — and only the problem.
+ *
+ * This block names the friction and stops there. The answer to it belongs to
+ * the offer and the method sections further down the page; anything that
+ * describes the coaching, the steps or the philosophy has been moved out
+ * deliberately, so the visitor recognises themselves here before being sold
+ * anything.
+ */
 export const problem = {
   label: "01 — LE VRAI PROBLÈME",
   heading: "Tu n'as probablement pas besoin de plus de motivation.",
-  subheading: "Tu as besoin d'un système adapté à ta vraie vie.",
+  subheading:
+    "Ta discipline n'est pas le problème. Rien de ce que tu as essayé n'a été pensé pour ta semaine réelle.",
   statements: [
     "Ton horaire change constamment.",
     "Tu recommences après chaque période difficile.",
-    "Les plans trop stricts ne durent jamais.",
     "Tu ne sais pas comment progresser sans sacrifier ta vie sociale.",
     "Tu travailles fort, mais tu manques de structure.",
-  ],
-  /**
-   * Conceptual coaching journey. Deliberately abstract — this is NOT a client
-   * dashboard and must never be presented as live data or a health score.
-   */
-  journey: {
-    label: "Parcours",
-    caption: "Le chemin, étape par étape",
-    steps: [
-      { name: "Évaluation", detail: "Point de départ" },
-      { name: "Structure", detail: "Plan construit" },
-      { name: "Constance", detail: "Application" },
-      { name: "Résultats durables", detail: "Autonomie" },
-    ],
-    footnote: "Représentation conceptuelle du parcours de coaching.",
-  },
-  asides: [
-    {
-      title: "Un plan qui tient debout le mardi soir",
-      body: "Un programme n'a de valeur que s'il survit à une semaine chargée, à un imprévu et à un souper au restaurant.",
-    },
-    {
-      title: "Comprendre, pas seulement suivre",
-      body: "L'objectif est que tu saches pourquoi tu fais chaque chose — pour ne plus repartir de zéro à la prochaine pause.",
-    },
   ],
 };
 
@@ -92,7 +76,7 @@ export const offer = {
   },
   closing: {
     heading: "Tout ça, dans un seul accompagnement.",
-    cta: { label: "Voir si le coaching me convient", href: "/apply" },
+    cta: { label: "Voir si le coaching me convient", href: "/#postuler" },
   },
 };
 
@@ -112,7 +96,7 @@ export const method = {
   eyebrow: "LA MÉTHODE ZLARY",
   heading: "Le plan s'adapte à ta vie. Pas l'inverse.",
   body: "Quatre étapes, dans cet ordre. Chacune existe pour rendre la suivante possible.",
-  cta: { label: "Commencer ma candidature", href: "/apply" },
+  cta: { label: "Commencer ma candidature", href: "/#postuler" },
 };
 
 export const about = {
@@ -122,23 +106,21 @@ export const about = {
   instagramLabel: "Suivre sur Instagram",
 };
 
-export const vslPreview = {
-  label: "PRÉSENTATION",
-  heading: "Découvre comment le coaching fonctionne avant de postuler.",
-  body: "Une explication courte de la méthode, de la structure du programme et de la façon dont le suivi se déroule.",
-  cta: { label: "Regarder la présentation", href: "/vsl" },
-};
-
 export const faqIntro = {
   eyebrow: "QUESTIONS FRÉQUENTES",
   heading: "Ce que les gens demandent avant de commencer.",
   body: "Si ta question n'est pas ici, elle sera abordée pendant l'appel.",
 };
 
+/**
+ * The closing block, which now introduces the application form itself rather
+ * than sending the visitor to another page for it. No `cta` any more: the form
+ * is directly underneath this copy, and a button pointing at it would be a
+ * click that scrolls one screen.
+ */
 export const finalCta = {
   heading: "Prêt à construire un plan qui fonctionne avec ta vie?",
   body: "Réponds à quelques questions pour vérifier si l'accompagnement correspond à tes objectifs.",
-  cta: { label: "Commencer ma candidature", href: "/apply" },
   note: "Quelques minutes suffisent. Aucune information médicale n'est demandée.",
 };
 
@@ -155,7 +137,6 @@ export type HomeContent = {
   resultsIntro: typeof resultsIntro;
   method: typeof method;
   about: typeof about;
-  vslPreview: typeof vslPreview;
   faqIntro: typeof faqIntro;
   finalCta: typeof finalCta;
 };
@@ -168,7 +149,6 @@ const dictionary: Record<Locale, HomeContent> = {
     resultsIntro,
     method,
     about,
-    vslPreview,
     faqIntro,
     finalCta,
   },

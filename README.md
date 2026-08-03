@@ -1,8 +1,8 @@
 # Zlary Fitness — site de coaching
 
 Site de conversion pour Zlary Fitness : page d'accueil éditoriale, tunnel VSL,
-candidature en quatre étapes, réservation d'appel, page résultats et pages
-légales.
+tunnel de réservation en huit écrans (cinq questions, calendrier, coordonnées,
+confirmation), page résultats et pages légales.
 
 Next.js 16 (App Router) · TypeScript · Tailwind CSS v4 · Zod · Supabase ·
 déploiement Vercel.
@@ -45,10 +45,12 @@ npm run dev
 
 Le site tourne sur http://localhost:3000.
 
-**Tout fonctionne sans aucune variable d'environnement.** La vidéo, le
-calendrier et les analytics affichent chacun un état de remplacement soigné
-plutôt qu'une erreur. Seule exception volontaire : sans Supabase, le formulaire
-de candidature retourne une vraie erreur au lieu d'un faux message de succès.
+**Tout fonctionne sans aucune variable d'environnement.** La vidéo, l'intégration
+Google Calendar et les analytics affichent chacun un état de remplacement soigné
+plutôt qu'une erreur, et le calendrier de réservation tourne sur ses horaires par
+défaut. Seule exception volontaire : sans Supabase, la réservation retourne une
+vraie erreur au lieu d'une fausse confirmation — un créneau jamais enregistré,
+c'est un appel auquel personne ne se présente.
 
 Scripts :
 
@@ -103,13 +105,13 @@ fidèlement ce que le site fait, mais ce ne sont pas des conseils juridiques.
 app/                     routes (App Router)
   page.tsx               accueil
   vsl/                   tunnel vidéo
-  apply/                 candidature 4 étapes
-  book/                  réservation d'appel
+  book/                  redirection vers le tunnel de réservation
   thank-you/             confirmation
   results/               transformations clients
   privacy/  terms/       pages légales
   not-found.tsx          404
-  api/applications/      réception du formulaire
+  api/availability/      créneaux libres (lecture seule, publique)
+  api/bookings/          réservation d'un créneau
   sitemap.ts robots.ts manifest.ts opengraph-image.tsx
 
 content/                 ★ TOUT LE CONTENU ÉDITABLE
@@ -311,34 +313,75 @@ Détails :
 
 ---
 
-## 10. Brancher Google Calendar
+## 10. Le calendrier de réservation
 
-1. Google Calendar → **Créer** → **Planning de rendez-vous**.
-2. Configurer la durée, les disponibilités et les questions.
-3. Copier le lien de réservation.
-4. Renseigner :
+Le site ne présente plus le calendrier de quelqu'un d'autre dans un iframe : il
+tient le sien. Le tunnel est **une seule suite d'écrans** — cinq questions, le
+calendrier, les coordonnées, la confirmation — et se termine sur un rendez-vous
+confirmé plutôt que sur un formulaire envoyé.
 
-```
-NEXT_PUBLIC_BOOKING_URL=https://calendar.google.com/calendar/appointments/schedules/XXXX
-```
+Un iframe ne peut pas savoir ce qui vient d'être répondu, ne peut pas rendre la
+réponse, et ne peut pas être mis en page. Une réservation faite dedans arrive
+donc comme un enregistrement séparé à réconcilier à la main. Ici le créneau
+choisi n'est qu'une valeur de plus dans la même soumission.
 
-Comportements :
+### Les disponibilités
 
-| Lien fourni                                  | Résultat                              |
-| -------------------------------------------- | ------------------------------------- |
-| `calendar.google.com/.../schedules/…`         | calendrier intégré dans la page       |
-| `calendar.app.google/…` (lien court)          | bouton « Ouvrir le calendrier »       |
-| `calendly.com/…`                              | calendrier intégré                    |
-| aucun                                         | message d'attente + lien Instagram    |
+Tout est facultatif : sans aucune variable, le calendrier fonctionne avec les
+valeurs par défaut ci-dessous.
 
-L'intégration se charge seulement quand elle approche de l'écran, et sa hauteur
-est réservée à l'avance : aucun décalage de mise en page.
+| Variable                   | Défaut                                                | Rôle                                        |
+| -------------------------- | ----------------------------------------------------- | ------------------------------------------- |
+| `BOOKING_TIMEZONE`         | `America/Toronto`                                     | l'horloge de Zach — nommée à l'écran        |
+| `BOOKING_DURATION_MINUTES` | `30`                                                  | durée de l'appel                            |
+| `BOOKING_BUFFER_MINUTES`   | `15`                                                  | battement de part et d'autre                |
+| `BOOKING_LEAD_HOURS`       | `12`                                                  | délai minimum avant un créneau              |
+| `BOOKING_HORIZON_DAYS`     | `21`                                                  | jusqu'où le calendrier ouvre (max 120)      |
+| `BOOKING_HOURS`            | `mon-fri 09:00-12:00,17:00-20:00; sat 09:00-12:00`    | les heures d'ouverture hebdomadaires        |
+| `BOOKING_BLACKOUT_DATES`   | —                                                     | jours fermés, `YYYY-MM-DD` séparés par `,`  |
+| `BOOKING_LOCATION`         | appel téléphonique                                    | lieu de l'appel (mettre un lien Zoom/Meet)  |
 
-Un lien « Ouvrir le calendrier » est toujours proposé sous l'intégration, au cas
-où celle-ci serait bloquée par le navigateur.
+Format de `BOOKING_HOURS` : des entrées `<jours> <plages>` séparées par `;`. Les
+jours s'écrivent `mon`, `mon-fri` ou `mon,wed,fri`; les plages `HH:MM-HH:MM`.
+Une valeur illisible retombe sur le défaut plutôt que de n'ouvrir aucune heure —
+un calendrier vide se lit comme « complet », ce qui perdrait le contact.
 
-Le texte de la page ne laisse jamais entendre que la candidature est acceptée :
-réserver un créneau, c'est une conversation, pas une admission.
+Les heures affichées sont **toujours** celles de Zach, nommées au-dessus de la
+grille (« Heures affichées en HAE »). Un visiteur ailleurs voit aussi son heure
+locale dès qu'il choisit un créneau : personne ne réserve 17 h pour se présenter
+à 20 h.
+
+### Brancher Google Calendar (facultatif)
+
+Sans ça, la réservation est quand même enregistrée, confirmée et envoyée avec son
+invitation `.ics` — seul l'événement sur l'agenda de Zach est sauté.
+
+1. Console Google Cloud → créer un **compte de service** → créer une clé JSON.
+2. Activer l'**API Google Calendar** sur ce projet.
+3. Google Calendar → agenda de Zach → Paramètres → « Partager avec des personnes
+   en particulier » → ajouter l'adresse du compte de service avec
+   **« Apporter des modifications aux événements »**.
+4. Renseigner `GOOGLE_CALENDAR_ID`, `GOOGLE_SERVICE_ACCOUNT_EMAIL` et
+   `GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY`.
+
+L'agenda sert alors à deux choses : lire les périodes occupées de Zach (aucun
+créneau proposé pendant un cours déjà donné) et y écrire l'appel réservé.
+
+Un compte de service ordinaire ne peut **pas** ajouter d'invité à un événement.
+Le candidat est donc invité par le fichier `.ics` joint à son courriel de
+confirmation, ce que tous les clients de messagerie savent lire. Sur Google
+Workspace uniquement, `GOOGLE_IMPERSONATE_SUBJECT` (avec la délégation à
+l'échelle du domaine) active en plus les vraies invitations Google.
+
+### Deux personnes, un créneau
+
+L'index unique sur `slot_start` (migration 0002) est la vraie protection : deux
+requêtes peuvent lire « libre » avant que l'une n'écrive. La seconde écriture
+échoue, et la route répond « ce créneau vient d'être réservé » en rechargeant le
+calendrier — plutôt que de perdre le contact.
+
+Le texte ne laisse jamais entendre que la candidature est acceptée : réserver un
+créneau, c'est une conversation, pas une admission.
 
 ---
 
@@ -477,18 +520,34 @@ Components par défaut ». Même langage visuel, sans le poids.
 
 ## 15. Notes techniques
 
-**Formulaire de candidature**
+**Tunnel de réservation**
 
-- Validation étape par étape (`lib/validation.ts`) — le même schéma Zod sert au
+L'ordre des écrans est le produit, pas un détail : cinq questions, puis le
+calendrier, puis seulement le nom, le courriel et le téléphone. Qui a répondu à
+cinq questions et choisi une heure a déjà investi assez pour qu'un numéro de
+téléphone soit la petite demande — les trois mêmes champs en haut de page en
+seraient la grosse.
+
+- Validation écran par écran (`lib/validation.ts`) — le même schéma Zod sert au
   navigateur et au serveur ; la validation client est un confort, jamais une
   barrière de sécurité.
-- Idempotence : un `submissionId` est généré une fois par session de formulaire
-  et envoyé à chaque tentative. Un renvoi après coupure réseau met à jour la
-  même ligne au lieu d'en créer une seconde.
+- Le créneau envoyé par le navigateur est **re-vérifié** contre l'horaire réel
+  avant toute écriture : la page a pu rester ouverte une heure, et la valeur est
+  trivialement modifiable.
+- Idempotence : un `submissionId` est généré une fois par session et envoyé à
+  chaque tentative. Un renvoi après coupure réseau met à jour la même ligne au
+  lieu de réserver un deuxième créneau.
 - Anti-spam : champ piège invisible + délai minimum de 3 s. Les deux répondent
   `200` sans rien enregistrer, pour qu'un robot ne puisse pas distinguer le
   piège d'un succès.
-- Limitation de débit : 5 envois par IP et par tranche de 10 minutes.
+- Limitation de débit : 5 réservations par IP et par tranche de 10 minutes.
+- « Prêt à investir » **étiquette** le contact (`lead_quality` : hot / warm /
+  cold) et ne bloque jamais rien. Quelle que soit la réponse, le calendrier
+  suit — quelqu'un qui répond « pas pour le moment » et réserve quand même est
+  souvent exactement la personne qui vaut une demi-heure.
+- Rien n'est confirmé de façon optimiste : l'écran de confirmation n'apparaît
+  qu'une fois le créneau réellement réservé, et dit franchement si le courriel
+  n'a pas pu partir.
 - **Aucune donnée de santé n'est collectée** : ni antécédents, ni blessures, ni
   poids, ni mesures.
 

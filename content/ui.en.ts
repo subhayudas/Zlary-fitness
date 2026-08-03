@@ -113,7 +113,7 @@ export const ui = {
 
   breadcrumb: {
     home: "Home",
-    application: "Application",
+    about: "About",
     results: "Results",
     privacy: "Privacy policy",
     terms: "Terms of use",

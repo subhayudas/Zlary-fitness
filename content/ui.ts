@@ -132,7 +132,7 @@ export const ui = {
 
   breadcrumb: {
     home: "Accueil",
-    application: "Candidature",
+    about: "À propos",
     results: "Résultats",
     privacy: "Politique de confidentialité",
     terms: "Conditions d'utilisation",

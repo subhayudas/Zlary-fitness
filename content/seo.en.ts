@@ -29,10 +29,10 @@ export const routeSeoCopy = {
     description:
       "Discover the online coaching method used to build a training and nutrition plan around your schedule and your real life.",
   },
-  apply: {
-    title: "Coaching Application | Zlary Fitness",
+  about: {
+    title: "About Zach | Online Fitness Coach | Zlary Fitness",
     description:
-      "Complete your application for Zlary Fitness online fitness and nutrition coaching. A few questions to check whether the coaching is right for you.",
+      "Zach coaches busy people who want to improve their physique without turning their life into a permanent diet. His approach, his certifications, his method.",
   },
   results: {
     title: "Client Transformations | Zlary Fitness",
