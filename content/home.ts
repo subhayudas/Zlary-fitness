@@ -49,6 +49,17 @@ export const problem = {
     "Tu ne sais pas comment progresser sans sacrifier ta vie sociale.",
     "Tu travailles fort, mais tu manques de structure.",
   ],
+  /**
+   * The CTA answers the block it closes, and nothing else on the page repeats
+   * it. Here the visitor has just recognised their own week in four lines, so
+   * the click is about that week — not about the coaching, which they have not
+   * read about yet.
+   */
+  cta: {
+    label: "Construire un plan pour ma semaine réelle",
+    href: "/#postuler",
+    note: "Cinq questions sur ta semaine, puis tu choisis ton créneau d'appel.",
+  },
 };
 
 /**
@@ -76,7 +87,11 @@ export const offer = {
   },
   closing: {
     heading: "Tout ça, dans un seul accompagnement.",
-    cta: { label: "Voir si le coaching me convient", href: "/#postuler" },
+    cta: {
+      label: "Obtenir ce plan pour moi",
+      href: "/#postuler",
+      note: "L'appel sert à vérifier que c'est adapté à toi. Aucun engagement avant.",
+    },
   },
 };
 
@@ -84,7 +99,19 @@ export const resultsIntro = {
   eyebrow: "RÉSULTATS CLIENTS",
   heading: "Des plans construits autour de vraies vies.",
   body: "Le travail, les horaires variables, les restaurants et les voyages ne disparaissent pas. La stratégie doit fonctionner avec eux.",
-  cta: { label: "Voir toutes les transformations", href: "/results" },
+  /**
+   * The section CTA points at the application, not at `/results`: someone who
+   * has just dragged through four before/after comparisons has seen the proof,
+   * and sending them to a page of more of it costs the conversion. The link to
+   * the full page stays underneath as a text link — subordinate, not a second
+   * button.
+   */
+  cta: {
+    label: "Commencer mon propre avant/après",
+    href: "/#postuler",
+    note: "Chacun de ces parcours a commencé par un appel de trente minutes.",
+  },
+  galleryLink: { label: "Voir toutes les transformations", href: "/results" },
   emptyState: {
     heading: "Les transformations clients seront publiées ici.",
     body: "Aucune transformation n'est affichée tant que le client concerné n'a pas donné son accord écrit. Cette section se remplira au fur et à mesure des autorisations.",
@@ -92,11 +119,24 @@ export const resultsIntro = {
   },
 };
 
+/**
+ * The method — four steps, read in one pass.
+ *
+ * The heading no longer repeats "ton plan s'adapte à ta vie", which the results
+ * intro and the about block already say. What this section sells is certainty:
+ * the visitor is about to hand over money and time to someone they have never
+ * met, so the block answers the only question left — what actually happens, and
+ * where it ends.
+ */
 export const method = {
-  eyebrow: "LA MÉTHODE ZLARY",
-  heading: "Le plan s'adapte à ta vie. Pas l'inverse.",
-  body: "Quatre étapes, dans cet ordre. Chacune existe pour rendre la suivante possible.",
-  cta: { label: "Commencer ma candidature", href: "/#postuler" },
+  eyebrow: "03 — LA MÉTHODE ZLARY",
+  heading: "Quatre étapes. Aucune surprise.",
+  body: "Ce qui se passe entre notre premier appel et le jour où tu n'as plus besoin de moi.",
+  cta: {
+    label: "Commencer par l'étape 1",
+    href: "/#postuler",
+    note: "L'étape 1, c'est l'appel. Rien ne démarre avant qu'on se soit parlé.",
+  },
 };
 
 export const about = {
@@ -104,12 +144,22 @@ export const about = {
   heading: "Ton plan doit s'adapter à ta vie — pas l'inverse.",
   bio: "Zach accompagne les personnes occupées qui veulent améliorer leur physique sans transformer leur vie en régime permanent. Son approche combine entraînement personnalisé, nutrition flexible, structure et responsabilisation.",
   instagramLabel: "Suivre sur Instagram",
+  cta: {
+    label: "Travailler avec Zach",
+    href: "/#postuler",
+    note: "C'est Zach qui prend l'appel — pas une équipe de vente.",
+  },
 };
 
 export const faqIntro = {
   eyebrow: "QUESTIONS FRÉQUENTES",
   heading: "Ce que les gens demandent avant de commencer.",
   body: "Si ta question n'est pas ici, elle sera abordée pendant l'appel.",
+  cta: {
+    label: "Poser ma question à Zach",
+    href: "/#postuler",
+    note: "Tout ce qui reste sans réponse ici se règle pendant l'appel.",
+  },
 };
 
 /**

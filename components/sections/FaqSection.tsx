@@ -1,13 +1,12 @@
 import { FAQAccordion } from "@/components/FAQAccordion";
 import { PendingNote } from "@/components/ui/PendingNote";
-import { EditorialLink } from "@/components/ui/PillCTA";
 import { Reveal } from "@/components/ui/Reveal";
+import { SectionCTA } from "@/components/ui/SectionCTA";
 import { SectionShell } from "@/components/ui/SectionShell";
 import { EditorialHeading } from "@/components/ui/typography";
 import { getFaqItems, getVisibleFaqItems } from "@/content/faq";
 import { getHome } from "@/content/home";
-import { applyHref, sectionIds } from "@/content/navigation";
-import { getUi } from "@/content/ui";
+import { sectionIds } from "@/content/navigation";
 import type { Locale } from "@/lib/i18n";
 
 /**
@@ -19,7 +18,6 @@ import type { Locale } from "@/lib/i18n";
  */
 export function FaqSection({ locale }: { locale: Locale }) {
   const { faqIntro } = getHome(locale);
-  const t = getUi(locale);
   const visibleFaqItems = getVisibleFaqItems(locale);
   const pending = getFaqItems(locale).filter(
     (item) => item.answer.status === "awaiting",
@@ -46,14 +44,16 @@ export function FaqSection({ locale }: { locale: Locale }) {
                 {faqIntro.body}
               </p>
 
-              <div className="mt-8">
-                <EditorialLink
-                  href={applyHref(locale)}
-                  className="text-ink/70 hover:text-ink"
-                >
-                  {t.faq.askOnCall}
-                </EditorialLink>
-              </div>
+              {/* A text link was the wrong weight for the last section before
+                  the form: the FAQ is where the remaining objections are, and
+                  the visitor who runs out of them needs somewhere to go that
+                  looks like an action. */}
+              <SectionCTA
+                cta={faqIntro.cta}
+                variant="ink"
+                eventProps={{ location: "faq" }}
+                className="mt-8"
+              />
             </div>
           </Reveal>
         </div>

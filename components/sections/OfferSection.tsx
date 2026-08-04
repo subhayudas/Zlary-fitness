@@ -176,14 +176,23 @@ export function OfferSection({ locale }: { locale: Locale }) {
 
       {/* One close, at the end of the scan. */}
       <Reveal delay={80}>
-        <LimeFeaturePanel className="mt-2.5 flex flex-col items-start gap-4 p-5 sm:p-6 lg:mt-3 lg:flex-row lg:items-center lg:justify-between lg:gap-8 lg:p-7">
-          <EditorialHeading
-            as="p"
-            scale="sub"
-            className="text-balance text-ink-strong"
-          >
-            {offer.closing.heading}
-          </EditorialHeading>
+        <LimeFeaturePanel className="mt-2.5 flex flex-col items-start gap-5 p-5 sm:p-6 lg:mt-3 lg:flex-row lg:items-center lg:justify-between lg:gap-8 lg:p-7">
+          <div className="space-y-2.5">
+            <EditorialHeading
+              as="p"
+              scale="sub"
+              className="text-balance text-ink-strong"
+            >
+              {offer.closing.heading}
+            </EditorialHeading>
+
+            {/* The one line the panel was missing: what the button costs. A
+                price-shaped promise with no next step under it is where a
+                visitor stops. */}
+            <p className="max-w-[46ch] text-pretty text-[0.8125rem] leading-relaxed text-ink/60">
+              {offer.closing.cta.note}
+            </p>
+          </div>
 
           <PillCTA
             href={offer.closing.cta.href}

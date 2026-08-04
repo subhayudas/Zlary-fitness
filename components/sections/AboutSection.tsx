@@ -1,9 +1,9 @@
-import Link from "next/link";
-import { ArrowUpRight, Instagram } from "@/components/icons";
+import { Instagram } from "@/components/icons";
 import { MediaFrame } from "@/components/ui/MediaFrame";
 import { FloatingMetricCard } from "@/components/ui/panels";
 import { PendingNote } from "@/components/ui/PendingNote";
 import { Reveal } from "@/components/ui/Reveal";
+import { SectionCTA } from "@/components/ui/SectionCTA";
 import { SectionShell } from "@/components/ui/SectionShell";
 import { EditorialHeading, Rule } from "@/components/ui/typography";
 import { getHome } from "@/content/home";
@@ -144,7 +144,16 @@ export function AboutSection({ locale }: { locale: Locale }) {
 
             <Rule className="my-8 mt-auto pt-8" />
 
-            <div className="flex items-center justify-between gap-4">
+            {/* This used to be a bare lime circle carrying an arrow and an
+                aria-label. It was the only CTA on the page whose destination
+                you had to guess, and a sighted visitor got no label at all —
+                so it is a labelled control now, with the Instagram link
+                demoted to the subordinate position under it. */}
+            <SectionCTA
+              cta={{ ...about.cta, href: applyHref(locale, "about") }}
+              variant="lime"
+              eventProps={{ location: "about" }}
+            >
               <a
                 href={site.instagramUrl}
                 target="_blank"
@@ -154,19 +163,7 @@ export function AboutSection({ locale }: { locale: Locale }) {
                 <Instagram className="size-4" />
                 <span>{about.instagramLabel}</span>
               </a>
-
-              {/* Lime circular arrow control. */}
-              <Link
-                href={applyHref(locale)}
-                aria-label={t.common.startApplication}
-                className="group flex size-14 shrink-0 items-center justify-center rounded-pill bg-lime text-ink-strong transition-colors duration-300 ease-editorial hover:bg-lime-hover"
-              >
-                <span className="arrow-island bg-transparent text-transparent">
-                  <ArrowUpRight className="size-5 text-ink-strong" />
-                  <ArrowUpRight className="size-5 text-ink-strong" />
-                </span>
-              </Link>
-            </div>
+            </SectionCTA>
           </div>
         </Reveal>
       </div>

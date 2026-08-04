@@ -1,7 +1,8 @@
 import { ResultsEmptyState } from "@/components/FeaturedCaseStudy";
 import { TransformationGallery } from "@/components/TransformationGallery";
-import { PillCTA } from "@/components/ui/PillCTA";
+import { EditorialLink, PillCTA } from "@/components/ui/PillCTA";
 import { Reveal } from "@/components/ui/Reveal";
+import { SectionCTA } from "@/components/ui/SectionCTA";
 import { SectionShell } from "@/components/ui/SectionShell";
 import { EditorialHeading, Rule } from "@/components/ui/typography";
 import { getResultsDisclaimer } from "@/content/case-studies";
@@ -84,18 +85,26 @@ export function ResultsSection({ locale }: { locale: Locale }) {
 
       {hasResults ? (
         <Reveal delay={120}>
-          <div className="mt-12 flex justify-start md:mt-16">
-            <PillCTA
-              href={resultsIntro.cta.href}
-              variant="ink"
-              withArrow
+          {/* One button, one text link. The button converts; the link to the
+              full results page rides underneath it, because a visitor who has
+              just dragged through the comparisons has already seen the proof
+              and a second page of it is where the session ends. */}
+          <SectionCTA
+            cta={resultsIntro.cta}
+            variant="ink"
+            eventProps={{ location: "results" }}
+            layout="row"
+            className="mt-12 md:mt-16"
+          >
+            <EditorialLink
+              href={resultsIntro.galleryLink.href}
+              className="text-ink/70 hover:text-ink"
               event="secondary_cta_click"
-              eventProps={{ location: "results" }}
-              className="w-full sm:w-auto"
+              eventProps={{ location: "results_gallery" }}
             >
-              {resultsIntro.cta.label}
-            </PillCTA>
-          </div>
+              {resultsIntro.galleryLink.label}
+            </EditorialLink>
+          </SectionCTA>
         </Reveal>
       ) : null}
     </SectionShell>

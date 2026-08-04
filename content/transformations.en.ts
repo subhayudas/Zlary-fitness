@@ -9,9 +9,9 @@
  */
 export const transformationAlt = {
   "t01-before":
-    "A Zlary Fitness client before coaching, holding a biceps pose in a home gym.",
+    "A Zlary Fitness client before coaching, standing shirtless outdoors.",
   "t01-after":
-    "The same client after coaching, in the same pose: visibly more developed musculature.",
+    "The same client after coaching, photographed in a locker-room mirror: visibly broader shoulders, bigger arms and defined abs.",
   "t02-before": "A Zlary Fitness client before coaching, standing front on, shirtless.",
   "t02-after":
     "The same client after coaching, front on: added muscle and visible abdominal definition.",

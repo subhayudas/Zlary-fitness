@@ -81,7 +81,6 @@ export const investmentReadinessOptions = [
 export const applyContent = {
   eyebrow: "RÉSERVER UN APPEL",
   heading: "Réserve ton appel transformation.",
-  body: "Cinq questions rapides, puis tu choisis ton créneau. Compte moins de deux minutes — et tu repars avec un rendez-vous confirmé, pas avec une candidature en attente.",
   privacyNote:
     "Tes réponses servent uniquement à préparer l'appel. Aucune information médicale n'est demandée.",
 

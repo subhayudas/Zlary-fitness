@@ -21,24 +21,33 @@ import type { MediaAsset } from "./types";
  * ---------------------------------------------------------------------------
  * THE SOURCE FILES AND HOW THESE CROPS WERE MADE
  * ---------------------------------------------------------------------------
- * Zach's originals are single composite images with the before and after
- * already side by side. The comparison slider needs them as two separate
+ * Most of Zach's originals are single composite images with the before and
+ * after already side by side. The comparison slider needs them as two separate
  * frames, so each composite was split and re-cropped to an identical 4:5 box
  * with the subject scaled to match across the pair — otherwise dragging the
  * divider would make the person appear to grow or shrink for reasons that have
  * nothing to do with training, which is exactly the kind of comparison that
  * turns a transformation photo into a misleading one.
  *
- *   t01 ← IMG_8898.PNG
+ *   t01 ← PHOTO-2026-08-03-17-59-53.jpg / PHOTO-2026-08-03-18-00-27.jpg
  *   t02 ← AC7E1F86-…jpg   (front view)
  *   t03 ← B183DAEE-…jpg
  *   t04 ← IMG_0283.PNG
+ *
+ * t01 is the exception to the composite rule: it arrived as two separate
+ * photographs, an outdoor full-body shot and a locker-room mirror selfie. They
+ * were cropped so the head and the waistband land at the same height in both
+ * frames — the same scale-matching the split composites get, done across two
+ * shots taken in different places rather than within one image.
  *
  * `7109218C-…jpg` is the SAME client as t02 photographed from the side. It is
  * exported as `t02-alt-side-*.webp` and deliberately not listed as its own
  * entry: four cards that include the same person twice would read as four
  * different clients. Swap the two `t02` frames for the `-alt-side-` pair to
  * show the profile instead.
+ *
+ * `IMG_8898.PNG` was the previous `t01` and is no longer used — it was
+ * replaced, at Zach's request, by the client above.
  *
  * `IMG_0333.PNG` (the January/July collage) is not included. It is a
  * four-panel Instagram story whose quadrants do not pair into a matching
@@ -78,8 +87,8 @@ export type Transformation = {
 export const transformations: readonly Transformation[] = [
   {
     id: "t01",
-    before: frame("t01-before", "Client de Zlary Fitness avant l'accompagnement, en pose de biceps dans un gym maison."),
-    after: frame("t01-after", "Le même client après l'accompagnement, dans la même pose : musculature nettement plus développée."),
+    before: frame("t01-before", "Client de Zlary Fitness avant l'accompagnement, debout torse nu à l'extérieur."),
+    after: frame("t01-after", "Le même client après l'accompagnement, photo prise devant un miroir de vestiaire : épaules, bras et abdominaux nettement plus développés."),
     weight: null,
     approved: true,
   },

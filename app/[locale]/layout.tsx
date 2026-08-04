@@ -123,8 +123,20 @@ export default async function RootLayout({
   const t = getUi(locale);
 
   return (
-    <html lang={localeMeta[locale].htmlLang} className={geist.variable}>
-      <body className="antialiased">
+    /**
+     * `suppressHydrationWarning` on `<html>` and `<body>`: browser extensions
+     * (password managers, translators, ad blockers) routinely stamp attributes
+     * such as `__processed_<uuid>__` onto these two elements before React
+     * hydrates, which React then reports as a server/client attribute mismatch.
+     * The flag is one level deep — it silences mismatches on these elements'
+     * own attributes only, so real mismatches inside the tree still surface.
+     */
+    <html
+      lang={localeMeta[locale].htmlLang}
+      className={geist.variable}
+      suppressHydrationWarning
+    >
+      <body className="antialiased" suppressHydrationWarning>
         <a href="#main" className="skip-link btn btn-ink">
           {t.common.skipToContent}
         </a>

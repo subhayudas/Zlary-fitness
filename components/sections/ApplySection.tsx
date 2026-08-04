@@ -48,14 +48,6 @@ export function ApplySection({ locale }: { locale: Locale }) {
           >
             {finalCta.heading}
           </EditorialHeading>
-
-          {/* What the flow actually is, before it starts. Without this the
-              panel goes straight from a question to a radio group, and nothing
-              tells the visitor how long it takes or that they end up holding a
-              confirmed appointment rather than a submitted form. */}
-          <p className="mx-auto mt-6 max-w-[52ch] text-pretty text-[0.9375rem] leading-relaxed text-ink/70 md:text-base">
-            {applyContent.body}
-          </p>
         </Reveal>
       </LimeFeaturePanel>
 

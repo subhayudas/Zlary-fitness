@@ -55,7 +55,6 @@ export const optionLabels = {
 export const applyContent = {
   eyebrow: "BOOK A CALL",
   heading: "Book your transformation call.",
-  body: "Five quick questions, then you pick your time. Under two minutes — and you leave with a confirmed appointment, not an application sitting in a queue.",
   privacyNote:
     "Your answers are used only to prepare the call. No medical information is requested.",
 

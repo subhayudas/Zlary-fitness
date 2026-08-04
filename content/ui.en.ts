@@ -9,7 +9,6 @@ export const ui = {
     seeInstagram: "See Instagram",
     writeOnInstagram: "Message on Instagram",
     homeLinkLabel: "back to home",
-    startApplication: "Book my call",
   },
 
   nav: {
@@ -96,10 +95,6 @@ export const ui = {
     languages: "Languages",
     experience: "Experience",
     platform: "Platform",
-  },
-
-  faq: {
-    askOnCall: "Ask my question on the call",
   },
 
   vslPage: {

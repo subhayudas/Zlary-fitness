@@ -40,6 +40,11 @@ export const problem = {
     "You don't know how to make progress without giving up your social life.",
     "You work hard, but you have no structure.",
   ],
+  cta: {
+    label: "Build a plan for the week I actually have",
+    href: "/en/#postuler",
+    note: "Five questions about your week, then you pick your call slot.",
+  },
 };
 
 export const offer = {
@@ -60,7 +65,11 @@ export const offer = {
   },
   closing: {
     heading: "All of it, in one coaching package.",
-    cta: { label: "See if coaching is right for me", href: "/en/#postuler" },
+    cta: {
+      label: "Get this plan built for me",
+      href: "/en/#postuler",
+      note: "The call is where we check it fits you. No commitment before that.",
+    },
   },
 };
 
@@ -68,7 +77,12 @@ export const resultsIntro = {
   eyebrow: "CLIENT RESULTS",
   heading: "Plans built around real lives.",
   body: "Work, shifting schedules, restaurants and travel don't disappear. The strategy has to work with them.",
-  cta: { label: "See every transformation", href: "/en/results" },
+  cta: {
+    label: "Start my own before and after",
+    href: "/en/#postuler",
+    note: "Every one of these started with a thirty-minute call.",
+  },
+  galleryLink: { label: "See every transformation", href: "/en/results" },
   emptyState: {
     heading: "Client transformations will be published here.",
     body: "No transformation is shown until the client involved has given written consent. This section will fill up as those permissions come in.",
@@ -77,10 +91,14 @@ export const resultsIntro = {
 };
 
 export const method = {
-  eyebrow: "THE ZLARY METHOD",
-  heading: "The plan adapts to your life. Not the other way around.",
-  body: "Four steps, in this order. Each one exists to make the next one possible.",
-  cta: { label: "Book my call", href: "/en/#postuler" },
+  eyebrow: "03 — THE ZLARY METHOD",
+  heading: "Four steps. No surprises.",
+  body: "What happens between our first call and the day you no longer need me.",
+  cta: {
+    label: "Start with step one",
+    href: "/en/#postuler",
+    note: "Step one is the call. Nothing begins before we've spoken.",
+  },
 };
 
 export const about = {
@@ -88,12 +106,22 @@ export const about = {
   heading: "Your plan should adapt to your life — not the other way around.",
   bio: "Zach coaches busy people who want to improve their physique without turning their life into a permanent diet. His approach combines personalized training, flexible nutrition, structure and accountability.",
   instagramLabel: "Follow on Instagram",
+  cta: {
+    label: "Work with Zach",
+    href: "/en/#postuler",
+    note: "Zach takes the call himself — there's no sales team.",
+  },
 };
 
 export const faqIntro = {
   eyebrow: "FREQUENTLY ASKED QUESTIONS",
   heading: "What people ask before getting started.",
   body: "If your question isn't here, we'll cover it on the call.",
+  cta: {
+    label: "Ask Zach my question",
+    href: "/en/#postuler",
+    note: "Anything left unanswered here gets covered on the call.",
+  },
 };
 
 export const finalCta = {

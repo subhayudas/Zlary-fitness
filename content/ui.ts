@@ -23,7 +23,6 @@ export const ui = {
     seeInstagram: "Voir Instagram",
     writeOnInstagram: "Écrire sur Instagram",
     homeLinkLabel: "retour à l'accueil",
-    startApplication: "Commencer ma candidature",
   },
 
   nav: {
@@ -119,10 +118,6 @@ export const ui = {
     languages: "Langues",
     experience: "Expérience",
     platform: "Plateforme",
-  },
-
-  faq: {
-    askOnCall: "Poser ma question pendant l'appel",
   },
 
   vslPage: {

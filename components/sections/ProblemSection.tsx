@@ -1,4 +1,5 @@
 import { ProblemStatements } from "@/components/ProblemStatements";
+import { SectionCTA } from "@/components/ui/SectionCTA";
 import { SectionShell } from "@/components/ui/SectionShell";
 import { Reveal } from "@/components/ui/Reveal";
 import {
@@ -46,6 +47,16 @@ export function ProblemSection({ locale }: { locale: Locale }) {
           <p className="type-sub measure mt-6 text-pretty text-ink-muted md:mt-8">
             {problem.subheading}
           </p>
+
+          {/* The section's exit. It sits under the statement rather than under
+              the symptoms so the visitor reads the four lines on the right
+              before meeting a button — the recognition is what earns it. */}
+          <SectionCTA
+            cta={problem.cta}
+            variant="outline"
+            eventProps={{ location: "problem" }}
+            className="mt-10 md:mt-12"
+          />
         </Reveal>
 
         {/* Right — the symptoms, bracketed by rules. Column 7 stays empty. */}
