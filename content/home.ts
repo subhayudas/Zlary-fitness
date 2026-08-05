@@ -40,14 +40,14 @@ export const hero = {
  */
 export const problem = {
   label: "01 — LE VRAI PROBLÈME",
-  heading: "Tu n'as probablement pas besoin de plus de motivation.",
+  heading: "Tu ne manques pas de volonté. Ton plan ne survit pas aux semaines chargées.",
   subheading:
-    "Ta discipline n'est pas le problème. Rien de ce que tu as essayé n'a été pensé pour ta semaine réelle.",
+    "Les plans rigides fonctionnent quand tout va bien. Le vrai test, c'est une réunion tardive, un resto ou une mauvaise nuit — quand tu dois quand même savoir quoi faire ensuite.",
   statements: [
-    "Ton horaire change constamment.",
-    "Tu recommences après chaque période difficile.",
-    "Tu ne sais pas comment progresser sans sacrifier ta vie sociale.",
-    "Tu travailles fort, mais tu manques de structure.",
+    "Tu manques une séance, puis toute ta semaine te semble perdue.",
+    "Tu manges parfaitement… jusqu'au premier imprévu.",
+    "Tu changes de programme parce que tu ne sais pas si le tien fonctionne.",
+    "Tu veux progresser sans dire non aux soupers, aux voyages et à ta vraie vie.",
   ],
   /**
    * The CTA answers the block it closes, and nothing else on the page repeats
@@ -56,7 +56,7 @@ export const problem = {
    * read about yet.
    */
   cta: {
-    label: "Construire un plan pour ma semaine réelle",
+    label: "Construire un plan qui tient les semaines chargées",
     href: "/#postuler",
     note: "Cinq questions sur ta semaine, puis tu choisis ton créneau d'appel.",
   },
@@ -97,8 +97,8 @@ export const offer = {
 
 export const resultsIntro = {
   eyebrow: "RÉSULTATS CLIENTS",
-  heading: "Des plans construits autour de vraies vies.",
-  body: "Le travail, les horaires variables, les restaurants et les voyages ne disparaissent pas. La stratégie doit fonctionner avec eux.",
+  heading: "Ils ont suivi la Méthode Zlary.",
+  body: "Tous ont commencé par un appel gratuit de trente minutes.",
   /**
    * The section CTA points at the application, not at `/results`: someone who
    * has just dragged through four before/after comparisons has seen the proof,
@@ -109,7 +109,7 @@ export const resultsIntro = {
   cta: {
     label: "Commencer mon propre avant/après",
     href: "/#postuler",
-    note: "Chacun de ces parcours a commencé par un appel de trente minutes.",
+    note: "Le formulaire prend deux minutes. Le reste se passe pendant l'appel.",
   },
   galleryLink: { label: "Voir toutes les transformations", href: "/results" },
   emptyState: {
@@ -154,11 +154,12 @@ export const about = {
 export const faqIntro = {
   eyebrow: "QUESTIONS FRÉQUENTES",
   heading: "Ce que les gens demandent avant de commencer.",
-  body: "Si ta question n'est pas ici, elle sera abordée pendant l'appel.",
+  body:
+    "Des réponses claires sur l'entraînement, la nutrition, l'horaire et le fonctionnement du coaching avec Zach.",
   cta: {
-    label: "Poser ma question à Zach",
+    label: "Réserver mon appel gratuit",
     href: "/#postuler",
-    note: "Tout ce qui reste sans réponse ici se règle pendant l'appel.",
+    note: "30 minutes pour parler de tes objectifs et contraintes, puis décider si le coaching te convient.",
   },
 };
 

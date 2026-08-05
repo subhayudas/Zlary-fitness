@@ -14,10 +14,17 @@ import type { Locale } from "@/lib/i18n";
  * overlaid at the top, copy anchored to the lower-left, secondary VSL control
  * lower-right.
  *
- * Height uses `dvh` with a hard ceiling rather than `h-screen`: on mobile
+ * Height uses `svh` with a hard ceiling rather than `h-screen`: on mobile
  * `100vh` is taller than the visible viewport once the browser chrome is
  * counted, which pushes the CTA below the fold on exactly the devices most of
  * this traffic arrives from.
+ *
+ * `svh` and not `dvh`: `dvh` tracks the chrome as it collapses, so the shell
+ * grows and the whole page reflows mid-scroll. It also measures the *expanded*
+ * height in the Instagram and Facebook in-app browsers, whose toolbars never
+ * collapse — so a `dvh` hero reserved more height there than was ever visible.
+ * `svh` is the smallest the viewport ever gets, which is the only height the
+ * CTA is guaranteed to fit inside.
  *
  * ---------------------------------------------------------------------------
  * THE RUNNER MUST NOT END UP BEHIND THE COPY
@@ -52,7 +59,7 @@ export function EditorialHero({ locale }: { locale: Locale }) {
             shells crop hard, so they centre on the runner; from md up there is
             horizontal crop to spend and the frame is anchored left, which
             carries her clear of the copy column. */}
-        <div className="bezel-core relative flex min-h-[78dvh] flex-col [--hero-focus:76%_50%] md:min-h-[min(86dvh,900px)] md:[--hero-focus:0%_50%]">
+        <div className="bezel-core relative flex min-h-[78svh] flex-col [--hero-focus:76%_50%] md:min-h-[min(86svh,900px)] md:[--hero-focus:0%_50%]">
           {/* The still. Server-rendered, so the frame is never empty: it is
               what paints first, what a reduced-motion visitor keeps, and what
               carries the alt text for the whole shell. */}

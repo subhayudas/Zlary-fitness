@@ -31,17 +31,17 @@ export const hero = {
 
 export const problem = {
   label: "01 — THE REAL PROBLEM",
-  heading: "You probably don't need more motivation.",
+  heading: "You don't lack willpower. Your plan breaks when life gets busy.",
   subheading:
-    "Discipline isn't the problem. Nothing you've tried was built for the week you actually have.",
+    "Rigid plans work when everything goes right. The real test is a late meeting, dinner out, or a bad night's sleep — when you still need to know what to do next.",
   statements: [
-    "Your schedule keeps changing.",
-    "You start over after every rough patch.",
-    "You don't know how to make progress without giving up your social life.",
-    "You work hard, but you have no structure.",
+    "You miss one workout, then the whole week feels lost.",
+    "You eat perfectly… until the first unexpected plan.",
+    "You switch programs because you can't tell if yours is working.",
+    "You want progress without saying no to dinners, travel, and your real life.",
   ],
   cta: {
-    label: "Build a plan for the week I actually have",
+    label: "Build a plan that works on busy weeks",
     href: "/en/#postuler",
     note: "Five questions about your week, then you pick your call slot.",
   },
@@ -75,12 +75,12 @@ export const offer = {
 
 export const resultsIntro = {
   eyebrow: "CLIENT RESULTS",
-  heading: "Plans built around real lives.",
-  body: "Work, shifting schedules, restaurants and travel don't disappear. The strategy has to work with them.",
+  heading: "They followed the Zlary Method.",
+  body: "They all started with a free thirty-minute call.",
   cta: {
     label: "Start my own before and after",
     href: "/en/#postuler",
-    note: "Every one of these started with a thirty-minute call.",
+    note: "The form takes two minutes. Everything else happens on the call.",
   },
   galleryLink: { label: "See every transformation", href: "/en/results" },
   emptyState: {
@@ -116,11 +116,12 @@ export const about = {
 export const faqIntro = {
   eyebrow: "FREQUENTLY ASKED QUESTIONS",
   heading: "What people ask before getting started.",
-  body: "If your question isn't here, we'll cover it on the call.",
+  body:
+    "Clear answers on training, nutrition, scheduling, and what coaching with Zach is actually like.",
   cta: {
-    label: "Ask Zach my question",
+    label: "Book my free call",
     href: "/en/#postuler",
-    note: "Anything left unanswered here gets covered on the call.",
+    note: "30 minutes to talk through your goals and constraints, then decide whether the coaching fits.",
   },
 };
 

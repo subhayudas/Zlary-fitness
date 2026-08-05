@@ -135,36 +135,84 @@
 
 @layer components {
   /* ---- Typography scale ------------------------------------------------
-     Hierarchy comes from scale, not weight. Nothing goes above 500. */
+     Hierarchy comes from scale, not weight. Nothing goes above 500.
+
+     Each scale is written twice: a phone ramp here, the desktop curve in the
+     `min-width: 768px` block below.
+
+     The two halves are needed because a single `clamp()` cannot serve both.
+     The desktop curves are `clamp(floor, Nvw, ceiling)` and their `Nvw` term
+     does not overtake the floor until the viewport is around 860–950px wide —
+     so on every phone the whole scale sat frozen at its floor, and those floors
+     are display sizes (the hero's is 56px). A 390px screen therefore rendered
+     the site at close to its desktop type size, which is what reads as the page
+     being zoomed in: the hero ran to five lines of five characters. In-app
+     browsers (Instagram, Facebook) show it worst because their chrome eats the
+     height that the oversized type then overflows into, but the cause is the
+     same on any phone and the fix is shared.
+
+     Each ramp below tops out at exactly the floor of the desktop curve it
+     replaces, and saturates by ~590px at the latest — so the two halves already
+     agree well before the 768px handover and nothing above phone width moves. */
 
   .type-hero {
-    font-size: clamp(3.5rem, 6.5vw, 7rem);
-    line-height: 0.94;
-    letter-spacing: -0.035em;
-    font-weight: 450;
-  }
-
-  .type-section {
-    font-size: clamp(2.5rem, 4.5vw, 5rem);
-    line-height: 0.96;
+    font-size: clamp(2.25rem, 9.6vw, 3.5rem);
+    line-height: 1;
     letter-spacing: -0.03em;
     font-weight: 450;
   }
 
+  .type-section {
+    font-size: clamp(1.75rem, 7.6vw, 2.5rem);
+    line-height: 1.02;
+    letter-spacing: -0.026em;
+    font-weight: 450;
+  }
+
   .type-card {
-    font-size: clamp(1.6rem, 2.7vw, 3rem);
-    line-height: 1.03;
-    letter-spacing: -0.022em;
+    font-size: clamp(1.25rem, 5.4vw, 1.6rem);
+    line-height: 1.12;
+    letter-spacing: -0.02em;
     font-weight: 450;
   }
 
   .type-sub {
-    font-size: clamp(1.25rem, 1.6vw, 1.75rem);
-    line-height: 1.2;
-    letter-spacing: -0.018em;
+    font-size: clamp(1.0625rem, 4.5vw, 1.25rem);
+    line-height: 1.28;
+    letter-spacing: -0.014em;
     font-weight: 450;
   }
 
+  /* Tracking and leading are optical, so they ride with the size: the tight
+     display settings above are correct at 56px and cramped at 37px. */
+  @media (min-width: 768px) {
+    .type-hero {
+      font-size: clamp(3.5rem, 6.5vw, 7rem);
+      line-height: 0.94;
+      letter-spacing: -0.035em;
+    }
+
+    .type-section {
+      font-size: clamp(2.5rem, 4.5vw, 5rem);
+      line-height: 0.96;
+      letter-spacing: -0.03em;
+    }
+
+    .type-card {
+      font-size: clamp(1.6rem, 2.7vw, 3rem);
+      line-height: 1.03;
+      letter-spacing: -0.022em;
+    }
+
+    .type-sub {
+      font-size: clamp(1.25rem, 1.6vw, 1.75rem);
+      line-height: 1.2;
+      letter-spacing: -0.018em;
+    }
+  }
+
+  /* Body copy is the one scale whose floor was already a phone size, so it is
+     left as a single curve. */
   .type-body {
     font-size: clamp(1rem, 1.05vw, 1.125rem);
     line-height: 1.55;
@@ -215,22 +263,32 @@
 
   /* ---- Layout ---------------------------------------------------------- */
 
+  /* The layout viewport is declared `viewport-fit: cover`, so on a notched
+     phone held sideways it extends underneath the sensor housing. Every gutter
+     therefore takes the safe-area inset as a floor: in portrait the insets are
+     0 and these collapse to the plain values. */
   .page-shell {
     width: 100%;
     max-width: var(--container-page);
     margin-inline: auto;
-    padding-inline: 1rem;
+    padding-inline:
+      max(1rem, env(safe-area-inset-left, 0px))
+      max(1rem, env(safe-area-inset-right, 0px));
   }
 
   @media (min-width: 768px) {
     .page-shell {
-      padding-inline: 1.75rem;
+      padding-inline:
+        max(1.75rem, env(safe-area-inset-left, 0px))
+        max(1.75rem, env(safe-area-inset-right, 0px));
     }
   }
 
   @media (min-width: 1280px) {
     .page-shell {
-      padding-inline: 3rem;
+      padding-inline:
+        max(3rem, env(safe-area-inset-left, 0px))
+        max(3rem, env(safe-area-inset-right, 0px));
     }
   }
 

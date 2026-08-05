@@ -53,7 +53,15 @@ export function FloatingNavigation({
           "bg-surface-pure/88 hairline backdrop-blur-[10px]",
         )}
       >
-        <Wordmark locale={locale} size="sm" tabIndex={visible ? undefined : -1} />
+        {/* `shrink-0`: the base `* { min-width: 0 }` otherwise lets this flex
+            item compress below its own text, and on a 320px screen the island's
+            contents squeezed the two words of the wordmark into each other. */}
+        <Wordmark
+          locale={locale}
+          size="sm"
+          className="shrink-0"
+          tabIndex={visible ? undefined : -1}
+        />
 
         <ul className="hidden items-center gap-7 lg:flex">
           {primaryNav.map((link) => (
@@ -70,7 +78,14 @@ export function FloatingNavigation({
         </ul>
 
         <div className="flex items-center gap-2">
-          <LanguageToggle locale={locale} tone="ink" focusable={visible} />
+          {/* Dropped from the island on phones. Four controls plus the wordmark
+              cannot hold their intrinsic widths inside a 320–375px island, and
+              this is the only one of them that is reachable elsewhere on the
+              same screen: the menu sitting immediately to its right carries the
+              same switch, as does the in-flow nav at the top of the page. */}
+          <div className="hidden shrink-0 sm:block">
+            <LanguageToggle locale={locale} tone="ink" focusable={visible} />
+          </div>
 
           <Link
             href={navCta.href}
@@ -78,11 +93,14 @@ export function FloatingNavigation({
             onClick={() =>
               track("primary_cta_click", { location: "floating_nav" })
             }
-            className="btn btn-lime min-h-11 px-5 py-2 text-[0.6875rem]"
+            className="btn btn-lime min-h-11 shrink-0 px-5 py-2 text-[0.6875rem]"
           >
             {navCta.label}
           </Link>
 
+          {/* `shrink-0` keeps this a 44px circle. Without it the base
+              `* { min-width: 0 }` lets flex squeeze it to an ellipse well under
+              the minimum tap target — 25px wide at 320. */}
           <button
             type="button"
             onClick={onOpenMenu}
@@ -90,7 +108,7 @@ export function FloatingNavigation({
             aria-expanded={menuOpen}
             aria-controls="mobile-menu"
             aria-label={t.nav.openMenu}
-            className="flex size-11 items-center justify-center rounded-pill bg-ink/8 text-ink transition-colors duration-300 ease-editorial hover:bg-ink/15 lg:hidden"
+            className="flex size-11 shrink-0 items-center justify-center rounded-pill bg-ink/8 text-ink transition-colors duration-300 ease-editorial hover:bg-ink/15 lg:hidden"
           >
             <MenuLines className="size-5" />
           </button>
