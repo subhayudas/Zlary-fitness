@@ -1,4 +1,4 @@
-# Zlary Fitness — site de coaching
+# Zlary Fitness - site de coaching
 
 Site de conversion pour Zlary Fitness : page d'accueil éditoriale, tunnel VSL,
 tunnel de réservation en huit écrans (cinq questions, calendrier, coordonnées,
@@ -49,7 +49,7 @@ Le site tourne sur http://localhost:3000.
 Google Calendar et les analytics affichent chacun un état de remplacement soigné
 plutôt qu'une erreur, et le calendrier de réservation tourne sur ses horaires par
 défaut. Seule exception volontaire : sans Supabase, la réservation retourne une
-vraie erreur au lieu d'une fausse confirmation — un créneau jamais enregistré,
+vraie erreur au lieu d'une fausse confirmation - un créneau jamais enregistré,
 c'est un appel auquel personne ne se présente.
 
 Scripts :
@@ -76,7 +76,7 @@ grep -rn "awaiting(" content/
 
 En développement (`npm run dev`), chaque information manquante s'affiche comme
 un petit marqueur pointillé « À confirmer : … ». **En production ces marqueurs
-sont invisibles** — rien de faux n'est jamais publié.
+sont invisibles** - rien de faux n'est jamais publié.
 
 ### Liste de vérification
 
@@ -149,7 +149,7 @@ Tout est dans `content/`, en français, avec des commentaires :
 
 Modifier un texte = modifier une chaîne de caractères. Aucun composant à
 toucher. Attention : dans `apply.ts`, les `value` des options sont enregistrées
-en base — changer un `label` est sans risque, changer un `value` ne l'est pas.
+en base - changer un `label` est sans risque, changer un `value` ne l'est pas.
 
 ---
 
@@ -166,7 +166,7 @@ Pour publier une photo :
 2. déposer le fichier dans `public/media/` ;
 3. dans `content/media.ts`, remplacer `src: null` par `src: "/media/mon-fichier.webp"`.
 
-C'est tout — aucun code de composant à modifier.
+C'est tout - aucun code de composant à modifier.
 
 ### Dimensions recommandées
 
@@ -188,7 +188,7 @@ Pas de HDR marqué, pas de filtre, pas de photo d'agence, aucune transformation
 générée ou retouchée.
 
 L'image de partage social (`/opengraph-image`) est générée automatiquement à
-partir du wordmark — elle existe donc dès le premier déploiement.
+partir du wordmark - elle existe donc dès le premier déploiement.
 
 ---
 
@@ -196,7 +196,7 @@ partir du wordmark — elle existe donc dès le premier déploiement.
 
 Fichier : **`content/case-studies.ts`** (vide au départ, volontairement).
 
-**Obtenir l'accord écrit du client avant toute publication** — pour les photos
+**Obtenir l'accord écrit du client avant toute publication** - pour les photos
 comme pour la citation.
 
 ```ts
@@ -224,7 +224,7 @@ export const caseStudies: readonly CaseStudy[] = [
 d'autorisation peut donc rester dans le fichier sans risque.
 
 Sans aucune fiche approuvée, l'accueil et `/results` affichent un état vide
-soigné qui explique pourquoi — plutôt qu'une preuve inventée.
+soigné qui explique pourquoi - plutôt qu'une preuve inventée.
 
 Règles : aucune mesure inventée, aucune durée fausse, aucune garantie, aucune
 allégation médicale, photos avant/après au cadrage et à l'éclairage comparables.
@@ -248,7 +248,7 @@ SUPABASE_SERVICE_ROLE_KEY=eyJ...
 jamais être préfixé `NEXT_PUBLIC_`, jamais atteindre le navigateur, jamais être
 commité.
 
-**Modèle de sécurité :** la table a RLS activé *sans aucune policy* — les clés
+**Modèle de sécurité :** la table a RLS activé *sans aucune policy* - les clés
 publiques ne peuvent donc rien lire ni écrire. Seule la route API, côté serveur,
 écrit avec la clé service. Les candidatures se lisent dans le dashboard Supabase.
 
@@ -260,7 +260,7 @@ prospect en silence.
 
 ## 8. Configurer Resend
 
-Optionnel — sert à recevoir un courriel à chaque nouvelle candidature.
+Optionnel - sert à recevoir un courriel à chaque nouvelle candidature.
 
 1. Créer un compte sur [resend.com](https://resend.com) et générer une clé API.
 2. Renseigner :
@@ -274,7 +274,7 @@ Plusieurs destinataires : séparer par des virgules.
 
 Pour envoyer depuis votre propre domaine, le vérifier dans Resend puis définir
 `APPLICATION_NOTIFICATION_FROM="Zlary Fitness <candidatures@votredomaine.com>"`.
-Sans cela, l'expéditeur partagé de Resend est utilisé — suffisant pour du
+Sans cela, l'expéditeur partagé de Resend est utilisé - suffisant pour du
 courriel interne.
 
 L'envoi est « au mieux » : si Resend échoue, la candidature reste enregistrée et
@@ -293,20 +293,20 @@ NEXT_PUBLIC_VSL_PROVIDER=youtube        # youtube | vimeo | wistia | file
 NEXT_PUBLIC_VSL_URL=dQw4w9WgXcQ         # identifiant OU URL de partage complète
 ```
 
-Les deux formats sont acceptés — coller l'URL de partage fonctionne.
+Les deux formats sont acceptés - coller l'URL de partage fonctionne.
 
 Pour une vidéo auto-hébergée : `NEXT_PUBLIC_VSL_PROVIDER=file` et
 `NEXT_PUBLIC_VSL_URL=/media/presentation.mp4` (fichier dans `public/media/`).
 
 Détails :
 
-- Sans configuration, `/vsl` affiche « Présentation bientôt disponible » — jamais
+- Sans configuration, `/vsl` affiche « Présentation bientôt disponible » - jamais
   un iframe cassé.
 - Le lecteur ne se charge qu'au clic sur « lecture » : aucun script tiers ne
   pèse sur le chargement initial.
 - Le suivi de progression (25/50/75/100 %) fonctionne uniquement avec `file`,
   seul cas où l'on peut lire de vrais événements de lecture. Les autres
-  fournisseurs n'émettent que `vsl_start` — inventer les autres fausserait les
+  fournisseurs n'émettent que `vsl_start` - inventer les autres fausserait les
   données du tunnel.
 - Le schéma `VideoObject` n'est publié qu'une fois une vraie vidéo configurée.
 - Durée affichée : renseigner `duration` dans `content/vsl.ts` une fois connue.
@@ -316,8 +316,8 @@ Détails :
 ## 10. Le calendrier de réservation
 
 Le site ne présente plus le calendrier de quelqu'un d'autre dans un iframe : il
-tient le sien. Le tunnel est **une seule suite d'écrans** — cinq questions, le
-calendrier, les coordonnées, la confirmation — et se termine sur un rendez-vous
+tient le sien. Le tunnel est **une seule suite d'écrans** - cinq questions, le
+calendrier, les coordonnées, la confirmation - et se termine sur un rendez-vous
 confirmé plutôt que sur un formulaire envoyé.
 
 Un iframe ne peut pas savoir ce qui vient d'être répondu, ne peut pas rendre la
@@ -332,18 +332,18 @@ valeurs par défaut ci-dessous.
 
 | Variable                   | Défaut                                                | Rôle                                        |
 | -------------------------- | ----------------------------------------------------- | ------------------------------------------- |
-| `BOOKING_TIMEZONE`         | `America/Toronto`                                     | l'horloge de Zach — nommée à l'écran        |
+| `BOOKING_TIMEZONE`         | `America/Toronto`                                     | l'horloge de Zach - nommée à l'écran        |
 | `BOOKING_DURATION_MINUTES` | `30`                                                  | durée de l'appel                            |
 | `BOOKING_BUFFER_MINUTES`   | `15`                                                  | battement de part et d'autre                |
 | `BOOKING_LEAD_HOURS`       | `12`                                                  | délai minimum avant un créneau              |
 | `BOOKING_HORIZON_DAYS`     | `21`                                                  | jusqu'où le calendrier ouvre (max 120)      |
 | `BOOKING_HOURS`            | `mon-fri 09:00-12:00,17:00-20:00; sat 09:00-12:00`    | les heures d'ouverture hebdomadaires        |
-| `BOOKING_BLACKOUT_DATES`   | —                                                     | jours fermés, `YYYY-MM-DD` séparés par `,`  |
+| `BOOKING_BLACKOUT_DATES`   | -                                                     | jours fermés, `YYYY-MM-DD` séparés par `,`  |
 | `BOOKING_LOCATION`         | appel téléphonique                                    | lieu de l'appel (mettre un lien Zoom/Meet)  |
 
 Format de `BOOKING_HOURS` : des entrées `<jours> <plages>` séparées par `;`. Les
 jours s'écrivent `mon`, `mon-fri` ou `mon,wed,fri`; les plages `HH:MM-HH:MM`.
-Une valeur illisible retombe sur le défaut plutôt que de n'ouvrir aucune heure —
+Une valeur illisible retombe sur le défaut plutôt que de n'ouvrir aucune heure -
 un calendrier vide se lit comme « complet », ce qui perdrait le contact.
 
 Les heures affichées sont **toujours** celles de Zach, nommées au-dessus de la
@@ -354,7 +354,7 @@ locale dès qu'il choisit un créneau : personne ne réserve 17 h pour se prése
 ### Brancher Google Calendar (facultatif)
 
 Sans ça, la réservation est quand même enregistrée, confirmée et envoyée avec son
-invitation `.ics` — seul l'événement sur l'agenda de Zach est sauté.
+invitation `.ics` - seul l'événement sur l'agenda de Zach est sauté.
 
 1. Console Google Cloud → créer un **compte de service** → créer une clé JSON.
 2. Activer l'**API Google Calendar** sur ce projet.
@@ -378,7 +378,7 @@ l'échelle du domaine) active en plus les vraies invitations Google.
 L'index unique sur `slot_start` (migration 0002) est la vraie protection : deux
 requêtes peuvent lire « libre » avant que l'une n'écrive. La seconde écriture
 échoue, et la route répond « ce créneau vient d'être réservé » en rechargeant le
-calendrier — plutôt que de perdre le contact.
+calendrier - plutôt que de perdre le contact.
 
 Le texte ne laisse jamais entendre que la candidature est acceptée : réserver un
 créneau, c'est une conversation, pas une admission.
@@ -397,7 +397,7 @@ Les trois sont indépendants et facultatifs.
 
 **Aucun script de mesure n'est chargé avant le consentement explicite** du
 visiteur via la bannière. Si aucun identifiant n'est renseigné, la bannière ne
-s'affiche pas du tout — un bandeau cookies décoratif n'a aucun intérêt. Le
+s'affiche pas du tout - un bandeau cookies décoratif n'a aucun intérêt. Le
 bouton « Refuser » a exactement le même poids visuel que « Accepter »
 (exigence de la Loi 25 au Québec).
 
@@ -414,7 +414,7 @@ ou Calendly (page de confirmation / webhook) si la mesure est nécessaire.
 
 Les paramètres UTM sont capturés depuis l'URL, conservés en `sessionStorage`
 pour survivre au passage `/vsl → /apply`, et envoyés **dans le corps du
-formulaire** — jamais dans une URL, donc jamais dans un journal serveur.
+formulaire** - jamais dans une URL, donc jamais dans un journal serveur.
 
 ---
 
@@ -450,7 +450,7 @@ passe par `content/*.ts` (français) et `content/*.en.ts` (anglais), résolus pa
 
 À sa toute première visite, le visiteur voit une fenêtre bilingue qui lui demande
 sa langue (`components/LanguageGate.tsx`). Sa réponse est enregistrée
-**définitivement** dans son navigateur — `localStorage`, plus un cookie
+**définitivement** dans son navigateur - `localStorage`, plus un cookie
 `zlary_locale` recopié à chaque visite (`lib/language-preference.ts`).
 
 Ce choix sert ensuite partout :
@@ -490,13 +490,13 @@ Tout est défini dans `app/globals.css`.
 | `--color-ink-muted`| `#5A686E` | texte secondaire                       |
 
 `--color-ink-muted` a été assombri par rapport à la valeur suggérée (`#687579`),
-qui mesurait 3,89:1 sur le fond canvas — sous le seuil AA de 4,5:1. La valeur
+qui mesurait 3,89:1 sur le fond canvas - sous le seuil AA de 4,5:1. La valeur
 retenue passe partout (canvas 4,63:1 · surface 5,33:1 · blanc 5,68:1).
 
-Le lime ne sert **jamais** de couleur de texte sur blanc — uniquement comme fond,
+Le lime ne sert **jamais** de couleur de texte sur blanc - uniquement comme fond,
 avec du navy dessus (12,88:1).
 
-**Rayons concentriques** — un élément intérieur suit toujours la courbe de son
+**Rayons concentriques** - un élément intérieur suit toujours la courbe de son
 parent : coquille 36 px → média 24 px → carte 20 px → pastille 999 px.
 
 **Cartes à double liseré** : enclos teinté canvas + cœur concentrique. Aucune
@@ -513,7 +513,7 @@ hiérarchie vient de l'échelle, pas de la graisse.
 **Icônes** : jeu local dans `components/icons.tsx`, dessiné dans le style
 Phosphor « Light » (grille 24, trait 1,25). Écrit à la main plutôt qu'importé :
 le site utilise une vingtaine de glyphes et `@phosphor-icons/react` livre chaque
-icône comme composant client — un coût réel contre l'objectif « Server
+icône comme composant client - un coût réel contre l'objectif « Server
 Components par défaut ». Même langage visuel, sans le poids.
 
 ---
@@ -525,10 +525,10 @@ Components par défaut ». Même langage visuel, sans le poids.
 L'ordre des écrans est le produit, pas un détail : cinq questions, puis le
 calendrier, puis seulement le nom, le courriel et le téléphone. Qui a répondu à
 cinq questions et choisi une heure a déjà investi assez pour qu'un numéro de
-téléphone soit la petite demande — les trois mêmes champs en haut de page en
+téléphone soit la petite demande - les trois mêmes champs en haut de page en
 seraient la grosse.
 
-- Validation écran par écran (`lib/validation.ts`) — le même schéma Zod sert au
+- Validation écran par écran (`lib/validation.ts`) - le même schéma Zod sert au
   navigateur et au serveur ; la validation client est un confort, jamais une
   barrière de sécurité.
 - Le créneau envoyé par le navigateur est **re-vérifié** contre l'horaire réel
@@ -543,7 +543,7 @@ seraient la grosse.
 - Limitation de débit : 5 réservations par IP et par tranche de 10 minutes.
 - « Prêt à investir » **étiquette** le contact (`lead_quality` : hot / warm /
   cold) et ne bloque jamais rien. Quelle que soit la réponse, le calendrier
-  suit — quelqu'un qui répond « pas pour le moment » et réserve quand même est
+  suit - quelqu'un qui répond « pas pour le moment » et réserve quand même est
   souvent exactement la personne qui vaut une demi-heure.
 - Rien n'est confirmé de façon optimiste : l'écran de confirmation n'apparaît
   qu'une fois le créneau réellement réservé, et dit franchement si le courriel
@@ -551,17 +551,17 @@ seraient la grosse.
 - **Aucune donnée de santé n'est collectée** : ni antécédents, ni blessures, ni
   poids, ni mesures.
 
-**Limitation connue — limitation de débit**
+**Limitation connue - limitation de débit**
 
 `lib/rate-limit.ts` garde son compteur en mémoire. Sur Vercel, chaque instance a
-le sien : la limite est donc par instance, pas globale. C'est un choix assumé —
+le sien : la limite est donc par instance, pas globale. C'est un choix assumé -
 suffisant contre l'abus scripté basique, et gratuit. Si le formulaire devient
 une vraie cible, remplacer le corps de `rateLimit()` par Upstash Redis ou
 Vercel KV ; les appels n'ont pas à changer.
 
 **Journalisation**
 
-Le contenu d'une candidature n'est jamais écrit dans les journaux — seulement
+Le contenu d'une candidature n'est jamais écrit dans les journaux - seulement
 des noms de champs et des codes d'erreur. En production, les erreurs renvoyées
 sont génériques ; le détail n'apparaît qu'en développement.
 

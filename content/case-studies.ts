@@ -4,7 +4,7 @@ import type { CaseStudy, Testimonial } from "./types";
 
 /**
  * ---------------------------------------------------------------------------
- * CLIENT RESULTS — NOTHING IS PUBLISHED WITHOUT WRITTEN CONSENT
+ * CLIENT RESULTS - NOTHING IS PUBLISHED WITHOUT WRITTEN CONSENT
  * ---------------------------------------------------------------------------
  * The array below is intentionally EMPTY. No case study has been supplied and
  * none may be invented: fabricated transformations are both a legal risk and
@@ -15,7 +15,7 @@ import type { CaseStudy, Testimonial } from "./types";
  *   1. Obtain written consent from the client for the photos AND the quote.
  *   2. Add an entry using the shape documented in `content/types.ts`.
  *   3. Attach the before/after `MediaAsset`s (see `clientMedia` in media.ts).
- *   4. Set `approved: true` — this is the switch that makes it render.
+ *   4. Set `approved: true` - this is the switch that makes it render.
  *
  * Anything with `approved: false` is filtered out everywhere on the site, so a
  * draft entry can safely live in this file while consent is being collected.
@@ -24,7 +24,7 @@ import type { CaseStudy, Testimonial } from "./types";
  *   · No invented measurements, percentages or weights.
  *   · No timeframe that was not actually the case.
  *   · No "guaranteed" language, no medical claims.
- *   · Quote the client verbatim — do not rewrite them.
+ *   · Quote the client verbatim - do not rewrite them.
  *
  * Reference entry (kept commented out as a template):
  *

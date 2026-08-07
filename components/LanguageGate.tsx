@@ -24,9 +24,9 @@ import { cn } from "@/lib/utils";
  * Asked once, on the first page a visitor ever opens, and never again. The
  * answer is written to `lib/language-preference.ts`, which is then read by:
  *
- *   · `proxy.ts`      — sends later visits straight to the right language
- *   · the application form — no longer asks which language to follow up in
- *   · `lib/notifications.ts` — writes to the applicant in that language
+ *   · `proxy.ts`      - sends later visits straight to the right language
+ *   · the application form - no longer asks which language to follow up in
+ *   · `lib/notifications.ts` - writes to the applicant in that language
  *
  * ---------------------------------------------------------------------------
  * WHY IT IS SAFE TO INTERRUPT WITH
@@ -38,7 +38,7 @@ import { cn } from "@/lib/utils";
  * a returning visitor never sees it.
  *
  * It is rendered client-side after hydration rather than in the HTML, so it can
- * never appear for someone who has already answered — a flash of this dialog on
+ * never appear for someone who has already answered - a flash of this dialog on
  * every visit would be far worse than the dialog itself.
  *
  * ---------------------------------------------------------------------------
@@ -136,7 +136,7 @@ export function LanguageGate({ locale }: { locale: Locale }) {
   const select = (chosen: Locale) => {
     choose(chosen);
 
-    // Already reading it — storing the answer is the whole job.
+    // Already reading it - storing the answer is the whole job.
     if (chosen === locale) return;
 
     /**

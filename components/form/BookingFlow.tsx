@@ -54,12 +54,12 @@ import { createId, elapsedSince, nowMs } from "@/lib/utils";
  *
  *   · The questions come before the calendar and the calendar comes before the
  *     contact details. Someone who has answered five questions and picked a time
- *     has already invested enough that typing a phone number is the small ask —
+ *     has already invested enough that typing a phone number is the small ask -
  *     the same three fields at the top of the page would be the large one.
  *   · The five questions ask one thing at a time. Answering replaces the
  *     question rather than adding to it, and choosing an option carries the
  *     visitor forward without a click on anything else.
- *   · `investmentReadiness` is asked, tagged and stored — and never gates
+ *   · `investmentReadiness` is asked, tagged and stored - and never gates
  *     anything. Whatever the answer, the calendar comes next.
  *   · Submission is idempotent: one `submissionId` is generated per session and
  *     sent with every attempt, so a retry after a network blip cannot book two
@@ -96,7 +96,7 @@ export function BookingFlow({ locale }: { locale: Locale }) {
   const [formError, setFormError] = useState<string | null>(null);
   const [result, setResult] = useState<Result | null>(null);
 
-  // Populated on mount — both are impure calls and must not run during render.
+  // Populated on mount - both are impure calls and must not run during render.
   const startedAt = useRef<number | null>(null);
   const submissionId = useRef<string | null>(null);
   const source = useRef<string | undefined>(undefined);
@@ -106,7 +106,7 @@ export function BookingFlow({ locale }: { locale: Locale }) {
   const advanceTimer = useRef<number | null>(null);
 
   /**
-   * The language question is not asked here — it was answered on the first visit
+   * The language question is not asked here - it was answered on the first visit
    * and is read back from storage. `locale` is the fallback for the handful of
    * visitors who never stored an answer (storage disabled, or a direct link
    * opened in a fresh browser), and it is the right fallback: the language they
@@ -174,7 +174,7 @@ export function BookingFlow({ locale }: { locale: Locale }) {
   const current: QuestionField = questionFields[cursor];
 
   /*
-   * Progress counts questions, not just phases — a bar that sat still through
+   * Progress counts questions, not just phases - a bar that sat still through
    * five questions would read as a flow that had stopped responding. The
    * calendar counts as half its phase until a time is actually chosen.
    */
@@ -187,8 +187,8 @@ export function BookingFlow({ locale }: { locale: Locale }) {
       : 1;
   const progress = (Math.max(stageIndex, 0) + filled) / STAGE_ORDER.length;
 
-  // Keep the current question on screen. Nothing stacks up — each question
-  // replaces the last — so this only has to correct the cases where the new
+  // Keep the current question on screen. Nothing stacks up - each question
+  // replaces the last - so this only has to correct the cases where the new
   // screen is taller than the old one, or the visitor had scrolled away.
   const position = `${stage}:${cursor}`;
   const lastPosition = useRef(position);
@@ -204,8 +204,8 @@ export function BookingFlow({ locale }: { locale: Locale }) {
      * Scrolled by hand rather than with `scrollIntoView`.
      *
      * The page sits inside `.bezel-core`, which is `overflow: hidden`. That
-     * counts as a scroll container, so `scrollIntoView` measures against it —
-     * finds the target already "visible" inside a box taller than the window —
+     * counts as a scroll container, so `scrollIntoView` measures against it -
+     * finds the target already "visible" inside a box taller than the window -
      * and scrolls nothing at all.
      */
     const box = target.getBoundingClientRect();
@@ -284,7 +284,7 @@ export function BookingFlow({ locale }: { locale: Locale }) {
   };
 
   /**
-   * A chosen option carries the visitor forward on its own — that is the whole
+   * A chosen option carries the visitor forward on its own - that is the whole
    * point of asking one thing at a time.
    *
    * Only for pointer presses. Arrow keys select as they move through a radio

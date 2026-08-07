@@ -6,7 +6,7 @@ import { clientIp, hashKey, rateLimit } from "@/lib/rate-limit";
  * Free slots for the booking calendar.
  *
  * Read-only, and the only endpoint the calendar screen talks to before someone
- * commits to a time. It returns instants — never wall-clock strings — plus the
+ * commits to a time. It returns instants - never wall-clock strings - plus the
  * time zone they should be read in, so the browser, the server and the calendar
  * event can never disagree about when 17:00 is.
  *
@@ -18,7 +18,7 @@ export const runtime = "nodejs";
 /** Availability changes the moment somebody books. Never cache it. */
 export const dynamic = "force-dynamic";
 
-/** Generous — a visitor moving between weeks re-reads this legitimately. */
+/** Generous - a visitor moving between weeks re-reads this legitimately. */
 const RATE_LIMIT = { limit: 60, windowMs: 5 * 60 * 1000 };
 
 export async function GET(request: Request) {

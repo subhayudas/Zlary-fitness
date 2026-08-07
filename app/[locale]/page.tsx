@@ -44,7 +44,7 @@ export async function generateMetadata({
  *
  * `locale` is threaded down as a prop rather than read from a React context or
  * from `headers()`. Context would force the sections to become Client
- * Components, and `headers()` would opt every route out of static rendering —
+ * Components, and `headers()` would opt every route out of static rendering -
  * both to avoid passing one string.
  */
 export default async function HomePage({

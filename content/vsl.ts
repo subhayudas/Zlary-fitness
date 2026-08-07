@@ -11,7 +11,7 @@ import { vslContent as enVslContent } from "./vsl.en";
  *   NEXT_PUBLIC_VSL_URL      = the video id or, for `file`, a full/relative URL
  *
  * If either is missing, the page renders a polished branded placeholder
- * ("Présentation bientôt disponible") — never a broken iframe.
+ * ("Présentation bientôt disponible") - never a broken iframe.
  */
 
 export type VslProvider = "youtube" | "vimeo" | "wistia" | "file";
@@ -106,11 +106,11 @@ export const vslContent = {
   cta: { label: "Postuler pour le coaching", href: "/?source=vsl#postuler" },
   placeholder: {
     heading: "Présentation bientôt disponible",
-    body: "La vidéo est en préparation. En attendant, tu peux déjà remplir la candidature — elle prend quelques minutes et permet de vérifier si l'accompagnement correspond à ta situation.",
+    body: "La vidéo est en préparation. En attendant, tu peux déjà remplir la candidature - elle prend quelques minutes et permet de vérifier si l'accompagnement correspond à ta situation.",
   },
   /**
    * Only rendered when the real runtime is known. Leave `null` rather than
-   * inventing a duration — a wrong number is an easy credibility loss.
+   * inventing a duration - a wrong number is an easy credibility loss.
    */
   duration: null as string | null,
   takeaways: {
@@ -124,7 +124,7 @@ export const vslContent = {
       {
         index: "02",
         title: "Comment le plan est construit",
-        body: "Ton horaire, ton équipement et ton niveau réel déterminent le programme — pas un modèle générique.",
+        body: "Ton horaire, ton équipement et ton niveau réel déterminent le programme - pas un modèle générique.",
       },
       {
         index: "03",

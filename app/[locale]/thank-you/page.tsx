@@ -38,7 +38,7 @@ export async function generateMetadata({
 /**
  * Confirmation.
  *
- * Confirms only what is actually true — the application was received. It does
+ * Confirms only what is actually true - the application was received. It does
  * not say the application was accepted, and there is no upsell.
  */
 export default async function ThankYouPage({

@@ -11,7 +11,7 @@ import { Rule } from "@/components/ui/typography";
  * viewport, and whenever a row crosses it the row nearest the centre takes
  * over. Scrolling the section therefore walks the list, one statement at a
  * time, at whatever pace the visitor reads. A mouse overrides that for as long
- * as it is inside the list — pointing at a row always beats where the page
+ * as it is inside the list - pointing at a row always beats where the page
  * happens to sit.
  *
  * Every moving part is absolutely positioned or transform-only, so the list
@@ -64,7 +64,7 @@ export function ProblemStatements({
     const observer = new IntersectionObserver(
       // The entries are only the trigger; the winner is always measured. Two
       // adjacent rows can sit in the band at once, and a row *leaving* it is
-      // just as much a handover as a row entering — an earlier version that
+      // just as much a handover as a row entering - an earlier version that
       // only recomputed on `isIntersecting` left the last statement dark,
       // because the row above it exits the band alone.
       () => nearestToCentre(),
@@ -90,7 +90,7 @@ export function ProblemStatements({
     place();
 
     // Row heights change with the viewport and again once the webfont lands,
-    // and the marker is placed in pixels — remeasure rather than assume.
+    // and the marker is placed in pixels - remeasure rather than assume.
     if (typeof ResizeObserver === "undefined") return;
     const observer = new ResizeObserver(() => {
       cancelAnimationFrame(frame);

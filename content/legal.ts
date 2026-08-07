@@ -3,7 +3,7 @@ import * as en from "./legal.en";
 import { awaiting } from "./types";
 
 /**
- * Legal pages — French (the reference text; see `legal.en.ts`).
+ * Legal pages - French (the reference text; see `legal.en.ts`).
  *
  * ---------------------------------------------------------------------------
  * NOT LEGAL ADVICE. Have these reviewed before launch.
@@ -11,7 +11,7 @@ import { awaiting } from "./types";
  * The text below is a good-faith, factually accurate description of what this
  * website actually does (one form, optional analytics, Supabase storage, Resend
  * email). It is written to be compatible with Québec's Law 25 and Canada's
- * PIPEDA, but a lawyer should confirm it — especially the legal-entity details
+ * PIPEDA, but a lawyer should confirm it - especially the legal-entity details
  * and the retention period, which are left as placeholders on purpose.
  */
 
@@ -46,7 +46,7 @@ export const privacyContent = {
       id: "collecte",
       title: "Renseignements recueillis",
       paragraphs: [
-        "Le seul formulaire du site est le formulaire de réservation d'appel. Il recueille : ton nom, ton adresse courriel, ton numéro de téléphone, la langue choisie pour le suivi, le créneau que tu réserves, ainsi que tes réponses à cinq questions — ton objectif principal, où tu en es dans ton entraînement, ce qui t'a bloqué jusqu'ici, quand tu souhaites commencer et si tu es prêt à investir dans un accompagnement personnalisé.",
+        "Le seul formulaire du site est le formulaire de réservation d'appel. Il recueille : ton nom, ton adresse courriel, ton numéro de téléphone, la langue choisie pour le suivi, le créneau que tu réserves, ainsi que tes réponses à cinq questions - ton objectif principal, où tu en es dans ton entraînement, ce qui t'a bloqué jusqu'ici, quand tu souhaites commencer et si tu es prêt à investir dans un accompagnement personnalisé.",
         "Le formulaire enregistre également des données techniques liées à ta visite : la page de provenance, les paramètres de campagne présents dans l'adresse (utm_source, utm_medium, utm_campaign, utm_content, utm_term), la page depuis laquelle la réservation a été amorcée et la date de soumission.",
         "Aucun renseignement de santé n'est demandé : ni antécédents médicaux, ni blessures, ni médication, ni poids, ni mesures corporelles. Le formulaire ne comporte aucun champ de texte libre.",
       ],
@@ -193,7 +193,7 @@ export const thankYouContent = {
       {
         index: "02",
         title: "Ajoute l'appel à ton calendrier",
-        body: "Ton courriel de confirmation contient le rendez-vous en pièce jointe — ouvre-la pour ajouter l'appel à ton agenda. Vérifie tes courriels indésirables si tu ne la vois pas.",
+        body: "Ton courriel de confirmation contient le rendez-vous en pièce jointe - ouvre-la pour ajouter l'appel à ton agenda. Vérifie tes courriels indésirables si tu ne la vois pas.",
       },
       {
         index: "03",

@@ -3,7 +3,7 @@ import { applyHref } from "@/content/navigation";
 import { resolveLocale } from "@/lib/route-locale";
 
 /**
- * `/book` — kept only to land somewhere sensible.
+ * `/book` - kept only to land somewhere sensible.
  *
  * There is no separate booking page any more. Picking a time is step 6 of the
  * flow on the homepage, between the questions and the contact details, so a

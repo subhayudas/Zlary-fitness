@@ -28,7 +28,7 @@ import { cn } from "@/lib/utils";
  *   · Swiping does NOT change card. The wipe already owns the horizontal drag,
  *     and two horizontal gestures stacked on the same surface means one of
  *     them always loses. Cards are changed from the thumbnail rail and the
- *     arrows instead — with four entries that is a shorter path than swiping
+ *     arrows instead - with four entries that is a shorter path than swiping
  *     anyway, and every target is a real button.
  *
  *   · `touch-action: pan-y` on the frame, not `none`. The page must still
@@ -71,7 +71,7 @@ function ComparisonFrame({
   const frameRef = useRef<HTMLDivElement>(null);
   const [position, setPosition] = useState(REST);
   // Transitions are on for keyboard steps, taps and the hint sweep, and off
-  // while a pointer is down — an eased divider lagging behind the cursor feels
+  // while a pointer is down - an eased divider lagging behind the cursor feels
   // broken rather than smooth.
   const [eased, setEased] = useState(true);
 
@@ -215,7 +215,7 @@ function ComparisonFrame({
         active ? "cursor-ew-resize" : "cursor-default",
       )}
     >
-      {/* Base layer — the "before", always fully painted underneath. */}
+      {/* Base layer - the "before", always fully painted underneath. */}
       <Image
         src={item.before.src as string}
         alt={item.before.alt}
@@ -229,7 +229,7 @@ function ComparisonFrame({
         draggable={false}
       />
 
-      {/* Reveal layer — the "after", clipped to everything right of the
+      {/* Reveal layer - the "after", clipped to everything right of the
           divider. Both frames are the same 4:5 crop at the same subject
           scale, so the two bodies stay registered as the divider moves. */}
       <div
@@ -289,7 +289,7 @@ function ComparisonFrame({
           className="absolute inset-y-0 left-1/2 w-0.5 -translate-x-1/2 bg-surface-pure/90"
         />
         {/* Knob. The centring translate and the idle nudge live on separate
-            elements — Tailwind v4 centres with the `translate` property and the
+            elements - Tailwind v4 centres with the `translate` property and the
             animation drives `transform`, and stacking both on one node makes
             the offset depend on which of the two happens to win. */}
         <span

@@ -5,12 +5,12 @@
  *
  *   · the confirmation email attaches a `REQUEST`, which is what actually puts
  *     the call in the visitor's calendar. It is not a fallback for the Google
- *     integration — it is the primary channel for the *applicant*, because a
+ *     integration - it is the primary channel for the *applicant*, because a
  *     service account cannot invite anyone (see `lib/google-calendar.ts`);
  *   · the confirmation screen offers a `PUBLISH` for download, for anyone who
  *     wants the appointment before the email arrives.
  *
- * Deliberately isomorphic — no `Buffer`, no `node:` imports — so the browser can
+ * Deliberately isomorphic - no `Buffer`, no `node:` imports - so the browser can
  * build the same entry the server sends rather than a second, drifting copy of
  * it. Base64 for the mail API is done at the call site, where Node is a given.
  *
@@ -39,7 +39,7 @@ export type IcsEvent = {
 const encoder = new TextEncoder();
 const decoder = new TextDecoder();
 
-/** `20260804T210000Z` — the only form every client reads the same way. */
+/** `20260804T210000Z` - the only form every client reads the same way. */
 function icsTimestamp(date: Date): string {
   return `${date.toISOString().replace(/[-:]/g, "").split(".")[0]}Z`;
 }
@@ -62,7 +62,7 @@ function escapeText(value: string): string {
  * Counted in octets rather than characters on purpose: an accented character is
  * two bytes in UTF-8, and a line measured in characters would exceed the limit
  * in exactly the French copy this site is written in. Multi-byte sequences are
- * never split — the break is taken before a character that would straddle it.
+ * never split - the break is taken before a character that would straddle it.
  */
 function fold(line: string): string {
   const bytes = encoder.encode(line);

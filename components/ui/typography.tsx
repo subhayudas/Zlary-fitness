@@ -5,7 +5,7 @@ import { cn } from "@/lib/utils";
  * Editorial typography primitives.
  *
  * `EditorialHeading` takes an explicit `as` so heading *level* (document
- * structure) stays independent from heading *size* (visual hierarchy) — a
+ * structure) stays independent from heading *size* (visual hierarchy) - a
  * section can carry an <h2> rendered at card scale without breaking the outline.
  */
 
@@ -40,7 +40,7 @@ export function EditorialHeading({
 
 /**
  * Tiny uppercase technical label.
- * A leading rule is optional — used where the label anchors a column.
+ * A leading rule is optional - used where the label anchors a column.
  */
 export function EyebrowLabel({
   children,
@@ -90,8 +90,8 @@ export function BalancedLines({
  * Splits a line into per-word atoms so a heading can assemble word by word.
  *
  * Layout-neutral on purpose: the words are `inline-block`, the spaces between
- * them stay real text nodes — so the line breaks exactly where it broke as
- * plain text — and only opacity and transform ever change. The heading
+ * them stay real text nodes - so the line breaks exactly where it broke as
+ * plain text - and only opacity and transform ever change. The heading
  * therefore occupies the same box whether or not the animation has played.
  *
  * The animation itself lives in `.stagger-word` and is driven by the enclosing

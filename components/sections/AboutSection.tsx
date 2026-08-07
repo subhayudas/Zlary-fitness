@@ -26,7 +26,7 @@ import type { Locale } from "@/lib/i18n";
  * the main content of its own page.
  *
  * The floating information card lists only facts that have actually been
- * confirmed — certifications, languages, platform. If none are confirmed the
+ * confirmed - certifications, languages, platform. If none are confirmed the
  * card is not rendered at all, rather than shown with invented credentials.
  */
 export function AboutSection({ locale }: { locale: Locale }) {
@@ -59,7 +59,7 @@ export function AboutSection({ locale }: { locale: Locale }) {
   return (
     <SectionShell id={sectionIds.about} padding="sm" ariaLabelledBy="about-title">
       <div className="grid gap-3 lg:grid-cols-12 lg:gap-4">
-        {/* Portrait — roughly 58% of the width on desktop. */}
+        {/* Portrait - roughly 58% of the width on desktop. */}
         <Reveal className="relative lg:col-span-7">
           <div className="photo-zoom relative h-full">
             <MediaFrame
@@ -124,7 +124,7 @@ export function AboutSection({ locale }: { locale: Locale }) {
               {about.bio}
             </p>
 
-            {/* Personal story — hidden until Zach writes it in his own words. */}
+            {/* Personal story - hidden until Zach writes it in his own words. */}
             {site.facts.personalStory.status === "confirmed" ? (
               <p className="measure mt-5 text-pretty text-[0.9375rem] leading-relaxed text-ink-muted md:text-base">
                 {site.facts.personalStory.value}
@@ -133,7 +133,7 @@ export function AboutSection({ locale }: { locale: Locale }) {
               <PendingNote note={site.facts.personalStory.note} className="mt-5" />
             )}
 
-            {/* Certifications still pending — dev-only, invisible in production. */}
+            {/* Certifications still pending - dev-only, invisible in production. */}
             {certifications
               .filter((cert) => !isConfirmed(cert))
               .map((cert, index) =>
@@ -146,7 +146,7 @@ export function AboutSection({ locale }: { locale: Locale }) {
 
             {/* This used to be a bare lime circle carrying an arrow and an
                 aria-label. It was the only CTA on the page whose destination
-                you had to guess, and a sighted visitor got no label at all —
+                you had to guess, and a sighted visitor got no label at all -
                 so it is a labelled control now, with the Instagram link
                 demoted to the subordinate position under it. */}
             <SectionCTA

@@ -6,7 +6,7 @@ import { analyticsEnabled, analyticsIds, captureAttribution } from "@/lib/analyt
 import { useConsent } from "@/lib/use-consent";
 
 /**
- * Loads measurement tags — and only after the visitor has explicitly consented.
+ * Loads measurement tags - and only after the visitor has explicitly consented.
  *
  * Nothing is injected on first paint. No provider is loaded when its id is
  * absent. `strategy="afterInteractive"` keeps every tag off the critical path,

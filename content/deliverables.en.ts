@@ -1,11 +1,11 @@
 import type { Deliverable } from "./types";
 
 /**
- * What clients receive — English.
+ * What clients receive - English.
  *
  * `id` and `confirmedByCoach` are shared control values, not copy: the id picks
  * the icon, and the flag is the switch that publishes an item. Both must stay
- * identical to `deliverables.ts` — flipping one language on and the other off
+ * identical to `deliverables.ts` - flipping one language on and the other off
  * would advertise a deliverable to half the audience only.
  */
 export const deliverablesList: readonly Deliverable[] = [

@@ -3,7 +3,7 @@ import type { MediaAsset } from "@/content/types";
 import { cn } from "@/lib/utils";
 
 /**
- * Renders a photograph, or — while the photograph has not been delivered — an
+ * Renders a photograph, or - while the photograph has not been delivered - an
  * art-directed placeholder that states the shooting brief.
  *
  * It never renders a broken <img>, and it never substitutes stock imagery for
@@ -53,7 +53,7 @@ export function MediaFrame({
    *
    * Exists for the one case the asset field cannot express: framing that has to
    * change between breakpoints. Pass a `var(--…)` reference and set the
-   * variable with responsive classes on an ancestor — that keeps a single
+   * variable with responsive classes on an ancestor - that keeps a single
    * source of truth when something else (the hero's video layer) must stay
    * framed identically to the image.
    */
@@ -148,7 +148,7 @@ export function MediaPlaceholder({
   const dark = tone === "ink";
 
   /**
-   * Backdrop slots: surface only, plus one marker parked on the right edge —
+   * Backdrop slots: surface only, plus one marker parked on the right edge -
    * the one region of a full-bleed composition that stays free of copy.
    */
   if (detail === "minimal") {
@@ -247,7 +247,7 @@ export function MediaPlaceholder({
  *
  * This is not a content image and must never carry meaning: it is `aria-hidden`
  * with empty alt text, it sits at low opacity under a mask, and if the file is
- * missing the component renders nothing at all — the panel simply goes back to
+ * missing the component renders nothing at all - the panel simply goes back to
  * flat ink. That is the whole contract. Anything a reader needs to see belongs
  * in a `MediaFrame`, not here.
  *
@@ -258,7 +258,7 @@ export function MediaPlaceholder({
 export function PhotoBackdrop({
   asset,
   sizes = "100vw",
-  /** `tall` anchors the image to the top with a longer fade — full-bleed slots. */
+  /** `tall` anchors the image to the top with a longer fade - full-bleed slots. */
   variant = "default",
   className,
 }: {

@@ -5,10 +5,10 @@ import {
 } from "./seo.en";
 
 /**
- * Per-route SEO copy — French.
+ * Per-route SEO copy - French.
  *
  * Titles stay under ~60 characters where possible, descriptions under ~155.
- * Keyword themes are woven into real sentences — no stuffing, no hidden text,
+ * Keyword themes are woven into real sentences - no stuffing, no hidden text,
  * no location claims that have not been verified.
  *
  * English titles and descriptions live in `seo.en.ts`. Everything structural

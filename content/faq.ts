@@ -3,10 +3,10 @@ import { faqItems as enFaqItems } from "./faq.en";
 import { awaiting, confirmed, type FaqItem } from "./types";
 
 /**
- * FAQ — French. The English mirror is `faq.en.ts`.
+ * FAQ - French. The English mirror is `faq.en.ts`.
  *
  * Questions whose answer is `awaiting(...)` are hidden from the page and from
- * the FAQPage structured data until a real answer is supplied — an empty
+ * the FAQPage structured data until a real answer is supplied - an empty
  * accordion row reads as a broken site, and Google requires that schema-marked
  * answers be visible on the page.
  *
@@ -32,7 +32,7 @@ export const faqItems: readonly FaqItem[] = [
     id: "frequence",
     question: "Combien de jours par semaine dois-je m'entraîner?",
     answer: confirmed(
-      "Cela dépend de ton horaire et de ton objectif. Le nombre de séances est fixé pour être tenable sur plusieurs mois plutôt que pendant deux semaines — un plan de trois séances respecté vaut mieux qu'un plan de six abandonné.",
+      "Cela dépend de ton horaire et de ton objectif. Le nombre de séances est fixé pour être tenable sur plusieurs mois plutôt que pendant deux semaines - un plan de trois séances respecté vaut mieux qu'un plan de six abandonné.",
     ),
   },
   {
@@ -67,14 +67,14 @@ export const faqItems: readonly FaqItem[] = [
     id: "langues",
     question: "Le coaching est-il offert en français et en anglais?",
     answer: confirmed(
-      "Oui. La langue choisie à ton arrivée sur le site est celle utilisée pour le suivi et pour l'accompagnement — tu peux la changer avec le bouton FR / EN, ou à la dernière étape du formulaire de réservation.",
+      "Oui. La langue choisie à ton arrivée sur le site est celle utilisée pour le suivi et pour l'accompagnement - tu peux la changer avec le bouton FR / EN, ou à la dernière étape du formulaire de réservation.",
     ),
   },
   {
     id: "appel",
     question: "Que se passe-t-il pendant l'appel transformation?",
     answer: confirmed(
-      "C'est une conversation, pas une présentation de vente. On revoit ton objectif, ta situation actuelle, ton horaire et ce qui a bloqué jusqu'ici. À la fin, tu sais si l'accompagnement correspond à ta situation — et si ce n'est pas le cas, Zach te le dira.",
+      "C'est une conversation, pas une présentation de vente. On revoit ton objectif, ta situation actuelle, ton horaire et ce qui a bloqué jusqu'ici. À la fin, tu sais si l'accompagnement correspond à ta situation - et si ce n'est pas le cas, Zach te le dira.",
     ),
   },
   {
@@ -100,7 +100,7 @@ export function getVisibleFaqItems(locale: Locale): readonly FaqItem[] {
   return dictionary[locale].filter((item) => item.answer.status === "confirmed");
 }
 
-/** A shorter set for the VSL page — keeps that funnel focused. */
+/** A shorter set for the VSL page - keeps that funnel focused. */
 export const vslFaqIds = ["debutants", "gym", "horaire", "restaurant", "appel"];
 
 export function getVslFaqItems(locale: Locale): readonly FaqItem[] {

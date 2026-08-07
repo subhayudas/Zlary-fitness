@@ -7,21 +7,21 @@ import { otherLocale, type Locale } from "@/lib/i18n";
  * Which language the applicant will be written back in.
  *
  * This replaces the "Langue préférée" radio group that used to open the form.
- * The question was already answered — on the first visit, by the language
- * chooser — and asking it a second time invites a contradictory answer: someone
+ * The question was already answered - on the first visit, by the language
+ * chooser - and asking it a second time invites a contradictory answer: someone
  * reading in French who idly picks "Anglais" here gets English email about a
  * French application, and nothing on the site knows which one to believe.
  *
  * So this states the stored answer rather than asking for it, and offers one
  * control to correct it. Correcting it writes through to the same stored
  * preference the rest of the site reads, because there is only one language
- * preference per visitor — not a browsing one and a mailing one.
+ * preference per visitor - not a browsing one and a mailing one.
  *
  * Changing it here deliberately does *not* reload the page into the other
  * language: that would throw away everything already typed into the form.
  */
 export function FollowUpLanguage({
-  /** The page's language — supplies the labels. */
+  /** The page's language - supplies the labels. */
   locale,
   /** The stored preference, i.e. what will actually be submitted. */
   value,

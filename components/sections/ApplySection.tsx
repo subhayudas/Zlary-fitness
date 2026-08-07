@@ -21,7 +21,7 @@ import type { Locale } from "@/lib/i18n";
  * happen here, and `/book` is only a redirect back to this anchor.
  *
  * No countdown, no "3 places left", no fake waiting list. The scarcity on a
- * coaching page is real and does not need to be manufactured — a fabricated
+ * coaching page is real and does not need to be manufactured - a fabricated
  * timer is the fastest way to make a premium page read as a funnel template.
  *
  * `BookingFlow` is the only Client Component here; the shell around it stays a

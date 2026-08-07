@@ -4,7 +4,7 @@ import type { Deliverable } from "./types";
 
 /**
  * ---------------------------------------------------------------------------
- * WHAT CLIENTS RECEIVE — ⚠ CONFIRM WITH ZACH BEFORE LAUNCH
+ * WHAT CLIENTS RECEIVE - ⚠ CONFIRM WITH ZACH BEFORE LAUNCH
  * ---------------------------------------------------------------------------
  * This list comes from the project brief, so every item ships enabled. But the
  * descriptions underneath were written for the site, and advertising a

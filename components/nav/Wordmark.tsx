@@ -7,7 +7,7 @@ import { cn } from "@/lib/utils";
 /**
  * The Zlary Fitness wordmark.
  *
- * Type-only by design — set in the site's own grotesk with tight tracking, so
+ * Type-only by design - set in the site's own grotesk with tight tracking, so
  * there is no logo file to manage and it stays crisp at any size. The second
  * word carries reduced opacity to create hierarchy without a second weight.
  *
@@ -61,7 +61,7 @@ export function Wordmark({
       onClick={onClick}
       tabIndex={tabIndex}
       className={cn("inline-flex rounded-sm", className)}
-      aria-label={`${site.brand} — ${getUi(locale).common.homeLinkLabel}`}
+      aria-label={`${site.brand} - ${getUi(locale).common.homeLinkLabel}`}
     >
       {content}
     </Link>

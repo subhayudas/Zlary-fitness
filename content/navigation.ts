@@ -3,7 +3,7 @@ import type { NavLink } from "./types";
 import { site } from "./site";
 
 /**
- * Primary navigation — French.
+ * Primary navigation - French.
  *
  * Anchor links point at homepage section ids. They are written as absolute
  * paths (`/#methode`) so they also work from /results, /privacy, etc.
@@ -43,7 +43,7 @@ export const sectionIds = {
  * The form is a section of the homepage rather than a route of its own, so
  * every CTA on the site is an anchor into it. `source` rides along as a query
  * parameter because `MultiStepApplication` reads it off `location.search` for
- * attribution — and a query has to come before the fragment to survive.
+ * attribution - and a query has to come before the fragment to survive.
  */
 export function applyHref(locale: Locale, source?: string): string {
   const base = localePath("/", locale);
@@ -60,7 +60,7 @@ export const footerNav = {
     { label: "FAQ", href: "/#faq" },
   ],
   /* Deux entrées, pas trois. « Postuler » et « Réserver un appel » pointaient
-     au même endroit — `/book` ne fait que rediriger vers `#postuler` — donc la
+     au même endroit - `/book` ne fait que rediriger vers `#postuler` - donc la
      colonne proposait un choix qui n'existait pas. */
   funnel: [
     { label: "Voir la présentation", href: "/vsl" },

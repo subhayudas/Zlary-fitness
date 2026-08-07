@@ -1,5 +1,5 @@
 /**
- * Tiny helpers. Kept dependency-free on purpose — `clsx`/`tailwind-merge`
+ * Tiny helpers. Kept dependency-free on purpose - `clsx`/`tailwind-merge`
  * would be two more packages for something a five-line function handles.
  */
 
@@ -73,7 +73,7 @@ export function formatDate(iso: string, intlLocale: string): string {
 /**
  * A slot is stored and transmitted as an instant, and read by a person as a
  * wall clock. These three do that conversion, and they all take the time zone
- * explicitly — never the machine's.
+ * explicitly - never the machine's.
  *
  * That is the whole point: the appointment is at the coach's clock, and it has
  * to read identically on the confirmation screen, in the confirmation email
@@ -112,7 +112,7 @@ export function formatSlotRange(
 }
 
 /**
- * The short zone name in force at that instant — "HAE", "EDT".
+ * The short zone name in force at that instant - "HAE", "EDT".
  *
  * Read at the instant of the slot rather than at "now", so a call booked across
  * a daylight-saving change is labelled with the offset it will actually happen

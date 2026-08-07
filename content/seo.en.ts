@@ -1,5 +1,5 @@
 /**
- * Per-route SEO copy — English.
+ * Per-route SEO copy - English.
  *
  * Only the title and description are translated. `path`, `noindex`, `priority`
  * and `changeFrequency` describe the route rather than the language and live in

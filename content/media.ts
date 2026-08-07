@@ -6,7 +6,7 @@ import type { MediaAsset, VideoAsset } from "./types";
  * ---------------------------------------------------------------------------
  * CENTRALISED MEDIA CONFIGURATION
  * ---------------------------------------------------------------------------
- * Every photograph on the site is declared here — components never hard-code
+ * Every photograph on the site is declared here - components never hard-code
  * an image path. To publish a real photo:
  *
  *   1. Export it at (or above) the `recommended` size, as .webp or .jpg
@@ -18,7 +18,7 @@ import type { MediaAsset, VideoAsset } from "./types";
  * broken <img>, and it never fakes a photograph.
  *
  * PHOTOGRAPHY DIRECTION (applies to every slot)
- *   · Authentic images of Zach and real clients only — no stock bodybuilders.
+ *   · Authentic images of Zach and real clients only - no stock bodybuilders.
  *   · Natural or slightly muted grade, soft warm highlights, deep but open
  *     shadows. No heavy HDR, no crushed blacks, no credibility-killing filters.
  *   · Shoot wide enough to survive a full-bleed crop on both 9:16 and 16:9.
@@ -139,7 +139,7 @@ export const media = {
   ogImage: p({
     id: "og-image",
     src: "/media/og-hero.webp",
-    alt: "Zlary Fitness — coaching fitness et nutrition en ligne.",
+    alt: "Zlary Fitness - coaching fitness et nutrition en ligne.",
     width: 1200,
     height: 630,
     orientation: "landscape",
@@ -156,7 +156,7 @@ export const media = {
  * MOVING BACKGROUNDS
  * ---------------------------------------------------------------------------
  * Silent, looping footage used behind copy. Same rule as the photography: the
- * page must still work with the file removed — every one of these declares a
+ * page must still work with the file removed - every one of these declares a
  * `poster` that stands in on its own.
  *
  * Encoding checklist, if this footage is ever recut (`-an` is not optional):
@@ -171,13 +171,13 @@ export const videos = {
    *
    * Cut deliberately, not just trimmed:
    *   · MIRRORED. In the original the runner tracks up the left-centre of the
-   *     frame — exactly where the headline sits. Flipped, she holds the right
+   *     frame - exactly where the headline sits. Flipped, she holds the right
    *     third and the copy column stays clear of her. Nothing in shot is
    *     handed, lettered or branded, so the flip is invisible.
    *   · Cut to the opening ~3.4s, the only window where she stays right of the
    *     copy for the whole loop; the camera closes in after that and she drifts
    *     back across the frame.
-   *   · Slowed to 0.62× and re-interpolated to 30fps — reads as intent rather
+   *   · Slowed to 0.62× and re-interpolated to 30fps - reads as intent rather
    *     than as a dropped-frame stutter.
    *   · The tail cross-dissolves into the head, so the loop has no hard cut.
    */
@@ -215,16 +215,16 @@ export const videos = {
  * ---------------------------------------------------------------------------
  * These are not content images. Each one sits *behind* a panel that would
  * otherwise be a flat field of colour, at low opacity and under a scrim, to
- * give the surface depth. They are decorative by definition — `alt` is empty
+ * give the surface depth. They are decorative by definition - `alt` is empty
  * and `<PhotoBackdrop>` renders them `aria-hidden`.
  *
  * Three rules keep them from becoming the focus:
  *   · Nothing in them may be needed to understand the page. Remove the file and
  *     the panel goes back to flat colour with no loss of meaning.
  *   · Deep-petroleum panels only. White copy on ink has ~15:1 of contrast to
- *     spend; the light surfaces do not — `--color-ink-muted` was tuned to clear
+ *     spend; the light surfaces do not - `--color-ink-muted` was tuned to clear
  *     4.5:1 by a small margin, so tinting underneath it would fail AA.
- *   · They are exported small and compressed harder than content photography —
+ *   · They are exported small and compressed harder than content photography -
  *     at ~28% opacity behind a scrim, the extra fidelity is invisible.
  */
 export const backdrops = {
@@ -242,7 +242,7 @@ export const backdrops = {
     objectPosition: "50% 42%",
   }),
 
-  /** Nutrition statement panel — a coach explaining, not a plate of food. */
+  /** Nutrition statement panel - a coach explaining, not a plate of food. */
   coaching: p({
     id: "backdrop-coaching",
     src: "/media/backdrop-coaching.webp",
@@ -256,7 +256,7 @@ export const backdrops = {
     objectPosition: "55% 45%",
   }),
 
-  /** Full-screen mobile menu — portrait, to match a phone viewport. */
+  /** Full-screen mobile menu - portrait, to match a phone viewport. */
   guidance: p({
     id: "backdrop-guidance",
     src: "/media/backdrop-guidance.webp",
@@ -270,7 +270,7 @@ export const backdrops = {
     objectPosition: "50% 55%",
   }),
 
-  /** Booking panel — what a one-to-one session actually looks like. */
+  /** Booking panel - what a one-to-one session actually looks like. */
   session: p({
     id: "backdrop-session",
     src: "/media/backdrop-session.webp",
@@ -290,7 +290,7 @@ export const backdrops = {
 /* -------------------------------------------------------------------------- */
 
 /**
- * Alt text is the only translated field on an asset — the file, its dimensions
+ * Alt text is the only translated field on an asset - the file, its dimensions
  * and its focal point are identical in both languages. Swapping just that one
  * string keeps a single source of truth for the photography itself.
  *
@@ -344,14 +344,14 @@ export function getVideos(locale: Locale): typeof videos {
  * Client transformation photography.
  *
  * NEVER populate these without written client consent. Before/after pairs must
- * be shot in comparable lighting, distance and posture — no flexing versus
+ * be shot in comparable lighting, distance and posture - no flexing versus
  * slouching, no different lenses. Misleading comparisons are a legal risk.
  */
 export const clientMedia = {
   placeholderBefore: (name: string): MediaAsset => ({
     id: `before-${name}`,
     src: null,
-    alt: `Photo avant l'accompagnement — ${name}.`,
+    alt: `Photo avant l'accompagnement - ${name}.`,
     width: 1200,
     height: 1500,
     orientation: "portrait",
@@ -363,7 +363,7 @@ export const clientMedia = {
   placeholderAfter: (name: string): MediaAsset => ({
     id: `after-${name}`,
     src: null,
-    alt: `Photo après l'accompagnement — ${name}.`,
+    alt: `Photo après l'accompagnement - ${name}.`,
     width: 1200,
     height: 1500,
     orientation: "portrait",

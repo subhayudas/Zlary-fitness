@@ -67,7 +67,7 @@ export function DoubleBezelCard({
   );
 }
 
-/** Flat panel — no bezel. The workhorse for bento cells. */
+/** Flat panel - no bezel. The workhorse for bento cells. */
 export function Panel({
   children,
   tone = "white",
@@ -75,7 +75,7 @@ export function Panel({
   radius = "media",
   as: Tag = "div",
   /**
-   * Optional photographic texture behind the panel. Ink panels only — the
+   * Optional photographic texture behind the panel. Ink panels only - the
    * light tones have no contrast headroom to spend. See `PhotoBackdrop`.
    */
   backdrop,
@@ -84,7 +84,7 @@ export function Panel({
    * Classes for the wrapper a `backdrop` introduces around `children`.
    *
    * That wrapper sits between the panel and its content, so any layout the
-   * children depend on — `flex flex-col` for an `mt-auto` footer, say — has to
+   * children depend on - `flex flex-col` for an `mt-auto` footer, say - has to
    * move here or it stops applying. Ignored when there is no backdrop.
    */
   contentClassName,
@@ -129,7 +129,7 @@ export function Panel({
 }
 
 /**
- * Acid-lime feature panel. Deliberately limited to one or two per page —
+ * Acid-lime feature panel. Deliberately limited to one or two per page -
  * lime is an accent, not a background.
  */
 export function LimeFeaturePanel({

@@ -2,7 +2,7 @@
  * Locale plumbing.
  *
  * ---------------------------------------------------------------------------
- * URL STRATEGY — FRENCH IS UNPREFIXED
+ * URL STRATEGY - FRENCH IS UNPREFIXED
  * ---------------------------------------------------------------------------
  * French is the site's original language and every existing link, ad and search
  * result points at an unprefixed path, so French keeps `/`, `/apply`, `/vsl`…

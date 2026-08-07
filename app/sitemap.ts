@@ -12,7 +12,7 @@ import { localeMeta, localePath, locales } from "@/lib/i18n";
  *
  * Each route appears once per language, and every entry carries the full
  * `alternates.languages` set. That is what tells Google the two URLs are
- * translations of one page rather than duplicates competing with each other —
+ * translations of one page rather than duplicates competing with each other -
  * and it has to be reciprocal, which is why both entries list both languages.
  */
 export default function sitemap(): MetadataRoute.Sitemap {

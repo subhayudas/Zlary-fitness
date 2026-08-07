@@ -7,7 +7,7 @@ import { site } from "@/content/site";
 import { isLocale, defaultLocale, locales } from "@/lib/i18n";
 
 /**
- * Default social share image, generated at build time — one per language.
+ * Default social share image, generated at build time - one per language.
  *
  * Typography leads and the photograph supports it: feeds render this card at
  * thumbnail size, where a full-bleed photo turns to mush and the headline is
@@ -15,7 +15,7 @@ import { isLocale, defaultLocale, locales } from "@/lib/i18n";
  * is enough to read as a person at 300px wide without displacing the copy.
  *
  * The photograph is inlined as a data URI because Satori cannot fetch relative
- * URLs — there is no origin at build time. It is read from /assets rather than
+ * URLs - there is no origin at build time. It is read from /assets rather than
  * /public so the build is the only thing that ever loads it.
  */
 

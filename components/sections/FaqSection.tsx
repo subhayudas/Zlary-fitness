@@ -12,7 +12,7 @@ import type { Locale } from "@/lib/i18n";
 /**
  * FAQ: heading on the left, accordion on the right, a lot of whitespace between.
  *
- * Questions still waiting on an answer from Zach are not rendered — they are
+ * Questions still waiting on an answer from Zach are not rendered - they are
  * listed as dev-only notes instead, so the live page never shows a row that
  * opens onto nothing.
  */

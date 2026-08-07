@@ -22,7 +22,7 @@ import { cn } from "@/lib/utils";
  * things a stateful toggle cannot:
  *
  *   · the destination is a URL, so it can be opened in a new tab, bookmarked
- *     and — critically — crawled, which is what makes the `hreflang` pairs on
+ *     and - critically - crawled, which is what makes the `hreflang` pairs on
  *     each page mean anything;
  *   · the current language is announced through `aria-current`, so a screen
  *     reader user knows which one is active without relying on colour;
@@ -41,7 +41,7 @@ const TONE: Record<
   Tone,
   { container: string; indicator: string; active: string; inactive: string }
 > = {
-  /** Over photography — the overlay navigation on the homepage hero. */
+  /** Over photography - the overlay navigation on the homepage hero. */
   light: {
     container: "bg-white/15",
     indicator: "bg-white",
@@ -56,7 +56,7 @@ const TONE: Record<
     active: "text-ink",
     inactive: "text-ink/55 hover:text-ink",
   },
-  /** On deep petroleum — the full-screen mobile menu. */
+  /** On deep petroleum - the full-screen mobile menu. */
   dark: {
     container: "bg-white/10",
     indicator: "bg-white",
@@ -186,7 +186,7 @@ export function LanguageToggle({
             /**
              * The French href is unprefixed, so `proxy.ts` resolves it against
              * the stored-language cookie. A prefetch would resolve it against
-             * the *old* cookie — before this click rewrote it — and the router
+             * the *old* cookie - before this click rewrote it - and the router
              * would then have an English page cached under a French URL. Both
              * pages are statically generated, so skipping the prefetch on one
              * rarely-used control costs nothing measurable.
@@ -199,7 +199,7 @@ export function LanguageToggle({
               selected ? styles.active : styles.inactive,
             )}
           >
-            <span className="sr-only">{meta.label} — </span>
+            <span className="sr-only">{meta.label} - </span>
             <span aria-hidden="true">{meta.short}</span>
           </Link>
         );

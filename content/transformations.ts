@@ -14,7 +14,7 @@ import type { MediaAsset } from "./types";
  *      site with no other change.
  *
  *   2. Nothing here may be invented. There are no names, no durations and no
- *      measurements, because none were supplied — the only figure in the file
+ *      measurements, because none were supplied - the only figure in the file
  *      is the one the client printed on their own photograph (see `t04`).
  *      A number nobody stated is a number nobody said.
  *
@@ -24,7 +24,7 @@ import type { MediaAsset } from "./types";
  * Most of Zach's originals are single composite images with the before and
  * after already side by side. The comparison slider needs them as two separate
  * frames, so each composite was split and re-cropped to an identical 4:5 box
- * with the subject scaled to match across the pair — otherwise dragging the
+ * with the subject scaled to match across the pair - otherwise dragging the
  * divider would make the person appear to grow or shrink for reasons that have
  * nothing to do with training, which is exactly the kind of comparison that
  * turns a transformation photo into a misleading one.
@@ -37,7 +37,7 @@ import type { MediaAsset } from "./types";
  * t01 is the exception to the composite rule: it arrived as two separate
  * photographs, an outdoor full-body shot and a locker-room mirror selfie. They
  * were cropped so the head and the waistband land at the same height in both
- * frames — the same scale-matching the split composites get, done across two
+ * frames - the same scale-matching the split composites get, done across two
  * shots taken in different places rather than within one image.
  *
  * `7109218C-…jpg` is the SAME client as t02 photographed from the side. It is
@@ -46,12 +46,12 @@ import type { MediaAsset } from "./types";
  * different clients. Swap the two `t02` frames for the `-alt-side-` pair to
  * show the profile instead.
  *
- * `IMG_8898.PNG` was the previous `t01` and is no longer used — it was
+ * `IMG_8898.PNG` was the previous `t01` and is no longer used - it was
  * replaced, at Zach's request, by the client above.
  *
  * `IMG_0333.PNG` (the January/July collage) is not included. It is a
  * four-panel Instagram story whose quadrants do not pair into a matching
- * before/after — the two halves show different body parts at different
+ * before/after - the two halves show different body parts at different
  * distances, under arrows and captions that cannot be cropped away.
  */
 
@@ -76,7 +76,7 @@ export type Transformation = {
   readonly before: MediaAsset;
   readonly after: MediaAsset;
   /**
-   * Body weight in pounds — set ONLY where the client printed the figure on
+   * Body weight in pounds - set ONLY where the client printed the figure on
    * their own photograph. Formatted per locale at render time.
    */
   readonly weight: { readonly from: number; readonly to: number } | null;

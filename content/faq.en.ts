@@ -1,12 +1,12 @@
 import { awaiting, confirmed, type FaqItem } from "./types";
 
 /**
- * FAQ — English.
+ * FAQ - English.
  *
  * The `id`s match `faq.ts` exactly: they key the accordion, the `vslFaqIds`
  * subset and the FAQPage schema, so they are identifiers rather than copy.
  *
- * `awaiting(...)` entries carry the same pending state as the French file —
+ * `awaiting(...)` entries carry the same pending state as the French file -
  * the note itself is an instruction to Zach and is only ever shown in
  * development, so it stays in French on purpose.
  */
@@ -29,7 +29,7 @@ export const faqItems: readonly FaqItem[] = [
     id: "frequence",
     question: "How many days a week do I need to train?",
     answer: confirmed(
-      "That depends on your schedule and your goal. The number of sessions is set to be sustainable over months rather than two weeks — a three-session plan you stick to beats a six-session plan you abandon.",
+      "That depends on your schedule and your goal. The number of sessions is set to be sustainable over months rather than two weeks - a three-session plan you stick to beats a six-session plan you abandon.",
     ),
   },
   {
@@ -64,14 +64,14 @@ export const faqItems: readonly FaqItem[] = [
     id: "langues",
     question: "Is the coaching offered in French and English?",
     answer: confirmed(
-      "Yes. The language you pick when you arrive on the site is the one used for the follow-up and for the coaching itself — you can change it with the FR / EN button, or on the last step of the booking form.",
+      "Yes. The language you pick when you arrive on the site is the one used for the follow-up and for the coaching itself - you can change it with the FR / EN button, or on the last step of the booking form.",
     ),
   },
   {
     id: "appel",
     question: "What happens during the transformation call?",
     answer: confirmed(
-      "It's a conversation, not a sales pitch. We go over your goal, your current situation, your schedule and what has held you back so far. By the end you'll know whether the coaching fits your situation — and if it doesn't, Zach will tell you.",
+      "It's a conversation, not a sales pitch. We go over your goal, your current situation, your schedule and what has held you back so far. By the end you'll know whether the coaching fits your situation - and if it doesn't, Zach will tell you.",
     ),
   },
   {

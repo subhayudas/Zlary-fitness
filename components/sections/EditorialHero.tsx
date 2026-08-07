@@ -22,7 +22,7 @@ import type { Locale } from "@/lib/i18n";
  * `svh` and not `dvh`: `dvh` tracks the chrome as it collapses, so the shell
  * grows and the whole page reflows mid-scroll. It also measures the *expanded*
  * height in the Instagram and Facebook in-app browsers, whose toolbars never
- * collapse — so a `dvh` hero reserved more height there than was ever visible.
+ * collapse - so a `dvh` hero reserved more height there than was ever visible.
  * `svh` is the smallest the viewport ever gets, which is the only height the
  * CTA is guaranteed to fit inside.
  *
@@ -30,7 +30,7 @@ import type { Locale } from "@/lib/i18n";
  * THE RUNNER MUST NOT END UP BEHIND THE COPY
  * ---------------------------------------------------------------------------
  * She holds roughly the right third of the frame (the footage is mirrored to
- * put her there — see `videos.hero`), so three things are load-bearing and
+ * put her there - see `videos.hero`), so three things are load-bearing and
  * should be re-checked together if any one of them is touched:
  *
  *   · `--hero-focus` pans the crop per breakpoint. On wide shells the frame is
@@ -38,8 +38,8 @@ import type { Locale } from "@/lib/i18n";
  *     clear of the headline. On narrow shells the crop is severe and she is
  *     the whole picture, so it centres on her instead.
  *   · The headline is capped below `type-hero`. At the full display size
- *     "Transforme ton corps" alone runs to about 73% of the shell — straight
- *     through her — and no amount of panning recovers that.
+ *     "Transforme ton corps" alone runs to about 73% of the shell - straight
+ *     through her - and no amount of panning recovers that.
  *   · The scrim is directional (`photo-scrim-hero`), weighted onto the copy
  *     column so her side of the frame is never dimmed to buy contrast that is
  *     only needed on the left.
@@ -86,14 +86,14 @@ export function EditorialHero({ locale }: { locale: Locale }) {
           <div className="relative z-10 flex min-h-full flex-1 flex-col on-photo">
             <SiteHeader locale={locale} variant="overlay" />
 
-            {/* Vertical technical label on the left edge — widescreen only.
+            {/* Vertical technical label on the left edge - widescreen only.
                 It owns the left gutter; the copy below indents past it at xl. */}
             <div className="pointer-events-none absolute left-6 top-1/2 hidden -translate-y-1/2 xl:block">
               <p
                 className="type-micro text-white/55"
                 style={{ writingMode: "vertical-rl" }}
               >
-                {hero.chip.label} — {hero.chip.value}
+                {hero.chip.label} - {hero.chip.value}
                 <span className="mx-3 inline-block h-px w-6 align-middle bg-white/30" />
                 {hero.chip.detail}
               </p>
@@ -161,7 +161,7 @@ export function EditorialHero({ locale }: { locale: Locale }) {
                 </p>
               </div>
 
-              {/* Lower-right: the VSL entry point. `nowrap` is safe here —
+              {/* Lower-right: the VSL entry point. `nowrap` is safe here -
                   this instance is desktop-only, and mobile gets the separate
                   full-width control stacked with the primary CTA above. */}
               <div className="hidden shrink-0 sm:block">

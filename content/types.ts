@@ -2,7 +2,7 @@
  * Shared content types for the Zlary Fitness site.
  *
  * ---------------------------------------------------------------------------
- * THE `Confirmable` PATTERN — READ THIS BEFORE EDITING CONTENT
+ * THE `Confirmable` PATTERN - READ THIS BEFORE EDITING CONTENT
  * ---------------------------------------------------------------------------
  * A number of facts about the business (certifications, years of experience,
  * client counts, pricing, session frequency…) are NOT known yet. We must never
@@ -90,7 +90,7 @@ export type MediaAsset = {
  *
  * Three rules, all of them load-bearing:
  *   · The encoded files carry NO audio stream at all. `muted` on the element is
- *     the second line of defence, not the first — a hero that can make noise is
+ *     the second line of defence, not the first - a hero that can make noise is
  *     a hero that will eventually make noise.
  *   · `poster` must be a still lifted from the same encode, so the frame that
  *     paints before the video decodes is the frame the video starts on.
@@ -98,7 +98,7 @@ export type MediaAsset = {
  *     text; the video itself is `aria-hidden`. Remove the video files and the
  *     hero degrades to that photograph with nothing else changed.
  *
- * `sources` are ordered best-first — the browser plays the first it supports.
+ * `sources` are ordered best-first - the browser plays the first it supports.
  */
 export type VideoAsset = {
   readonly id: string;
@@ -107,7 +107,7 @@ export type VideoAsset = {
   readonly poster: MediaAsset;
   readonly width: number;
   readonly height: number;
-  /** What the footage is and how it was cut. Never rendered — for whoever recuts it. */
+  /** What the footage is and how it was cut. Never rendered - for whoever recuts it. */
   readonly brief: string;
 };
 
@@ -129,7 +129,7 @@ export type CaseStudy = {
   readonly startingPoint: string;
   readonly obstacle: string;
   readonly approach: string;
-  /** e.g. "6 mois" — only if factual. */
+  /** e.g. "6 mois" - only if factual. */
   readonly duration: string;
   /** Qualitative physical result. No invented measurements. */
   readonly physicalResult: string;
@@ -174,7 +174,7 @@ export type FaqItem = {
   readonly question: string;
   /**
    * `awaiting(...)` questions are hidden from the page AND from FAQPage schema
-   * until Zach supplies a real answer — an empty accordion row would read as a
+   * until Zach supplies a real answer - an empty accordion row would read as a
    * broken site, and schema without a visible answer violates Google's rules.
    */
   readonly answer: Confirmable<string>;

@@ -10,7 +10,7 @@ import { cn } from "@/lib/utils";
  * Reduced header for the funnel routes (/vsl, /apply, /book, /thank-you).
  *
  * Only four controls: wordmark, a small "back", the language switch and the
- * application CTA. The full navigation is deliberately absent — every extra
+ * application CTA. The full navigation is deliberately absent - every extra
  * link on a funnel page is an exit.
  *
  * The language switch is the one addition that earns its place here: these are

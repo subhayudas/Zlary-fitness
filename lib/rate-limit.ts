@@ -3,12 +3,12 @@ import { createHash } from "node:crypto";
 /**
  * Minimal in-memory sliding-window rate limiter.
  *
- * SCOPE / LIMITATIONS — read before relying on this.
+ * SCOPE / LIMITATIONS - read before relying on this.
  * On Vercel each serverless instance keeps its own map, so the effective limit
  * is per-instance rather than global. That is deliberate: for a coaching
  * application form this is enough to stop naive scripted abuse, and it costs
  * nothing. If the form ever becomes a real target, swap the `hit()` body for
- * Upstash Redis or Vercel KV — the call site does not need to change.
+ * Upstash Redis or Vercel KV - the call site does not need to change.
  *
  * IPs are hashed before being used as a key so no raw address is retained.
  */
@@ -17,7 +17,7 @@ type Bucket = { timestamps: number[] };
 
 const buckets = new Map<string, Bucket>();
 
-/** Hard cap on tracked keys — prevents an unbounded map under a flood. */
+/** Hard cap on tracked keys - prevents an unbounded map under a flood. */
 const MAX_KEYS = 5_000;
 
 export type RateLimitResult = {

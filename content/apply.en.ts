@@ -1,5 +1,5 @@
 /**
- * Booking flow — English.
+ * Booking flow - English.
  *
  * ---------------------------------------------------------------------------
  * ONLY LABELS ARE TRANSLATED, NEVER VALUES
@@ -25,9 +25,9 @@ export const optionLabels = {
     other: "Other",
   },
   trainingLevel: {
-    beginner: "Beginner — starting out or starting again",
-    intermediate: "Intermediate — I've been training for a while",
-    advanced: "Advanced — I've trained seriously for years",
+    beginner: "Beginner - starting out or starting again",
+    intermediate: "Intermediate - I've been training for a while",
+    advanced: "Advanced - I've trained seriously for years",
     returning: "Coming back after a long break",
   },
   obstacle: {
@@ -106,7 +106,7 @@ export const applyContent = {
     },
     investmentReadiness: {
       label: "Are you ready to invest in personalized coaching?",
-      hint: "Pricing is discussed on the call. Your answer doesn't affect whether you can book — it only helps Zach prepare the conversation.",
+      hint: "Pricing is discussed on the call. Your answer doesn't affect whether you can book - it only helps Zach prepare the conversation.",
       columns: 1,
     },
   },
@@ -167,17 +167,17 @@ export const applyContent = {
     body: (email: string) =>
       `The invitation is on its way to ${email}, and the appointment is on Zach's calendar.`,
     bodyWithoutEmail:
-      "Your time is booked and on Zach's calendar. The confirmation email couldn't be sent — make a note of the appointment on your side.",
+      "Your time is booked and on Zach's calendar. The confirmation email couldn't be sent - make a note of the appointment on your side.",
     summary: {
       heading: "Your appointment",
-      eventTitle: "Transformation call — Zlary Fitness",
+      eventTitle: "Transformation call - Zlary Fitness",
       when: "When",
       duration: "Length",
       minutes: (minutes: number) => `${minutes} minutes`,
       where: "Where",
-      defaultWhere: "Phone call — Zach calls you on the number you gave.",
+      defaultWhere: "Phone call - Zach calls you on the number you gave.",
       who: "With",
-      coach: "Zach — Zlary Fitness",
+      coach: "Zach - Zlary Fitness",
       contact: "Confirmation sent to",
     },
     addToCalendar: "Add to my calendar",
@@ -208,7 +208,7 @@ export const applyContent = {
     rateLimited: "Too many attempts. Wait a minute before trying again.",
     network: "The connection failed. Check your internet access and try again.",
     slotTaken:
-      "That time was just taken. Pick another one — the calendar is up to date.",
+      "That time was just taken. Pick another one - the calendar is up to date.",
     slotExpired:
       "That time is no longer offered. Pick another one from the calendar.",
   },

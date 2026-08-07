@@ -12,7 +12,7 @@ import { cn } from "@/lib/utils";
  *
  * The in-flow nav is observed directly: once it leaves the viewport the
  * floating island takes over. That is one IntersectionObserver for the whole
- * site — no scroll handler, no resize handler, no layout reads during scroll.
+ * site - no scroll handler, no resize handler, no layout reads during scroll.
  */
 export function SiteHeader({
   locale,

@@ -1,5 +1,5 @@
 -- ============================================================================
--- Zlary Fitness — booking flow
+-- Zlary Fitness - booking flow
 -- ----------------------------------------------------------------------------
 -- Run after 0001:
 --   Supabase Dashboard → SQL Editor → paste → Run
@@ -10,7 +10,7 @@
 -- booked slot, so a lead and its appointment are the same row.
 --
 -- Existing rows are left exactly as they are. The four questions the shorter
--- flow no longer asks simply become nullable — dropping the columns would throw
+-- flow no longer asks simply become nullable - dropping the columns would throw
 -- away answers already given.
 -- ============================================================================
 
@@ -58,8 +58,8 @@ alter table public.coaching_applications
 
 -- Idempotency ------------------------------------------------------------------
 -- 0001 made this index partial (`where submission_id is not null`), which is
--- both unnecessary — Postgres already treats NULLs as distinct in a unique
--- index — and actively harmful: `ON CONFLICT (submission_id)` cannot infer a
+-- both unnecessary - Postgres already treats NULLs as distinct in a unique
+-- index - and actively harmful: `ON CONFLICT (submission_id)` cannot infer a
 -- partial index unless the predicate is repeated, so the retry-safe upsert the
 -- booking route depends on would fail outright. Rebuilt without the predicate.
 drop index if exists public.coaching_applications_submission_id_key;
@@ -90,4 +90,4 @@ create index if not exists coaching_applications_lead_quality_idx
 comment on column public.coaching_applications.slot_start is
   'Start of the booked call, as an instant. Null for the applications taken before the booking flow existed.';
 comment on column public.coaching_applications.lead_quality is
-  'hot | warm | cold — derived from investment readiness and desired timeline. Tags the lead; never gates the booking.';
+  'hot | warm | cold - derived from investment readiness and desired timeline. Tags the lead; never gates the booking.';

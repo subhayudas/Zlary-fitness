@@ -20,7 +20,7 @@ import { defaultLocale, type Locale } from "@/lib/i18n";
  * ---------------------------------------------------------------------------
  * WHY THE SCHEMA IS BUILT RATHER THAN DECLARED
  * ---------------------------------------------------------------------------
- * Only the *messages* vary by language — the fields, the lengths and the
+ * Only the *messages* vary by language - the fields, the lengths and the
  * patterns are identical, and must stay identical, or the two languages would
  * accept different data. So the shape is declared once in `buildSchemas()` and
  * parameterised by a message table.
@@ -98,7 +98,7 @@ function buildSchemas(m: ValidationMessages) {
     );
 
   /* ------------------------------------------------------------------------ */
-  /* Per-section schemas — the flow validates one screen at a time             */
+  /* Per-section schemas - the flow validates one screen at a time             */
   /* ------------------------------------------------------------------------ */
 
   /**
@@ -106,7 +106,7 @@ function buildSchemas(m: ValidationMessages) {
    *
    * `investmentReadiness` is here like any other answer and, deliberately, is
    * not a gate: whatever it says, the visitor reaches the calendar. It tags the
-   * lead so the coach can prepare — it does not decide who gets to talk to him.
+   * lead so the coach can prepare - it does not decide who gets to talk to him.
    */
   const questions = z.object({
     primaryGoal: enumField(primaryGoalOptions),
@@ -144,7 +144,7 @@ function buildSchemas(m: ValidationMessages) {
    * Normalised to `toISOString()` form so the value that reaches the database is
    * the same string the availability endpoint generated, whatever the browser
    * sent. Being a real, free, offered slot is checked in the route against
-   * `lib/schedule.ts` — a shape check cannot know what is still available.
+   * `lib/schedule.ts` - a shape check cannot know what is still available.
    */
   const slot = z.object({
     slotStart: z.preprocess(
@@ -225,7 +225,7 @@ export function getBookingFormSchema(locale: Locale) {
   return schemasByLocale[locale].form;
 }
 
-/** Messages the flow needs outside a field — the calendar's own errors. */
+/** Messages the flow needs outside a field - the calendar's own errors. */
 export function getValidationMessages(locale: Locale): ValidationMessages {
   return messagesByLocale[locale];
 }
@@ -252,8 +252,8 @@ export type BookingFormOutput = z.output<typeof bookingFormSchema>;
 /**
  * The qualifying questions, in the order they are asked.
  *
- * This array *is* the order of the flow's first phase — one question per
- * screen — and `applyContent.questions` in `content/apply.ts` is keyed by the
+ * This array *is* the order of the flow's first phase - one question per
+ * screen - and `applyContent.questions` in `content/apply.ts` is keyed by the
  * same names, so adding a question means adding it in both places.
  */
 export const questionFields = [
@@ -273,6 +273,6 @@ export type QuestionField = (typeof questionFields)[number];
  *
  * `preferredLanguage` is not among them. It is set from the visitor's stored
  * language rather than answered here, so there is no control to focus and
- * nothing a visitor could do about an error on it — it is still validated at
+ * nothing a visitor could do about an error on it - it is still validated at
  * submit, along with every other field.
  */

@@ -77,7 +77,7 @@ export function Footer({ locale }: { locale: Locale }) {
 
       <Rule tone="light" className="my-10 md:my-12" />
 
-      {/* Disclaimer — required, and kept legible rather than hidden in 10px grey. */}
+      {/* Disclaimer - required, and kept legible rather than hidden in 10px grey. */}
       <p className="measure-lg text-pretty text-[0.8125rem] leading-relaxed text-white/50">
         {copy.disclaimer}
       </p>

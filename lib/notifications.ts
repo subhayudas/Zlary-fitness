@@ -23,7 +23,7 @@ import type { BookingData } from "./validation";
 /**
  * Outbound notifications for a booked call.
  *
- * Four things go out, all optional and all independent — a failure in any of
+ * Four things go out, all optional and all independent - a failure in any of
  * them must never fail the request, because the booking is already stored:
  *
  *   · the internal notification, telling Zach who booked and when;
@@ -35,7 +35,7 @@ import type { BookingData } from "./validation";
  * ---------------------------------------------------------------------------
  * Anything addressed to the *applicant* is written in the language they chose
  * on their first visit, carried here as `preferredLanguage`. Anything addressed
- * to Zach stays in French, his own language — it just states which language the
+ * to Zach stays in French, his own language - it just states which language the
  * applicant picked, so the reply goes out in the right one.
  *
  * Resend is called over its REST API rather than through the SDK: one fewer
@@ -71,7 +71,7 @@ export type BookingContext = {
  *
  * `preferredLanguage` is already constrained to the site's locales by the Zod
  * enum, but this is the boundary where a stored value becomes the language a
- * real person is written to — worth one guard rather than a mis-addressed
+ * real person is written to - worth one guard rather than a mis-addressed
  * email if that enum is ever widened.
  */
 function applicantLocale(data: BookingData): Locale {
@@ -131,7 +131,7 @@ function organizerEmail(): string {
   return `contact@${new URL(siteUrl()).host.replace(/^www\./, "")}`;
 }
 
-/** First name only — "Merci Marie." reads like a person wrote it. */
+/** First name only - "Merci Marie." reads like a person wrote it. */
 function firstName(fullName: string): string {
   return fullName.trim().split(/\s+/)[0] || fullName.trim();
 }
@@ -170,7 +170,7 @@ function buildInvite(
     uid: context.uid,
     start: context.start,
     end: context.end,
-    summary: `${site.brand} — ${site.coachFirstName} × ${firstName(data.fullName)}`,
+    summary: `${site.brand} - ${site.coachFirstName} × ${firstName(data.fullName)}`,
     description,
     location: context.location,
     organizer: { name: site.brand, email: organizerEmail() },
@@ -285,7 +285,7 @@ function renderInternalEmail(
 </body></html>`;
 
   const text = [
-    `Nouvel appel réservé — ${data.fullName} (${QUALITY_WORD[quality]})`,
+    `Nouvel appel réservé - ${data.fullName} (${QUALITY_WORD[quality]})`,
     "",
     ...rows.map((row) => `${row.label}: ${row.value}`),
   ].join("\n");
@@ -325,8 +325,8 @@ export async function sendCoachBookingEmail(
         from: FROM_ADDRESS,
         to: recipients(to),
         reply_to: data.email,
-        // Quality mark, name, then when — readable at a glance in a list.
-        subject: `${leadQualityMark[quality]} Appel réservé — ${data.fullName} · ${when} · ${
+        // Quality mark, name, then when - readable at a glance in a list.
+        subject: `${leadQualityMark[quality]} Appel réservé - ${data.fullName} · ${when} · ${
           localeMeta[applicantLocale(data)].short
         }`,
         html,
@@ -341,7 +341,7 @@ export async function sendCoachBookingEmail(
     });
 
     if (!response.ok) {
-      // Status only — never echo the response body, which can contain the payload.
+      // Status only - never echo the response body, which can contain the payload.
       return { sent: false, reason: `Resend a répondu ${response.status}.` };
     }
 
@@ -446,7 +446,7 @@ function renderConfirmation(
     ...(context.eventLink ? [context.eventLink] : []),
     "",
     copy.prepareLabel,
-    ...copy.prepareItems.map((item) => `— ${item}`),
+    ...copy.prepareItems.map((item) => `- ${item}`),
     "",
     `${copy.rescheduleLabel} ${copy.rescheduleBody}`,
     "",
@@ -469,7 +469,7 @@ function renderConfirmation(
  * a member of the public, and Resend's shared `onboarding@resend.dev` sender
  * can only deliver to the account owner. Requiring an explicit, verified sender
  * means nothing goes out to a real applicant until someone has deliberately set
- * one up — no silently swallowed mail, and no unverified domain landing in a
+ * one up - no silently swallowed mail, and no unverified domain landing in a
  * spam folder with the brand on it.
  *
  * The `sent` flag is written to the row and shown on the confirmation screen:
@@ -490,7 +490,7 @@ export async function sendBookingConfirmationEmail(
   const locale = applicantLocale(data);
   const { subject, html, text } = renderConfirmation(data, context, locale);
 
-  // Replies land wherever the internal notification goes — a human inbox.
+  // Replies land wherever the internal notification goes - a human inbox.
   const replyTo = process.env.APPLICATION_NOTIFICATION_EMAIL?.trim();
 
   try {
@@ -564,8 +564,8 @@ export async function sendBookingWebhook(
         submittedAt: new Date().toISOString(),
         /**
          * Lifted out of `data` as well as left inside it: whatever sends the
-         * next message to this person — a CRM sequence, an automation, a human
-         * with a template — needs the language at the top level, not buried in
+         * next message to this person - a CRM sequence, an automation, a human
+         * with a template - needs the language at the top level, not buried in
          * an answer to a question the flow no longer asks.
          */
         locale: applicantLocale(data),

@@ -6,7 +6,7 @@ import { localePath, locales } from "@/lib/i18n";
 /**
  * robots.txt
  *
- * The API route and the two funnel steps are disallowed — they hold no content
+ * The API route and the two funnel steps are disallowed - they hold no content
  * worth indexing, and /book and /thank-you should never appear as an entry
  * point from search.
  *

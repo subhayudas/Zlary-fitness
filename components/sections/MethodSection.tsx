@@ -12,7 +12,7 @@ import type { Locale } from "@/lib/i18n";
  *
  * The shortest section on the page, deliberately. It sits between the offer and
  * the proof, and its whole job is to remove the last uncertainty before the
- * visitor looks at results — what happens after they click, and where it ends.
+ * visitor looks at results - what happens after they click, and where it ends.
  * A visitor who has to scroll to count the steps has already been told the
  * method is complicated.
  *
@@ -20,7 +20,7 @@ import type { Locale } from "@/lib/i18n";
  * across one row, the exit. The heading and the promise share a line rather
  * than stacking, which spends horizontal space the page has instead of vertical
  * space it does not. The sticky heading column, the four large panels and the
- * photograph that used to sit here are gone — none of them said anything the
+ * photograph that used to sit here are gone - none of them said anything the
  * four steps do not.
  */
 export function MethodSection({ locale }: { locale: Locale }) {

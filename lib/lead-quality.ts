@@ -8,7 +8,7 @@ import type { BookingData } from "@/lib/validation";
  * ---------------------------------------------------------------------------
  * Nothing here can stop a booking. The investment-readiness question exists so
  * the coach knows what conversation he is walking into, not so the site can
- * decide who deserves one — someone who answers "not right now" and books
+ * decide who deserves one - someone who answers "not right now" and books
  * anyway is often exactly the person worth half an hour.
  *
  * The value is stored on the row and printed in the internal notification, so a
@@ -18,7 +18,7 @@ import type { BookingData } from "@/lib/validation";
 export type LeadQuality = "hot" | "warm" | "cold";
 
 /**
- * Readiness first, timing second — in that order, because money is the harder
+ * Readiness first, timing second - in that order, because money is the harder
  * of the two to change and timing moves on its own.
  *
  *   ready    + within a month  → hot

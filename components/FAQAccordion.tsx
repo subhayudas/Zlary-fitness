@@ -16,7 +16,7 @@ import { cn } from "@/lib/utils";
  * than `height`, so there is no measurement step and no layout read on every
  * frame. Reduced-motion collapses the transition to nothing.
  *
- * Only questions with a confirmed answer are ever passed in — an accordion row
+ * Only questions with a confirmed answer are ever passed in - an accordion row
  * that opens onto nothing reads as a broken site.
  */
 export function FAQAccordion({

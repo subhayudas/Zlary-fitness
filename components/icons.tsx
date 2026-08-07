@@ -6,7 +6,7 @@ import type { SVGProps } from "react";
  *
  * Deliberately hand-rolled rather than pulled from `@phosphor-icons/react`:
  * the site needs eleven glyphs, and the package ships every icon as a client
- * component — a real cost against the Server-Components-by-default and
+ * component - a real cost against the Server-Components-by-default and
  * minimal-dependency goals. Same visual language, none of the weight.
  *
  * Every icon is decorative by default (`aria-hidden`). Pass a `title` only when

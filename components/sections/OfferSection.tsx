@@ -14,8 +14,8 @@ import type { Locale } from "@/lib/i18n";
 /**
  * The offer, in one block.
  *
- * This section replaces what used to be two separate blocks — "what you build"
- * and "what you receive" — plus the standalone nutrition and qualification
+ * This section replaces what used to be two separate blocks - "what you build"
+ * and "what you receive" - plus the standalone nutrition and qualification
  * sections. Splitting the offer across four screens meant a visitor had to
  * assemble it themselves; here the promise, its three domains and the complete
  * list of what is included are all readable in a single pass.
@@ -37,8 +37,8 @@ export function OfferSection({ locale }: { locale: Locale }) {
     <SectionShell
       id={sectionIds.offer}
       ariaLabelledBy="offer-title"
-      /* This block carries more than any other section — a promise, a scope
-         list, a photograph, eight deliverables and a close — so it takes the
+      /* This block carries more than any other section - a promise, a scope
+         list, a photograph, eight deliverables and a close - so it takes the
          `lg` shell's horizontal padding, which keeps its content column aligned
          with every neighbouring section, on a shorter vertical rhythm. */
       padding="none"
@@ -61,15 +61,15 @@ export function OfferSection({ locale }: { locale: Locale }) {
             {offer.body}
           </p>
 
-          {/* The three domains the coaching covers — the whole scope in a line. */}
+          {/* The three domains the coaching covers - the whole scope in a line. */}
           <div className="mt-6">
             <p className="type-micro text-ink/40">{offer.covers.label}</p>
             <dl className="mt-3 grid gap-px overflow-hidden rounded-card bg-ink/10 sm:grid-cols-3">
               {offer.covers.items.map((item) => (
                 <div
                   key={item.name}
-                  /* Below `sm` the pair reads as one line — name left, detail
-                     right — rather than stacking. Three items stacked cost 220px
+                  /* Below `sm` the pair reads as one line - name left, detail
+                     right - rather than stacking. Three items stacked cost 220px
                      of phone scroll to say what fits in three rows of 43. From
                      `sm` the grid gives each its own column and they stack. */
                   className="flex items-baseline justify-between gap-4 bg-surface-pure px-5 py-3 sm:block sm:py-4"

@@ -7,13 +7,13 @@ import { cn } from "@/lib/utils";
  *
  * Every section ends on one of these and no section ends on two: a button on
  * its own is a click with no reason attached, and two buttons side by side make
- * the visitor choose instead of act. The note is the reason — one line naming
+ * the visitor choose instead of act. The note is the reason - one line naming
  * what happens after the click, written for the section it sits under, never
  * reused between two of them.
  *
  * `layout` is about the space available, not about hierarchy:
- *   · "stack" — note above the button. Narrow columns, sticky rails.
- *   · "row"   — note beside it. Full-width bands and panels.
+ *   · "stack" - note above the button. Narrow columns, sticky rails.
+ *   · "row"   - note beside it. Full-width bands and panels.
  *
  * A Server Component wrapping a Client one: only `PillCTA` reaches the browser,
  * because only the click has to be reported.
@@ -41,7 +41,7 @@ export function SectionCTA({
   eventProps?: AnalyticsProps;
   layout?: "stack" | "row";
   className?: string;
-  /** Subordinate link — a text link, never a second button. */
+  /** Subordinate link - a text link, never a second button. */
   children?: React.ReactNode;
 }) {
   const onLight = variant !== "outline-light";

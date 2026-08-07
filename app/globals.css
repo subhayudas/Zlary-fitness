@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 /* ==========================================================================
-   ZLARY FITNESS — DESIGN SYSTEM
+   ZLARY FITNESS - DESIGN SYSTEM
    --------------------------------------------------------------------------
    A single art-directed system: warm-grey canvas, large rounded white shells,
    acid-lime feature panels, deep petroleum contrast areas, full-bleed
@@ -23,7 +23,7 @@
   --color-ink: #102d3a;
   --color-ink-strong: #092532;
   /* NOTE: the brief suggested #687579, which measures 3.89:1 against the
-     canvas — below the 4.5:1 required for body copy. Darkened to #5A686E,
+     canvas - below the 4.5:1 required for body copy. Darkened to #5A686E,
      which clears AA on canvas (4.63:1), surface (5.33:1) and white (5.68:1)
      while keeping the same cool-grey character. */
   --color-ink-muted: #5a686e;
@@ -41,11 +41,11 @@
   --color-danger: #b4472f;
 
   /* ---- Radii (concentric: inner always < outer) ------------------------ */
-  --radius-shell: 2.25rem; /* 36px — outer section shells */
-  --radius-shell-sm: 1.75rem; /* 28px — mobile shells */
-  --radius-media: 1.5rem; /* 24px — photography, inner cores */
-  --radius-card: 1.25rem; /* 20px — small cards */
-  --radius-chip: 0.875rem; /* 14px — chips */
+  --radius-shell: 2.25rem; /* 36px - outer section shells */
+  --radius-shell-sm: 1.75rem; /* 28px - mobile shells */
+  --radius-media: 1.5rem; /* 24px - photography, inner cores */
+  --radius-card: 1.25rem; /* 20px - small cards */
+  --radius-chip: 0.875rem; /* 14px - chips */
   --radius-pill: 999px;
 
   /* ---- Type ------------------------------------------------------------ */
@@ -142,7 +142,7 @@
 
      The two halves are needed because a single `clamp()` cannot serve both.
      The desktop curves are `clamp(floor, Nvw, ceiling)` and their `Nvw` term
-     does not overtake the floor until the viewport is around 860–950px wide —
+     does not overtake the floor until the viewport is around 860–950px wide -
      so on every phone the whole scale sat frozen at its floor, and those floors
      are display sizes (the hero's is 56px). A 390px screen therefore rendered
      the site at close to its desktop type size, which is what reads as the page
@@ -152,7 +152,7 @@
      same on any phone and the fix is shared.
 
      Each ramp below tops out at exactly the floor of the desktop curve it
-     replaces, and saturates by ~590px at the latest — so the two halves already
+     replaces, and saturates by ~590px at the latest - so the two halves already
      agree well before the 768px handover and nothing above phone width moves. */
 
   .type-hero {
@@ -250,7 +250,7 @@
     font-weight: 450;
   }
 
-  /* Short editorial measure — long lines are the fastest way to look generic. */
+  /* Short editorial measure - long lines are the fastest way to look generic. */
   .measure {
     max-width: 46ch;
   }
@@ -340,7 +340,7 @@
     }
   }
 
-  /* Subtle top highlight — reads as light falling on a physical surface. */
+  /* Subtle top highlight - reads as light falling on a physical surface. */
   .bezel-core-light::before {
     content: "";
     position: absolute;
@@ -597,7 +597,7 @@
       0 0 0 4px rgba(180, 71, 47, 0.16);
   }
 
-  /* Radio / checkbox cards — large, tappable, obviously selectable. */
+  /* Radio / checkbox cards - large, tappable, obviously selectable. */
   .choice-card {
     position: relative;
     display: flex;
@@ -792,7 +792,7 @@
      an answer. Shorter and smaller than `.reveal`: this fires while the visitor
      is looking straight at it, so it acknowledges the answer rather than
      announcing a new section.
-     `both` matters — under reduced motion the global rule cuts the duration to
+     `both` matters - under reduced motion the global rule cuts the duration to
      0.01ms, and without a fill mode the element would settle back to opacity 0. */
   @keyframes question-in {
     from {
@@ -813,7 +813,7 @@
      Two small animations, both scoped to `components/TransformationGallery`.
 
      The knob has no affordance of its own once the visitor has stopped
-     looking at it, so it nudges itself sideways on a long cycle — the same
+     looking at it, so it nudges itself sideways on a long cycle - the same
      signal a physical handle gives by being obviously loose. The gesture hint
      sweep that runs once on first view lives in the component, because it has
      to drive React state rather than paint.
@@ -872,7 +872,7 @@
     transform: scaleX(1);
   }
 
-  /* One word of a heading that assembles word by word. See `StaggeredWords` —
+  /* One word of a heading that assembles word by word. See `StaggeredWords` -
      the words are inline-block atoms wrapping exactly where the plain text did,
      so nothing here can change the height of a heading. */
   .stagger-word {
@@ -1017,7 +1017,7 @@
   /* The colour lives here rather than on a utility class: Tailwind's utilities
      layer outranks this one, so a `text-ink/70` on the element would win over
      the active state no matter how specific this selector got.
-     0.7 measures 5.1:1 on white — the resting state still clears AA on its own,
+     0.7 measures 5.1:1 on white - the resting state still clears AA on its own,
      because a visitor who stops scrolling leaves three rows sitting in it. */
   .statement-copy {
     position: relative;
@@ -1068,7 +1068,7 @@
      dimming the whole frame to protect text that only occupies half of it.
 
      Narrow shells crop the footage so hard that the subject fills it and the
-     copy runs full width — there is no clear side left to protect, so below
+     copy runs full width - there is no clear side left to protect, so below
      `md` this falls back to the standard bottom-weighted scrim. */
   .photo-scrim-hero {
     position: absolute;
@@ -1136,7 +1136,7 @@
      and must stay flat.
 
      The photograph is darkened and desaturated before it is composited, so it
-     can only ever deepen the panel — it never lifts the background luminance
+     can only ever deepen the panel - it never lifts the background luminance
      far enough to put white copy at risk. The mask then fades it out entirely
      across the lower half, which is where the smallest type usually sits. */
 
@@ -1173,7 +1173,7 @@
   }
 
   /* Full-bleed surfaces (the mobile menu) read better with the photograph
-     anchored to the top edge and a longer fade — there is more height to
+     anchored to the top edge and a longer fade - there is more height to
      travel and the type is large enough to take it. */
   .photo-backdrop-tall {
     opacity: 0.32;
@@ -1241,10 +1241,10 @@
     scroll-behavior: auto !important;
   }
 
-  /* Content must be visible immediately — never trapped at opacity 0.
+  /* Content must be visible immediately - never trapped at opacity 0.
      `.reveal` is forced visible here without its `data-visible` ever flipping,
      so anything keyed off that attribute has to be released explicitly or it
-     stays at its resting state forever — invisible words, an undrawn rule. */
+     stays at its resting state forever - invisible words, an undrawn rule. */
   .reveal {
     opacity: 1 !important;
     transform: none !important;
@@ -1259,7 +1259,7 @@
     transform: scaleX(1) !important;
   }
 
-  /* The spotlight itself stays — `data-active` is set by script either way, and
+  /* The spotlight itself stays - `data-active` is set by script either way, and
      with transitions cut it simply switches. Only its nudge is dropped. */
   .statement-row[data-active="true"] .statement-copy,
   .statement-row[data-active="true"] .statement-index {

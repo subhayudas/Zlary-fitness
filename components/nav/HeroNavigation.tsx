@@ -14,7 +14,7 @@ import { cn } from "@/lib/utils";
 /**
  * The in-flow navigation.
  *
- * On the homepage it sits *inside* the hero photograph — transparent, white
+ * On the homepage it sits *inside* the hero photograph - transparent, white
  * wordmark, small centred links, language switch and lime CTA pill on the
  * right, generous top spacing. There is no large opaque bar anywhere on the
  * site.
@@ -23,7 +23,7 @@ import { cn } from "@/lib/utils";
  * that have no photographic hero.
  *
  * The language switch sits to the left of the CTA and is visible at every
- * breakpoint — including mobile, where the rest of the navigation collapses
+ * breakpoint - including mobile, where the rest of the navigation collapses
  * into the menu. Someone who landed on the wrong language should not have to
  * open a menu to fix it.
  */

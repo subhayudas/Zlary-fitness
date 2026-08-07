@@ -1,5 +1,5 @@
 /**
- * VSL copy — English.
+ * VSL copy - English.
  *
  * The video configuration itself (`getVslConfig`) is language-independent: the
  * same file is served in both languages. If a separate English cut is ever
@@ -20,7 +20,7 @@ export const vslContent = {
   cta: { label: "Book my call", href: "/en/?source=vsl#postuler" },
   placeholder: {
     heading: "Presentation coming soon",
-    body: "The video is being prepared. In the meantime you can already book your call — five questions and a time slot, under two minutes, and Zach will tell you on the call whether the coaching fits your situation.",
+    body: "The video is being prepared. In the meantime you can already book your call - five questions and a time slot, under two minutes, and Zach will tell you on the call whether the coaching fits your situation.",
   },
   duration: null as string | null,
   takeaways: {
@@ -34,7 +34,7 @@ export const vslContent = {
       {
         index: "02",
         title: "How the plan is built",
-        body: "Your schedule, your equipment and your actual level determine the program — not a generic template.",
+        body: "Your schedule, your equipment and your actual level determine the program - not a generic template.",
       },
       {
         index: "03",

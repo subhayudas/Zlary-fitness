@@ -15,7 +15,7 @@ import { cn } from "@/lib/utils";
  *
  * Three phases, not eight screens: a list that ticked off every question would
  * make a ninety-second flow look like paperwork. The bar underneath still moves
- * on every answer — see `progress`.
+ * on every answer - see `progress`.
  */
 export function FormProgressPanel({
   locale,
@@ -53,7 +53,7 @@ export function FormProgressPanel({
         </p>
       </div>
 
-      {/* Phase list — desktop only. */}
+      {/* Phase list - desktop only. */}
       <ol className="mt-12 space-y-4">
         {steps.map((entry, index) => {
           const done = index < currentPhase;
@@ -103,7 +103,7 @@ export function FormProgressPanel({
   );
 }
 
-/** Shared progress bar — also used in the compact mobile header. */
+/** Shared progress bar - also used in the compact mobile header. */
 export function ProgressBar({
   progress,
   label,

@@ -1,7 +1,7 @@
 import { localeMeta, type Locale } from "@/lib/i18n";
 
 /**
- * First-visit language chooser — copy.
+ * First-visit language chooser - copy.
  *
  * ---------------------------------------------------------------------------
  * WHY THIS FILE IS BILINGUAL RATHER THAN TWO DICTIONARIES
@@ -10,7 +10,7 @@ import { localeMeta, type Locale } from "@/lib/i18n";
  * by then the language is known. This one is asked *before* it is known, so
  * writing it in one language would mean half the visitors are asked a question
  * they cannot read. Both languages are therefore rendered side by side, and
- * each option is labelled in the language it selects — the only label that is
+ * each option is labelled in the language it selects - the only label that is
  * legible to the person it is aimed at.
  *
  * French is listed first throughout: it is the site's default language and its
@@ -30,7 +30,7 @@ export const languageGate = {
 
   /**
    * Says both things the visitor needs to know before answering: the choice is
-   * kept, and it is not a trap — the FR / EN toggle overwrites it at any time.
+   * kept, and it is not a trap - the FR / EN toggle overwrites it at any time.
    */
   body: {
     fr: "On garde ton choix pour tes prochaines visites et pour le suivi par courriel. Le bouton FR / EN le change à tout moment.",
@@ -44,5 +44,5 @@ export const languageGate = {
   } satisfies Record<Locale, { name: string; action: string }>,
 
   /** Accessible name for the dialog. Bilingual, for the same reason. */
-  dialogLabel: "Choisis ta langue — Choose your language",
+  dialogLabel: "Choisis ta langue - Choose your language",
 } as const;

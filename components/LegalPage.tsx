@@ -19,7 +19,7 @@ type Section = {
 /**
  * Shared layout for /privacy and /terms.
  *
- * Two columns on desktop — a sticky table of contents beside the prose — so a
+ * Two columns on desktop - a sticky table of contents beside the prose - so a
  * legal page still reads as part of the same design system rather than a
  * default document dump.
  */
@@ -93,7 +93,7 @@ export function LegalPage({
                 </p>
               </Reveal>
 
-              {/* Legal-entity details Zach must supply — dev-only markers. */}
+              {/* Legal-entity details Zach must supply - dev-only markers. */}
               <div className="mt-8 space-y-2">
                 {Object.values(legalPlaceholders).map((placeholder, index) =>
                   placeholder.status === "awaiting" ? (

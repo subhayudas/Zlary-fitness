@@ -10,7 +10,7 @@ import { localeMeta, locales, type Locale } from "@/lib/i18n";
  * JSON-LD structured data.
  *
  * Deliberately conservative. There is no `AggregateRating`, no `Review`, no
- * `Offer` with a price, and no address or `areaServed` claim — every one of
+ * `Offer` with a price, and no address or `areaServed` claim - every one of
  * those would require facts that have not been verified, and inventing them is
  * both a Google policy violation and a consumer-protection problem.
  *

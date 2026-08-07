@@ -1,6 +1,6 @@
 import type { MethodStep } from "./types";
 
-/** The four coaching steps — English. Order is meaningful: it drives the step row. */
+/** The four coaching steps - English. Order is meaningful: it drives the step row. */
 export const methodSteps: readonly MethodStep[] = [
   {
     index: "01",

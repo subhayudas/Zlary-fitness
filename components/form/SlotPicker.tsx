@@ -12,7 +12,7 @@ import { browserTimeZone, formatTimeZoneLabel } from "@/lib/utils";
 /**
  * The calendar step.
  *
- * A date rail and a grid of times, drawn from `/api/availability` — the site's
+ * A date rail and a grid of times, drawn from `/api/availability` - the site's
  * own schedule rather than a framed third-party widget. That matters for more
  * than aesthetics: an iframe cannot be told which questions were just answered,
  * cannot hand the answers back, and cannot be styled, so a booking made inside
@@ -31,8 +31,8 @@ import { browserTimeZone, formatTimeZoneLabel } from "@/lib/utils";
  * honest: the days come back grouped by the coach's calendar, so formatting them
  * in anybody else's would eventually print a Tuesday under Monday.
  *
- * Availability is read once per mount. When the flow needs a fresh list — after
- * losing a slot to somebody faster — it remounts this with a new `key` rather
+ * Availability is read once per mount. When the flow needs a fresh list - after
+ * losing a slot to somebody faster - it remounts this with a new `key` rather
  * than passing a token in, so "start again" is expressed as a new component
  * instead of as an effect watching a prop.
  */
@@ -81,7 +81,7 @@ export function SlotPicker({
   const [attempt, setAttempt] = useState(0);
 
   // Held in a ref so re-reading availability never re-runs on a new callback
-  // identity — the parent re-renders on every keystroke of the flow.
+  // identity - the parent re-renders on every keystroke of the flow.
   const onLoadedRef = useRef(onLoaded);
   useEffect(() => {
     onLoadedRef.current = onLoaded;
@@ -239,7 +239,7 @@ export function SlotPicker({
 
   const zoneLabel = formatTimeZoneLabel(day.slots[0].start, zone, intl);
 
-  /* The visitor's own zone, shown only when it genuinely differs — an identical
+  /* The visitor's own zone, shown only when it genuinely differs - an identical
      second line reads as a mistake rather than as reassurance. */
   const local = browserTimeZone();
   const localNote =

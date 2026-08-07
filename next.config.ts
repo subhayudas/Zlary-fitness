@@ -6,7 +6,7 @@ import type { NextConfig } from "next";
  * No full Content-Security-Policy is set here: the site loads GTM / GA / Meta
  * Pixel conditionally at runtime, and a CSP written against tags that may or
  * may not be enabled is the kind that gets switched off the first time
- * something breaks. Once the analytics stack is fixed, add a nonce-based CSP —
+ * something breaks. Once the analytics stack is fixed, add a nonce-based CSP -
  * see the README.
  */
 const securityHeaders = [
@@ -35,7 +35,7 @@ const nextConfig: NextConfig = {
     imageSizes: [200, 256, 320, 384, 512],
     // Every `quality` passed to <Image> must be listed here or Next 16 refuses
     // it and silently falls back to 75. 82 is the foreground photography,
-    // 55 the blurred background plates — see components/ui/MediaFrame.tsx.
+    // 55 the blurred background plates - see components/ui/MediaFrame.tsx.
     qualities: [55, 75, 82],
     // All photography is served from /public. Add a `remotePatterns` entry
     // here if images ever move to a CDN or a headless CMS.
@@ -48,7 +48,7 @@ const nextConfig: NextConfig = {
   /**
    * The application form used to be a page of its own. It is now a section of
    * the homepage, so /apply is a permanent redirect into that section rather
-   * than a route — every ad, email and Instagram link already pointing at it
+   * than a route - every ad, email and Instagram link already pointing at it
    * keeps working.
    *
    * Redirects run before `proxy.ts`, so the unprefixed French path is matched

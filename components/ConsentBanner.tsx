@@ -10,7 +10,7 @@ import { useLanguagePreference } from "@/lib/use-language-preference";
 /**
  * Consent banner for measurement tags.
  *
- * Only renders when at least one analytics id is configured — a site with no
+ * Only renders when at least one analytics id is configured - a site with no
  * tags has nothing to ask about, and a decorative cookie banner is pure noise.
  *
  * "Refuser" is given the same visual weight as "Accepter": a decline button

@@ -2,7 +2,7 @@ import type { NavLink } from "./types";
 import { site } from "./site";
 
 /**
- * Primary navigation — English.
+ * Primary navigation - English.
  *
  * Section anchors keep their French ids (`#methode`, `#postuler`): the id is a
  * DOM identifier shared by both languages, not user-facing copy. Translating it
@@ -34,7 +34,7 @@ export const footerNav = {
     { label: "FAQ", href: "/en/#faq" },
   ],
   /* Two entries, not three. "Apply" and "Book a call" were separate links to
-     the same place — `/book` only redirects to `#postuler` — so the column
+     the same place - `/book` only redirects to `#postuler` - so the column
      offered a choice that did not exist. */
   funnel: [
     { label: "Watch the presentation", href: "/en/vsl" },

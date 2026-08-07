@@ -38,8 +38,8 @@ export function getSupabaseAdmin(): SupabaseStatus {
 }
 
 /**
- * One row per lead, and — since the funnel ends on a booked slot rather than on
- * a form — that row now carries the appointment too. The table keeps its
+ * One row per lead, and - since the funnel ends on a booked slot rather than on
+ * a form - that row now carries the appointment too. The table keeps its
  * original name so the history stays in one place.
  */
 export const APPLICATIONS_TABLE = "coaching_applications";

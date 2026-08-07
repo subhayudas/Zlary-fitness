@@ -9,7 +9,7 @@ import { cn } from "@/lib/utils";
 /**
  * Form controls.
  *
- * Labels are always above the input — floating labels disappear the moment a
+ * Labels are always above the input - floating labels disappear the moment a
  * field has a value, which is exactly when someone reviewing a long form needs
  * them. Errors are announced with `role="alert"` and wired to the input through
  * `aria-describedby` + `aria-invalid`.
@@ -49,7 +49,7 @@ type BaseFieldProps = {
   optional?: boolean;
   /**
    * Rendered beside the label when `optional` is set. Passed in rather than
-   * read from a dictionary here so these controls stay language-agnostic — they
+   * read from a dictionary here so these controls stay language-agnostic - they
    * already receive every other string from their caller.
    */
   optionalLabel?: string;
@@ -139,7 +139,7 @@ export function TextAreaField({
 
 /**
  * Radio group rendered as large selectable cards.
- * A real <fieldset>/<legend> with native radios — keyboard arrow navigation and
+ * A real <fieldset>/<legend> with native radios - keyboard arrow navigation and
  * screen-reader grouping come for free.
  */
 export function ChoiceField({
@@ -163,7 +163,7 @@ export function ChoiceField({
    *
    * The card, not the radio: the radio is `sr-only`, so the element a press
    * actually lands on is this label. Keyboard activation still reaches it, by
-   * bubbling up from the radio, and is told apart by `detail` — 0 from the
+   * bubbling up from the radio, and is told apart by `detail` - 0 from the
    * keyboard, 1 or more from a pointer.
    */
   onChoose?: MouseEventHandler<HTMLLabelElement>;
@@ -272,7 +272,7 @@ export function FieldLabel({
 /**
  * Honeypot.
  *
- * Hidden from sight, from the tab order and from assistive tech — a human
+ * Hidden from sight, from the tab order and from assistive tech - a human
  * cannot fill it, so any value means the submission is automated.
  * Not `display:none`: some bots skip fields that are display-none.
  */

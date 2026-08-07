@@ -1,5 +1,5 @@
 /**
- * Interface strings — English. Mirrors `ui.ts` key for key.
+ * Interface strings - English. Mirrors `ui.ts` key for key.
  */
 export const ui = {
   common: {
@@ -40,7 +40,7 @@ export const ui = {
     honeypotLabel: "Do not fill in this field",
     progressLabel: "Form progress",
     stepOf: (current: number, total: number) => `Step ${current} of ${total}`,
-    stepNamed: (current: number, title: string) => `Step ${current} — ${title}`,
+    stepNamed: (current: number, title: string) => `Step ${current} - ${title}`,
     questionOf: (current: number, total: number) =>
       `Question ${current} / ${total}`,
     privacyLink: "Privacy policy",
@@ -55,7 +55,7 @@ export const ui = {
     sectionLabel: "Transformations",
     emptyHeading: "No transformation is published yet.",
     emptyBody:
-      "A client's results are only shown once written consent has been given — for the photos as much as for their words. This page will fill up as those permissions come in. In the meantime, the daily content is on Instagram.",
+      "A client's results are only shown once written consent has been given - for the photos as much as for their words. This page will fill up as those permissions come in. In the meantime, the daily content is on Instagram.",
     ctaHeading: "The next journey could be yours.",
     ctaBody:
       "Answer a few questions to see whether the coaching fits your situation.",

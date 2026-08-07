@@ -2,7 +2,7 @@
  * Privacy-conscious analytics abstraction.
  *
  * Nothing loads and nothing is tracked until the visitor grants consent via the
- * banner. `track()` is safe to call from anywhere — on the server, before
+ * banner. `track()` is safe to call from anywhere - on the server, before
  * consent, or with no provider configured, it is a no-op.
  *
  * Providers are all optional and enabled purely by the presence of their id:
@@ -25,7 +25,7 @@ export type AnalyticsEvent =
   | "vsl_progress"
   /**
    * The booking funnel, in order: the flow opens, each phase completes, and it
-   * ends on `booking_complete` — which now fires only once a slot is genuinely
+   * ends on `booking_complete` - which now fires only once a slot is genuinely
    * reserved, not merely once a form was sent.
    */
   | "booking_start"
@@ -66,7 +66,7 @@ export function readConsent(): ConsentState {
     const raw = window.localStorage.getItem(CONSENT_STORAGE_KEY);
     return raw === "granted" || raw === "denied" ? raw : "unknown";
   } catch {
-    // Private browsing / storage disabled — treat as "not yet decided".
+    // Private browsing / storage disabled - treat as "not yet decided".
     return "unknown";
   }
 }
@@ -93,7 +93,7 @@ const META_STANDARD: Partial<Record<AnalyticsEvent, string>> = {
 
 /**
  * Record an event. Silently does nothing without consent or configuration.
- * Never throws — analytics must not be able to break a conversion path.
+ * Never throws - analytics must not be able to break a conversion path.
  */
 export function track(event: AnalyticsEvent, props: AnalyticsProps = {}) {
   if (typeof window === "undefined") return;
@@ -148,7 +148,7 @@ const ATTRIBUTION_KEY = "zlary.attribution.v1";
  * Reads UTM parameters from the current URL and remembers them for the session,
  * so attribution survives the /vsl → /apply hop.
  *
- * Attribution is stored in sessionStorage and submitted with the form body —
+ * Attribution is stored in sessionStorage and submitted with the form body -
  * it is never appended to a URL, so no lead data ends up in a query string or
  * a server access log.
  */
@@ -179,7 +179,7 @@ export function captureAttribution(): Attribution {
         fresh.referrer = document.referrer.slice(0, 500);
       }
     } catch {
-      /* Malformed referrer — ignore. */
+      /* Malformed referrer - ignore. */
     }
   }
 

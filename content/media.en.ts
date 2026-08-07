@@ -1,8 +1,8 @@
 /**
- * Photography alt text — English.
+ * Photography alt text - English.
  *
  * Only `alt` is translated. `brief`, `recommended` and `focal` are production
- * notes for whoever shoots or re-crops the photography — they are shown in the
+ * notes for whoever shoots or re-crops the photography - they are shown in the
  * development-only placeholder card and never to a visitor, so they stay in
  * French alongside the rest of the shoot direction.
  *
@@ -25,6 +25,6 @@ export const mediaAlt = {
     "Zach facing the camera, explaining the Zlary Fitness coaching method.",
   "results-hero":
     "A group session underway in the gym where Zlary Fitness coaching takes place.",
-  "og-image": "Zlary Fitness — online fitness and nutrition coaching.",
+  "og-image": "Zlary Fitness - online fitness and nutrition coaching.",
   "hero-beach-run-poster": "A runner training on a beach at sunrise.",
 };

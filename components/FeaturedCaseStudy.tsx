@@ -9,7 +9,7 @@ import { cn } from "@/lib/utils";
 /**
  * The lead transformation: photography on the left, the story on the right.
  *
- * Every field is optional-by-omission rather than filled with a placeholder —
+ * Every field is optional-by-omission rather than filled with a placeholder -
  * if a client did not supply a quote, no empty quote block is rendered.
  */
 export function FeaturedCaseStudy({

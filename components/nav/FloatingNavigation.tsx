@@ -14,7 +14,7 @@ import { cn } from "@/lib/utils";
  * The compact navigation island that appears once the in-flow nav scrolls away.
  *
  * Detached from every viewport edge, pill-shaped, and translucent over a small
- * area only — a full-width blurred bar would force the compositor to re-blur
+ * area only - a full-width blurred bar would force the compositor to re-blur
  * the whole scrolling page on every frame.
  *
  * Visibility is driven by an IntersectionObserver in `SiteHeader`, never by a
@@ -100,7 +100,7 @@ export function FloatingNavigation({
 
           {/* `shrink-0` keeps this a 44px circle. Without it the base
               `* { min-width: 0 }` lets flex squeeze it to an ellipse well under
-              the minimum tap target — 25px wide at 320. */}
+              the minimum tap target - 25px wide at 320. */}
           <button
             type="button"
             onClick={onOpenMenu}

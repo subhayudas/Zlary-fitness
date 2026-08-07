@@ -1,5 +1,5 @@
 /**
- * Legal pages — English.
+ * Legal pages - English.
  *
  * ---------------------------------------------------------------------------
  * NOT LEGAL ADVICE. HAVE BOTH LANGUAGE VERSIONS REVIEWED BEFORE LAUNCH.
@@ -8,7 +8,7 @@
  * what the site actually does. The French version remains the reference text:
  * the business operates in Québec, and Law 25 / PIPEDA compliance is assessed
  * against it. If a lawyer changes one version, the other must be changed to
- * match — a privacy policy that says two different things in two languages is
+ * match - a privacy policy that says two different things in two languages is
  * worse than one that only exists in one.
  *
  * Section `id`s are shared with the French file: they anchor the table of
@@ -27,7 +27,7 @@ export const privacyContent = {
       id: "collecte",
       title: "Information collected",
       paragraphs: [
-        "The only form on the site is the call booking form. It collects: your name, your email address, your phone number, the language you chose for follow-up, the time slot you pick, and your answers to five questions — your main goal, where you are with your training, what has held you back so far, when you would like to start, and whether you are ready to invest in personalized coaching.",
+        "The only form on the site is the call booking form. It collects: your name, your email address, your phone number, the language you chose for follow-up, the time slot you pick, and your answers to five questions - your main goal, where you are with your training, what has held you back so far, when you would like to start, and whether you are ready to invest in personalized coaching.",
         "The form also records technical data related to your visit: the referring page, the campaign parameters present in the address (utm_source, utm_medium, utm_campaign, utm_content, utm_term), which page you started the booking from, and the submission date.",
         "No health information is requested: no medical history, no injuries, no medication, no weight, no body measurements. There is no free-text field in the form.",
       ],
@@ -174,7 +174,7 @@ export const thankYouContent = {
       {
         index: "02",
         title: "Add the call to your calendar",
-        body: "Your confirmation email carries the appointment as an attachment — open it to add the call to your calendar. Check your spam folder if you don't see it.",
+        body: "Your confirmation email carries the appointment as an attachment - open it to add the call to your calendar. Check your spam folder if you don't see it.",
       },
       {
         index: "03",
@@ -191,7 +191,7 @@ export const thankYouContent = {
       "Note what derailed your previous attempts.",
     ],
   },
-  /* Not "haven't booked yet — that's the last step". Picking a time is step 2
+  /* Not "haven't booked yet - that's the last step". Picking a time is step 2
      of 3, and nothing is booked at all until the whole flow is finished, so the
      only person who reaches this page unbooked is someone who left partway. */
   notBooked: {

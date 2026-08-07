@@ -1,7 +1,7 @@
 import { confirmed } from "./types";
 
 /**
- * Site-level copy — English.
+ * Site-level copy - English.
  *
  * Only the strings a visitor actually reads are translated. Brand name, handles,
  * URLs and the `awaiting(...)` notes (which are instructions to Zach, shown in

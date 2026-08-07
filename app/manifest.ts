@@ -3,7 +3,7 @@ import { site } from "@/content/site";
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: `${site.brand} — Coaching fitness et nutrition en ligne`,
+    name: `${site.brand} - Coaching fitness et nutrition en ligne`,
     short_name: site.brand,
     description: site.positioning,
     start_url: "/",

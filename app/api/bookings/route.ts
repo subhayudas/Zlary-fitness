@@ -23,12 +23,12 @@ import { bookingSchema, type BookingData } from "@/lib/validation";
  *
  * Contract: this endpoint returns `{ ok: true }` if and only if the slot was
  * actually reserved in the database. It never reports success for a booking
- * that was dropped — a false confirmation means someone shows up to a call that
+ * that was dropped - a false confirmation means someone shows up to a call that
  * does not exist, which is worse than any error message.
  *
  * Order of operations, and why it is that order:
  *
- *   1. reserve the slot in the database — the record, and the thing that stops
+ *   1. reserve the slot in the database - the record, and the thing that stops
  *      a second person taking it;
  *   2. put it on the coach's calendar;
  *   3. send the confirmation and the invitation;
@@ -54,7 +54,7 @@ const isDev = process.env.NODE_ENV === "development";
 
 /**
  * Development-only logging.
- * Deliberately never logs the booking body — a full lead record in a log
+ * Deliberately never logs the booking body - a full lead record in a log
  * aggregator is a data-retention problem nobody signed up for.
  */
 function devLog(message: string, detail?: Record<string, unknown>) {
@@ -114,7 +114,7 @@ export async function POST(request: Request) {
 
   const parsed = bookingSchema.safeParse(json);
   if (!parsed.success) {
-    // Field names only — never the submitted values.
+    // Field names only - never the submitted values.
     devLog("validation failed", {
       fields: parsed.error.issues.map((issue) => issue.path.join(".")),
     });
@@ -165,7 +165,7 @@ export async function POST(request: Request) {
 
   if (!supabase.configured) {
     devLog(
-      "Supabase is not configured — the booking was NOT stored. " +
+      "Supabase is not configured - the booking was NOT stored. " +
         "Set NEXT_PUBLIC_SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY.",
       { reason: supabase.reason },
     );
@@ -223,7 +223,7 @@ export async function POST(request: Request) {
      * The unique index on `slot_start` is the real guard against two people
      * booking the same minute: both requests can read "free" before either
      * writes. Losing that race is not an error the visitor caused, so it is
-     * answered with the one thing they can act on — pick another time.
+     * answered with the one thing they can act on - pick another time.
      */
     if (error.code === UNIQUE_VIOLATION) {
       devLog("slot taken between the check and the write");
@@ -240,7 +240,7 @@ export async function POST(request: Request) {
 
   /* ---- The coach's calendar (best effort) ------------------------------- */
   const event = await createCalendarEvent({
-    summary: `${site.brand} — ${site.coachFirstName} × ${data.fullName}`,
+    summary: `${site.brand} - ${site.coachFirstName} × ${data.fullName}`,
     description: [
       `Objectif : ${data.primaryGoal}`,
       `Niveau : ${data.trainingLevel}`,
@@ -269,7 +269,7 @@ export async function POST(request: Request) {
 
   /* ---- Notifications (best effort, never blocking the result) ----------
      The confirmation goes out in the applicant's own language, with the
-     invitation attached — see `lib/notifications.ts`. */
+     invitation attached - see `lib/notifications.ts`. */
   const [coachEmail, confirmation, webhook] = await Promise.all([
     sendCoachBookingEmail(data, context),
     sendBookingConfirmationEmail(data, context),

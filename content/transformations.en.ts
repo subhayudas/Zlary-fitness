@@ -1,5 +1,5 @@
 /**
- * Client transformation alt text — English.
+ * Client transformation alt text - English.
  *
  * Only `alt` is translated, exactly as in `media.en.ts`: `brief`,
  * `recommended` and `focal` are production notes for whoever re-crops the

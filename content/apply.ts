@@ -1,5 +1,5 @@
 /**
- * Booking flow — questions, options and screen copy.
+ * Booking flow - questions, options and screen copy.
  *
  * The option `value`s are stored in the database and used by the Zod schema in
  * `lib/validation.ts`, so changing a value is a breaking change. Changing a
@@ -21,7 +21,7 @@ export type Option = { readonly value: string; readonly label: string };
 /**
  * The applicant's language.
  *
- * No longer asked in the flow — it is whatever the visitor chose in the
+ * No longer asked in the flow - it is whatever the visitor chose in the
  * language chooser on their first visit (see `lib/language-preference.ts`), and
  * `components/form/FollowUpLanguage.tsx` shows it back to them.
  *
@@ -45,9 +45,9 @@ export const primaryGoalOptions = [
 ] as const satisfies readonly Option[];
 
 export const trainingLevelOptions = [
-  { value: "beginner", label: "Débutant — je commence ou je reprends" },
-  { value: "intermediate", label: "Intermédiaire — je m'entraîne depuis un moment" },
-  { value: "advanced", label: "Avancé — je m'entraîne sérieusement depuis des années" },
+  { value: "beginner", label: "Débutant - je commence ou je reprends" },
+  { value: "intermediate", label: "Intermédiaire - je m'entraîne depuis un moment" },
+  { value: "advanced", label: "Avancé - je m'entraîne sérieusement depuis des années" },
   { value: "returning", label: "Je reprends après une longue pause" },
 ] as const satisfies readonly Option[];
 
@@ -89,7 +89,7 @@ export const applyContent = {
    *
    * The five questions are one phase, not five steps: a progress list that
    * counted every question would make a ninety-second flow look like a form.
-   * The questions still advance the bar individually — see `BookingFlow`.
+   * The questions still advance the bar individually - see `BookingFlow`.
    *
    * Contact is last on purpose, and after the calendar. Asking for a name and a
    * phone number before anything else is the highest-friction way to open a
@@ -124,7 +124,7 @@ export const applyContent = {
 
   /**
    * The qualifying questions, keyed by the field they fill. The *order* they are
-   * asked in lives in `questionFields` in `lib/validation.ts` — one list, so the
+   * asked in lives in `questionFields` in `lib/validation.ts` - one list, so the
    * order and the validation can never drift apart.
    */
   questions: {
@@ -149,11 +149,11 @@ export const applyContent = {
       label: "Es-tu prêt à investir dans un accompagnement personnalisé?",
       /**
        * The reassurance is the point of the question. It tags the lead so Zach
-       * knows which conversation he is walking into — it does not decide who
+       * knows which conversation he is walking into - it does not decide who
        * gets to book, and saying so out loud is what keeps the honest answer
        * honest.
        */
-      hint: "Le tarif est présenté pendant l'appel. Ta réponse ne change rien à ta possibilité de réserver — elle aide seulement Zach à préparer la discussion.",
+      hint: "Le tarif est présenté pendant l'appel. Ta réponse ne change rien à ta possibilité de réserver - elle aide seulement Zach à préparer la discussion.",
       columns: 1,
     },
   },
@@ -192,7 +192,7 @@ export const applyContent = {
 
   /**
    * Replaces the old "Langue préférée" question. The language is already known
-   * — it is the one chosen on the first visit — so it is stated, not asked.
+   * - it is the one chosen on the first visit - so it is stated, not asked.
    * `{language}` arrives already translated, from `languageLabel()`.
    */
   followUpLanguage: {
@@ -216,7 +216,7 @@ export const applyContent = {
   /** Shown under the confirm button rather than as a checkbox to tick. */
   consentNote: "En confirmant, tu acceptes d'être contacté au sujet de cet appel.",
 
-  /** The final screen. Not a step — the flow is over by the time it appears. */
+  /** The final screen. Not a step - the flow is over by the time it appears. */
   confirmation: {
     eyebrow: "APPEL CONFIRMÉ",
     heading: (firstName: string) => `C'est réservé, ${firstName}.`,
@@ -224,18 +224,18 @@ export const applyContent = {
       `L'invitation est partie vers ${email} et le rendez-vous est inscrit dans l'agenda de Zach.`,
     /** When the confirmation email could not go out, the screen says so. */
     bodyWithoutEmail:
-      "Ton créneau est réservé et inscrit dans l'agenda de Zach. La confirmation par courriel n'a pas pu partir — note le rendez-vous de ton côté.",
+      "Ton créneau est réservé et inscrit dans l'agenda de Zach. La confirmation par courriel n'a pas pu partir - note le rendez-vous de ton côté.",
     summary: {
       heading: "Ton rendez-vous",
       /** Title of the entry the visitor downloads into their own calendar. */
-      eventTitle: "Appel transformation — Zlary Fitness",
+      eventTitle: "Appel transformation - Zlary Fitness",
       when: "Quand",
       duration: "Durée",
       minutes: (minutes: number) => `${minutes} minutes`,
       where: "Où",
-      defaultWhere: "Appel téléphonique — Zach t'appelle au numéro fourni.",
+      defaultWhere: "Appel téléphonique - Zach t'appelle au numéro fourni.",
       who: "Avec",
-      coach: "Zach — Zlary Fitness",
+      coach: "Zach - Zlary Fitness",
       contact: "Confirmation envoyée à",
     },
     addToCalendar: "Ajouter à mon calendrier",
@@ -268,7 +268,7 @@ export const applyContent = {
     network: "La connexion a échoué. Vérifie ton accès Internet et réessaie.",
     /** The one error the visitor can actually fix, so it says what to do. */
     slotTaken:
-      "Ce créneau vient d'être réservé. Choisis-en un autre — le calendrier est à jour.",
+      "Ce créneau vient d'être réservé. Choisis-en un autre - le calendrier est à jour.",
     slotExpired:
       "Ce créneau n'est plus proposé. Choisis-en un autre dans le calendrier.",
   },
@@ -281,7 +281,7 @@ export const applyContent = {
 /**
  * Swaps in translated labels while keeping every `value` exactly as declared
  * above. An unknown key falls back to the French label rather than rendering an
- * empty option — a blank radio is worse than an untranslated one.
+ * empty option - a blank radio is worse than an untranslated one.
  */
 function localizeOptions(
   options: readonly Option[],

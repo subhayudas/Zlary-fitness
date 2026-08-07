@@ -48,7 +48,7 @@ export function MobileMenu({
   const t = getUi(locale);
 
   /**
-   * Closing always returns focus to the control that opened the menu — never
+   * Closing always returns focus to the control that opened the menu - never
    * to <body>. Done here rather than in the effect's cleanup so the ref is read
    * at the moment of the interaction, not after React has torn the effect down.
    */
@@ -121,7 +121,7 @@ export function MobileMenu({
       hidden={!open}
       className={cn(
         "fixed inset-0 z-[60] flex flex-col bg-ink-strong text-surface-pure on-dark lg:hidden",
-        // Animate opacity only — the panel is full-bleed so nothing shifts.
+        // Animate opacity only - the panel is full-bleed so nothing shifts.
         "transition-opacity duration-500 ease-editorial",
         open ? "opacity-100" : "pointer-events-none opacity-0",
       )}

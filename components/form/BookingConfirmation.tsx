@@ -67,7 +67,7 @@ export function BookingConfirmation({
   );
   const zone = formatTimeZoneLabel(booking.start, booking.timeZone, intl);
 
-  /* The visitor's own zone, only when it differs — see `SlotPicker`. */
+  /* The visitor's own zone, only when it differs - see `SlotPicker`. */
   const local = browserTimeZone();
   const localNote =
     local && local !== booking.timeZone
@@ -83,7 +83,7 @@ export function BookingConfirmation({
 
   /**
    * A downloadable copy of the appointment, built in the browser from the same
-   * module the confirmation email uses — one implementation of the format, so
+   * module the confirmation email uses - one implementation of the format, so
    * the file someone downloads and the file they are emailed cannot disagree.
    *
    * `PUBLISH`, not `REQUEST`: this is the visitor adding an entry to their own

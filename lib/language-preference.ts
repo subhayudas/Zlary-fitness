@@ -16,7 +16,7 @@ import { isLocale, type Locale } from "@/lib/i18n";
  *     language after hydration, which means a flash of the wrong language on
  *     every single visit.
  *
- * Cookies do expire — Chrome caps them at 400 days — so `refreshLanguageCookie`
+ * Cookies do expire - Chrome caps them at 400 days - so `refreshLanguageCookie`
  * re-stamps it from localStorage on every visit. As long as someone comes back
  * within the year, the cookie never lapses; if it ever does, localStorage still
  * has the answer and immediately writes it back.
@@ -29,7 +29,7 @@ import { isLocale, type Locale } from "@/lib/i18n";
 /** Versioned so a future format change cannot be read as a valid old value. */
 export const LANGUAGE_STORAGE_KEY = "zlary.locale.v1";
 
-/** Read by `proxy.ts`. Deliberately short — it travels on every request. */
+/** Read by `proxy.ts`. Deliberately short - it travels on every request. */
 export const LANGUAGE_COOKIE = "zlary_locale";
 
 /** Fired on write so every mounted component re-reads in the same tick. */
@@ -57,7 +57,7 @@ function writeCookie(locale: Locale) {
   if (typeof document === "undefined") return;
 
   // `SameSite=Lax` is what lets the cookie ride along on a top-level navigation
-  // from an ad or an Instagram link — the exact visit that needs it most.
+  // from an ad or an Instagram link - the exact visit that needs it most.
   const secure = window.location.protocol === "https:" ? "; Secure" : "";
   document.cookie =
     `${LANGUAGE_COOKIE}=${locale}; Path=/; Max-Age=${COOKIE_MAX_AGE}` +
@@ -77,7 +77,7 @@ export function readLanguagePreference(): Locale | null {
     const stored = normalize(window.localStorage.getItem(LANGUAGE_STORAGE_KEY));
     if (stored) return stored;
   } catch {
-    /* Storage unavailable — the cookie below is the fallback. */
+    /* Storage unavailable - the cookie below is the fallback. */
   }
 
   return readCookie();

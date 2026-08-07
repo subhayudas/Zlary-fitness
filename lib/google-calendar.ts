@@ -14,8 +14,8 @@ import { createSign } from "node:crypto";
  * WHY NO SDK
  * ---------------------------------------------------------------------------
  * `googleapis` is a very large dependency for two endpoints and one signature.
- * A service-account grant is a signed JWT exchanged for an access token — about
- * forty lines with `node:crypto` — and the rest is `fetch`.
+ * A service-account grant is a signed JWT exchanged for an access token - about
+ * forty lines with `node:crypto` - and the rest is `fetch`.
  *
  * ---------------------------------------------------------------------------
  * SETUP
@@ -36,7 +36,7 @@ import { createSign } from "node:crypto";
  * ---------------------------------------------------------------------------
  * ATTENDEES
  * ---------------------------------------------------------------------------
- * A plain service account cannot add attendees to an event — Google rejects it
+ * A plain service account cannot add attendees to an event - Google rejects it
  * unless the account has domain-wide delegation. So the applicant is invited by
  * the `.ics` attachment on their confirmation email (see `lib/ics.ts`), which
  * works from any sender and in every mail client. On Google Workspace, setting
@@ -181,7 +181,7 @@ export type BusyInterval = { start: number; end: number };
 /**
  * The coach's committed time between two instants.
  *
- * Returns `null` — not `[]` — when Google cannot be reached. The difference
+ * Returns `null` - not `[]` - when Google cannot be reached. The difference
  * matters: an empty array means "free all week", and a network blip must never
  * be allowed to say that. Callers fall back to the bookings table alone and
  * accept the small risk of a clash over the certainty of an empty calendar.

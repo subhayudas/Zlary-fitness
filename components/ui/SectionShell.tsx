@@ -7,7 +7,7 @@ import { cn } from "@/lib/utils";
  * The large rounded section shell that every homepage block sits inside.
  *
  * Construction is always the same: a canvas-tinted outer bezel wrapping a
- * concentric inner core. Nothing here uses a drop shadow — depth comes from the
+ * concentric inner core. Nothing here uses a drop shadow - depth comes from the
  * tonal step between canvas, bezel and core, plus a 1px inset ring.
  */
 
@@ -49,7 +49,7 @@ export function SectionShell({
   ariaLabel,
   /**
    * Optional photographic texture behind the shell. Reserved for the `ink`
-   * tone — the light tones have no contrast headroom. See `PhotoBackdrop`.
+   * tone - the light tones have no contrast headroom. See `PhotoBackdrop`.
    */
   backdrop,
   backdropSizes,

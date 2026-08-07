@@ -2,7 +2,7 @@ import type { Locale } from "@/lib/i18n";
 import { ui as en } from "./ui.en";
 
 /**
- * Interface strings — French.
+ * Interface strings - French.
  *
  * Everything a visitor can read that is not page copy: accessible labels,
  * button text, table headers, empty states. Before the English version existed
@@ -10,7 +10,7 @@ import { ui as en } from "./ui.en";
  * still contains no hard-coded text, which is the rule the rest of `/content`
  * already followed.
  *
- * Deliberately NOT in here: strings that only ever appear in development —
+ * Deliberately NOT in here: strings that only ever appear in development -
  * `<PendingNote>`, the `<MediaFrame>` placeholder card, the disabled-deliverable
  * notice and the booking admin hint. Those address whoever is building the site,
  * not whoever is visiting it, and they stay in French.
@@ -57,8 +57,8 @@ export const ui = {
     progressLabel: "Progression du formulaire",
     /** Rendered as "Étape 2 sur 4". */
     stepOf: (current: number, total: number) => `Étape ${current} sur ${total}`,
-    /** Rendered as "Étape 2 — Objectif". */
-    stepNamed: (current: number, title: string) => `Étape ${current} — ${title}`,
+    /** Rendered as "Étape 2 - Objectif". */
+    stepNamed: (current: number, title: string) => `Étape ${current} - ${title}`,
     /** Rendered as "Question 2 / 5" on the steps that ask one at a time. */
     questionOf: (current: number, total: number) =>
       `Question ${current} / ${total}`,
@@ -74,7 +74,7 @@ export const ui = {
     sectionLabel: "Transformations",
     emptyHeading: "Aucune transformation n'est publiée pour le moment.",
     emptyBody:
-      "Les résultats d'un client ne sont affichés qu'après avoir obtenu son accord écrit — pour les photos comme pour ses mots. Cette page se remplira à mesure que ces autorisations sont recueillies. En attendant, le contenu quotidien se trouve sur Instagram.",
+      "Les résultats d'un client ne sont affichés qu'après avoir obtenu son accord écrit - pour les photos comme pour ses mots. Cette page se remplira à mesure que ces autorisations sont recueillies. En attendant, le contenu quotidien se trouve sur Instagram.",
     ctaHeading: "Le prochain parcours pourrait être le tien.",
     ctaBody:
       "Réponds à quelques questions pour vérifier si l'accompagnement correspond à ta situation.",
@@ -130,7 +130,7 @@ export const ui = {
   },
 
   /* No `booking` block any more. It described a framed third-party calendar
-     that opened in a new tab and emailed "the link for the call" — none of
+     that opened in a new tab and emailed "the link for the call" - none of
      which is true since the calendar became a step of the flow (`SlotPicker`)
      and the call became a phone call. Nothing rendered it, so it was stale copy
      contradicting the live flow. The calendar's own strings live in

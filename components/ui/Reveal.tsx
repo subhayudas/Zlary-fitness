@@ -53,7 +53,7 @@ export function Reveal({
           // `isIntersecting` alone is not enough. An anchor jump (#methode),
           // a restored scroll position or a very fast scroll can take an
           // element from below the viewport to above it without ever producing
-          // an intersecting frame — it would then stay invisible forever.
+          // an intersecting frame - it would then stay invisible forever.
           // Anything already past the top counts as revealed.
           const alreadyPassed = entry.boundingClientRect.bottom < 0;
 

@@ -28,7 +28,7 @@ export const site = {
     "Coaching fitness et nutrition en ligne pour les personnes occupées qui veulent des résultats durables.",
 
   /**
-   * REPLACE BEFORE LAUNCH — this address is shown publicly in the footer and
+   * REPLACE BEFORE LAUNCH - this address is shown publicly in the footer and
    * used as the reply-to for application notifications.
    */
   email: awaiting<string>("Adresse courriel publique de Zach") as Confirmable<string>,
@@ -44,7 +44,7 @@ export const site = {
     "Les informations présentées sur ce site sont fournies à des fins éducatives générales. Le coaching fitness et nutrition ne remplace pas un diagnostic, un traitement ou un suivi médical.",
 
   /**
-   * PENDING BUSINESS FACTS — nothing below renders publicly until confirmed.
+   * PENDING BUSINESS FACTS - nothing below renders publicly until confirmed.
    * Send these to the developer (or edit here directly) before launch.
    */
   facts: {
@@ -62,10 +62,10 @@ export const site = {
     ),
     programDuration: awaiting<string>("Durée minimale d'un accompagnement"),
     pricing: awaiting<string>(
-      "Structure de prix — ne rien afficher tant que ce n'est pas confirmé",
+      "Structure de prix - ne rien afficher tant que ce n'est pas confirmé",
     ),
     personalStory: awaiting<string>(
-      "Parcours personnel de Zach — 2 à 4 phrases, à sa voix",
+      "Parcours personnel de Zach - 2 à 4 phrases, à sa voix",
     ),
     languagesOffered: confirmed("Français et anglais"),
   },
@@ -81,16 +81,16 @@ export const site = {
 export type Certification = {
   name: string;
   issuer: string;
-  /** Optional — omit rather than guess. */
+  /** Optional - omit rather than guess. */
   year?: string;
 };
 
 export const certifications: readonly Confirmable<Certification>[] = [
   awaiting<Certification>(
-    "Certification principale — nom exact, organisme émetteur, année",
+    "Certification principale - nom exact, organisme émetteur, année",
   ),
   awaiting<Certification>(
-    "Certification nutrition (si applicable) — nom exact et organisme",
+    "Certification nutrition (si applicable) - nom exact et organisme",
   ),
 ];
 

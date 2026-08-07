@@ -6,7 +6,7 @@ import { cn } from "@/lib/utils";
 
 /**
  * A silent, looping video layered over the poster that already occupies the
- * frame. It is decoration on top of a photograph — never a replacement for one.
+ * frame. It is decoration on top of a photograph - never a replacement for one.
  *
  * Three things this deliberately does NOT do:
  *
@@ -19,7 +19,7 @@ import { cn } from "@/lib/utils";
  *     `<MediaFrame>` beneath it holds the alt text.
  *   · It does not make noise. The encoded files have no audio stream at all;
  *     `muted` here is the second lock, and it is also what makes autoplay
- *     legal — every browser blocks an unmuted autoplay.
+ *     legal - every browser blocks an unmuted autoplay.
  *
  * It fades in on `canplay` rather than appearing mid-decode, so the cut from
  * the still to the moving frame is not visible.

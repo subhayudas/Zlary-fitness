@@ -3,7 +3,7 @@ import { methodSteps as en } from "./method.en";
 import type { MethodStep } from "./types";
 
 /**
- * The four coaching steps. Order is meaningful — it drives the step row.
+ * The four coaching steps. Order is meaningful - it drives the step row.
  *
  * One sentence each, and each one says what the step gives the client rather
  * than what the coach does with it. Four steps read side by side only work if

@@ -5,7 +5,7 @@ import { cn } from "@/lib/utils";
  * Development-only marker for a fact that is still `awaiting(...)`.
  *
  * In production this renders `null`, so an unconfirmed value is simply absent
- * from the page — never shown as if it were real, and never shown as a visible
+ * from the page - never shown as if it were real, and never shown as a visible
  * "TODO" to a visitor.
  */
 export function PendingNote({

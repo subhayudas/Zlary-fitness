@@ -10,7 +10,7 @@ import { cn } from "@/lib/utils";
  * The site's single button component.
  *
  * Renders as <Link> when `href` is set and <button> otherwise, so semantics
- * always match behaviour — a navigation is never a button, and an action is
+ * always match behaviour - a navigation is never a button, and an action is
  * never a link.
  *
  * It is a client component because CTAs are the site's conversion instruments
@@ -197,7 +197,7 @@ export function TrackedLink({
 
 /**
  * Text link with the precise underline reveal. Used where a pill would be too
- * loud — never styled as a generic blue link.
+ * loud - never styled as a generic blue link.
  */
 export function EditorialLink({
   href,

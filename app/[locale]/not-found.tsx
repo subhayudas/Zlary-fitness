@@ -13,7 +13,7 @@ import { stripLocale } from "@/lib/i18n";
  * 404.
  *
  * Kept inside the same design system, with the three destinations that
- * actually matter — a dead end is where a visitor from Instagram gives up.
+ * actually matter - a dead end is where a visitor from Instagram gives up.
  *
  * ---------------------------------------------------------------------------
  * WHY THIS ONE PAGE IS A CLIENT COMPONENT

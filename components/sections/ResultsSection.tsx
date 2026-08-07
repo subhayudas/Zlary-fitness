@@ -16,7 +16,7 @@ import type { Locale } from "@/lib/i18n";
  * Client results preview.
  *
  * The proof is the photography, so the section is one draggable before/after
- * comparison rather than a stack of cards — it stays roughly a screen tall on
+ * comparison rather than a stack of cards - it stays roughly a screen tall on
  * a phone, which is the only length a preview section earns.
  *
  * Only transformations with `approved: true` reach this component. With none

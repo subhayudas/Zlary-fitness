@@ -14,7 +14,7 @@ import {
  * `useSyncExternalStore` is the right primitive here: localStorage is an
  * external store, the server has no access to it, and the server snapshot is
  * always "unknown". That guarantees the server HTML and the first client render
- * agree — no hydration mismatch, and no tag can fire before the value is read.
+ * agree - no hydration mismatch, and no tag can fire before the value is read.
  */
 
 function subscribe(onStoreChange: () => void) {

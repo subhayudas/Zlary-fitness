@@ -10,7 +10,7 @@ import { cn } from "@/lib/utils";
  * Before / after pair.
  *
  * Both frames are rendered at the same size and aspect ratio, and each is
- * labelled — an unlabelled or unevenly cropped pair is how transformation
+ * labelled - an unlabelled or unevenly cropped pair is how transformation
  * photography turns misleading.
  */
 export function BeforeAfter({
@@ -74,7 +74,7 @@ export function MetaLabel({
 }
 
 /**
- * Supporting case study — the smaller card in the asymmetric results grid.
+ * Supporting case study - the smaller card in the asymmetric results grid.
  */
 export function ResultCard({
   locale,

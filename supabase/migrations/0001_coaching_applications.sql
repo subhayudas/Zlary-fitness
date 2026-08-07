@@ -1,5 +1,5 @@
 -- ============================================================================
--- Zlary Fitness — coaching applications
+-- Zlary Fitness - coaching applications
 -- ----------------------------------------------------------------------------
 -- Run this once against the project:
 --   Supabase Dashboard → SQL Editor → paste → Run

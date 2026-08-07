@@ -21,7 +21,7 @@ import "../globals.css";
 /**
  * Root layout.
  *
- * This is the topmost layout in the tree — there is deliberately no
+ * This is the topmost layout in the tree - there is deliberately no
  * `app/layout.tsx`. Every page lives under `[locale]`, so this is the only
  * place that knows which language is being rendered, and therefore the only
  * place that can put the right value in `<html lang>`. A hard-coded `lang` one
@@ -30,7 +30,7 @@ import "../globals.css";
  */
 
 /**
- * Geist — a premium modern grotesk, self-hosted through next/font so there is
+ * Geist - a premium modern grotesk, self-hosted through next/font so there is
  * no render-blocking request to a third-party font CDN and no layout shift.
  * One family throughout; hierarchy comes from scale, not from extra faces.
  */
@@ -128,7 +128,7 @@ export default async function RootLayout({
      * (password managers, translators, ad blockers) routinely stamp attributes
      * such as `__processed_<uuid>__` onto these two elements before React
      * hydrates, which React then reports as a server/client attribute mismatch.
-     * The flag is one level deep — it silences mismatches on these elements'
+     * The flag is one level deep - it silences mismatches on these elements'
      * own attributes only, so real mismatches inside the tree still surface.
      */
     <html
@@ -144,7 +144,7 @@ export default async function RootLayout({
         {children}
 
         <OrganizationSchema locale={locale} />
-        {/* Asked first, and only ever once — the consent banner waits for it. */}
+        {/* Asked first, and only ever once - the consent banner waits for it. */}
         <LanguageGate locale={locale} />
         <ConsentBanner locale={locale} />
         <AnalyticsHelper />

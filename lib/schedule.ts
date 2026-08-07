@@ -2,7 +2,7 @@
  * Call availability.
  *
  * The site owns its own calendar rather than framing somebody else's, so the
- * rules that decide which slots exist live here — in one place, readable, and
+ * rules that decide which slots exist live here - in one place, readable, and
  * enforced identically by the endpoint that lists slots and by the endpoint that
  * books one. A slot the visitor can see is a slot the server will accept.
  *
@@ -15,8 +15,8 @@
  * rather than a date library: `Intl.DateTimeFormat` is the same IANA database
  * the platform uses, so it is right about DST without another dependency.
  *
- * Everything crossing a boundary — the API response, the database, the calendar
- * event — is a UTC instant. The wall clock only exists inside this module and on
+ * Everything crossing a boundary - the API response, the database, the calendar
+ * event - is a UTC instant. The wall clock only exists inside this module and on
  * screen.
  */
 
@@ -291,7 +291,7 @@ export function getScheduleConfig(): ScheduleConfig {
 export type Interval = { start: number; end: number };
 
 export type Slot = {
-  /** ISO instant — what the browser sends back and what the database stores. */
+  /** ISO instant - what the browser sends back and what the database stores. */
   start: string;
   end: string;
 };
@@ -394,7 +394,7 @@ export function availabilityWindow(
  * Whether a specific instant is a slot this schedule offers.
  *
  * The booking endpoint asks this before it writes anything: the browser sends
- * back a start time it was given, and "was given" is not a guarantee — the page
+ * back a start time it was given, and "was given" is not a guarantee - the page
  * may have been open for an hour, or the value may have been edited by hand.
  */
 export function isBookableSlot({

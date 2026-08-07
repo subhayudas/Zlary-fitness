@@ -110,7 +110,7 @@ export default async function ResultsPage({
         </SectionShell>
 
         {/* Draggable before/after comparisons. This is the photography, and
-            on this page it comes before the written case studies — a visitor
+            on this page it comes before the written case studies - a visitor
             who clicked "results" wants to see them, not read first. */}
         {transformations.length > 0 ? (
           <SectionShell padding="md" ariaLabelledBy="transformations-title">

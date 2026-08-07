@@ -6,7 +6,7 @@ import { cn } from "@/lib/utils";
 /**
  * The four coaching steps as a single process row.
  *
- * This used to be a staggered vertical timeline with a photograph cut into it —
+ * This used to be a staggered vertical timeline with a photograph cut into it -
  * four large panels the visitor had to scroll through one at a time, which cost
  * a screen and a half to say something whose entire persuasive value is that it
  * is short. Read left to right, the four steps arrive as one shape: this is the

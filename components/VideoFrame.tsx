@@ -23,7 +23,7 @@ import { cn } from "@/lib/utils";
  *
  * Progress tracking works for the self-hosted `file` provider, where real
  * playback events are available. For iframe providers no progress can be read
- * without loading their JS APIs, so those events are simply not emitted —
+ * without loading their JS APIs, so those events are simply not emitted -
  * inventing them would poison the funnel data.
  */
 export function VideoFrame({
