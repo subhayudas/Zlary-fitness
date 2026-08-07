@@ -42,13 +42,13 @@ export function FormProgressPanel({
   return (
     <div className={cn("flex h-full flex-col", className)}>
       <div>
-        <p className="type-micro text-ink/45">{applyContent.eyebrow}</p>
-        <p className="type-index mt-8 text-[3.5rem] leading-none text-ink/20">
+        <p className="type-micro text-ink-strong">{applyContent.eyebrow}</p>
+        <p className="type-index mt-8 text-[3.5rem] leading-none text-ink-strong">
           {step.index}
           <span className="text-[1.25rem]"> / {steps.length}</span>
         </p>
         <h2 className="type-sub mt-5 text-balance text-ink">{step.lead}</h2>
-        <p className="measure-sm mt-4 text-pretty text-[0.9375rem] leading-relaxed text-ink-muted">
+        <p className="measure-sm mt-4 text-pretty text-[0.9375rem] leading-relaxed text-ink-strong">
           {step.benefit}
         </p>
       </div>
@@ -69,7 +69,7 @@ export function FormProgressPanel({
                     ? "bg-ink text-lime"
                     : active
                       ? "bg-lime text-ink-strong"
-                      : "bg-ink/8 text-ink/40",
+                      : "bg-ink/8 text-ink-strong",
                 )}
               >
                 {done ? (
@@ -83,7 +83,7 @@ export function FormProgressPanel({
               <span
                 className={cn(
                   "text-[0.9375rem] transition-colors duration-500 ease-editorial",
-                  active ? "text-ink" : "text-ink/45",
+                  active ? "text-ink" : "text-ink-strong",
                 )}
               >
                 {entry.title}
@@ -95,7 +95,7 @@ export function FormProgressPanel({
 
       <div className="mt-auto pt-12">
         <ProgressBar progress={filled} label={t.form.progressLabel} />
-        <p className="type-micro mt-4 text-ink/40">
+        <p className="type-micro mt-4 text-ink-strong">
           {t.form.stepOf(currentPhase + 1, steps.length)}
         </p>
       </div>

@@ -450,8 +450,8 @@ export function BookingFlow({ locale }: { locale: Locale }) {
       {/* Mobile progress. */}
       <div className="lg:hidden">
         <div className="flex items-baseline justify-between gap-4">
-          <p className="type-micro text-ink/45">{phase.title}</p>
-          <p className="type-micro text-ink/35">
+          <p className="type-micro text-ink-strong">{phase.title}</p>
+          <p className="type-micro text-ink-strong">
             {stageIndex + 1} / {STAGE_ORDER.length}
           </p>
         </div>
@@ -481,12 +481,12 @@ export function BookingFlow({ locale }: { locale: Locale }) {
             <p
               ref={headingRef}
               tabIndex={-1}
-              className="type-micro text-ink/45 outline-none"
+              className="type-micro text-ink-strong outline-none"
             >
               {t.form.stepNamed(stageIndex + 1, phase.title)}
             </p>
             {onQuestions ? (
-              <p className="type-micro shrink-0 text-ink/35">
+              <p className="type-micro shrink-0 text-ink-strong">
                 {t.form.questionOf(cursor + 1, questionFields.length)}
               </p>
             ) : null}
@@ -583,7 +583,7 @@ export function BookingFlow({ locale }: { locale: Locale }) {
                       asking to be called, so a checkbox confirming they may be
                       called is a hoop, not a choice. Marketing above is the
                       genuine choice, and stays opt-in. */}
-                  <p className="text-[0.8125rem] leading-relaxed text-ink-muted">
+                  <p className="text-[0.8125rem] leading-relaxed text-ink-strong">
                     {content.consentNote} {content.privacyNote}{" "}
                     <Link
                       href={localePath("/privacy", locale)}

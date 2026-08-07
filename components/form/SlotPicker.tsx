@@ -137,7 +137,7 @@ export function SlotPicker({
         aria-busy="true"
         className="flex min-h-[18rem] items-center justify-center rounded-media bg-surface p-8 hairline"
       >
-        <p className="type-micro text-ink/40">{copy.loading}</p>
+        <p className="type-micro text-ink-strong">{copy.loading}</p>
       </div>
     );
   }
@@ -147,7 +147,7 @@ export function SlotPicker({
     return (
       <div className="rounded-media bg-surface p-7 hairline sm:p-10">
         <h3 className="type-sub text-balance text-ink">{copy.failed.heading}</h3>
-        <p className="measure mt-4 text-pretty text-[0.9375rem] leading-relaxed text-ink-muted">
+        <p className="measure mt-4 text-pretty text-[0.9375rem] leading-relaxed text-ink-strong">
           {copy.failed.body}
         </p>
         <div className="mt-7 flex flex-wrap gap-3">
@@ -182,7 +182,7 @@ export function SlotPicker({
         <h3 className="type-sub mt-7 text-balance text-ink">
           {copy.empty.heading}
         </h3>
-        <p className="measure mt-4 text-pretty text-[0.9375rem] leading-relaxed text-ink-muted">
+        <p className="measure mt-4 text-pretty text-[0.9375rem] leading-relaxed text-ink-strong">
           {copy.empty.body}
         </p>
         <div className="mt-8">
@@ -256,14 +256,14 @@ export function SlotPicker({
 
   return (
     <div>
-      <p className="type-micro text-ink/45">{copy.label}</p>
-      <p className="measure mt-3 text-pretty text-[0.9375rem] leading-relaxed text-ink-muted">
+      <p className="type-micro text-ink-strong">{copy.label}</p>
+      <p className="measure mt-3 text-pretty text-[0.9375rem] leading-relaxed text-ink-strong">
         {copy.body(data.durationMinutes)}
       </p>
 
       {/* Dates. */}
       <div className="mt-7">
-        <p id="slot-date-label" className="type-micro text-ink/45">
+        <p id="slot-date-label" className="type-micro text-ink-strong">
           {copy.dateLabel}
         </p>
         <div
@@ -295,10 +295,10 @@ export function SlotPicker({
       {/* Times. */}
       <div className="mt-7">
         <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
-          <p id="slot-time-label" className="type-micro text-ink/45">
+          <p id="slot-time-label" className="type-micro text-ink-strong">
             {copy.timeLabel}
           </p>
-          <p className="text-[0.8125rem] text-ink-muted">
+          <p className="text-[0.8125rem] text-ink-strong">
             {copy.timeZoneNote(zoneLabel)}
           </p>
         </div>
@@ -327,7 +327,7 @@ export function SlotPicker({
       </div>
 
       {localNote ? (
-        <p className="mt-4 text-[0.8125rem] leading-relaxed text-ink-muted">
+        <p className="mt-4 text-[0.8125rem] leading-relaxed text-ink-strong">
           {localNote}
         </p>
       ) : null}

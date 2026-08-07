@@ -36,7 +36,7 @@ export function FollowUpLanguage({
 
   return (
     <div className="rounded-card bg-surface p-5 hairline">
-      <p className="type-micro text-ink/45">{copy.label}</p>
+      <p className="type-micro text-ink-strong">{copy.label}</p>
 
       <div className="mt-3 flex flex-wrap items-center justify-between gap-x-4 gap-y-2">
         <p className="text-[0.9375rem] leading-snug text-ink-strong">
@@ -52,7 +52,7 @@ export function FollowUpLanguage({
         </button>
       </div>
 
-      <p className="mt-3 text-[0.8125rem] leading-relaxed text-ink-muted">
+      <p className="mt-3 text-[0.8125rem] leading-relaxed text-ink-strong">
         {copy.hint}
       </p>
     </div>

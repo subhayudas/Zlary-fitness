@@ -144,7 +144,7 @@ export function BookingConfirmation({
         <Check className="size-5" />
       </span>
 
-      <p className="type-micro mt-7 text-ink/45">{copy.eyebrow}</p>
+      <p className="type-micro mt-7 text-ink-strong">{copy.eyebrow}</p>
 
       {/* Announced rather than merely rendered: the flow does not navigate, so
           nothing else tells assistive tech that the booking went through. */}
@@ -155,23 +155,23 @@ export function BookingConfirmation({
         {copy.heading(firstName)}
       </h2>
 
-      <p className="measure mt-4 text-pretty text-[0.9375rem] leading-relaxed text-ink-muted">
+      <p className="measure mt-4 text-pretty text-[0.9375rem] leading-relaxed text-ink-strong">
         {inviteSent ? copy.body(email) : copy.bodyWithoutEmail}
       </p>
 
       {/* The appointment itself. */}
       <div className="mt-8 rounded-card bg-surface p-6 hairline sm:p-7">
         <div className="flex items-center gap-3">
-          <span aria-hidden="true" className="text-ink/40">
+          <span aria-hidden="true" className="text-ink-strong">
             <Calendar className="size-4" />
           </span>
-          <p className="type-micro text-ink/45">{copy.summary.heading}</p>
+          <p className="type-micro text-ink-strong">{copy.summary.heading}</p>
         </div>
 
         <dl className="mt-5 space-y-4">
           {rows.map((row) => (
             <div key={row.label} className="grid gap-1 sm:grid-cols-[9rem_1fr] sm:gap-4">
-              <dt className="type-micro text-ink/45">{row.label}</dt>
+              <dt className="type-micro text-ink-strong">{row.label}</dt>
               <dd className="text-[0.9375rem] leading-relaxed text-ink-strong">
                 {row.value}
               </dd>
@@ -180,7 +180,7 @@ export function BookingConfirmation({
         </dl>
 
         {localNote ? (
-          <p className="mt-5 text-[0.8125rem] leading-relaxed text-ink-muted">
+          <p className="mt-5 text-[0.8125rem] leading-relaxed text-ink-strong">
             {localNote}
           </p>
         ) : null}
@@ -209,19 +209,19 @@ export function BookingConfirmation({
 
       <Rule className="mt-10" />
 
-      <h3 className="type-micro mt-8 text-ink/45">{copy.prepare.heading}</h3>
+      <h3 className="type-micro mt-8 text-ink-strong">{copy.prepare.heading}</h3>
       <ul className="mt-5 grid gap-3 sm:grid-cols-3">
         {copy.prepare.items.map((item) => (
           <li
             key={item}
-            className="text-[0.9375rem] leading-relaxed text-ink-muted"
+            className="text-[0.9375rem] leading-relaxed text-ink-strong"
           >
             {item}
           </li>
         ))}
       </ul>
 
-      <p className="measure mt-8 text-[0.8125rem] leading-relaxed text-ink-muted">
+      <p className="measure mt-8 text-[0.8125rem] leading-relaxed text-ink-strong">
         {copy.notice}
       </p>
 
@@ -233,7 +233,7 @@ export function BookingConfirmation({
 
       {/* Kept for anyone whose confirmation never arrived. */}
       {!inviteSent ? (
-        <p className="mt-6 text-[0.8125rem] leading-relaxed text-ink-muted">
+        <p className="mt-6 text-[0.8125rem] leading-relaxed text-ink-strong">
           <Link
             href={site.instagramUrl}
             target="_blank"

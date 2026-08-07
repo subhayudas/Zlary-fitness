@@ -19,7 +19,7 @@ export const hero = {
   headlineLines: ["Transforme ton corps", "sans mettre ta vie sur pause."],
   support:
     "Un accompagnement personnalisé pour les personnes occupées qui veulent construire un meilleur physique, retrouver leur énergie et créer des habitudes durables - sans régimes extrêmes.",
-  primaryCta: { label: "Voir si le coaching me convient", href: "/#postuler" },
+  primaryCta: { label: "Transformer mon corps", href: "/#postuler" },
   secondaryCta: { label: "Voir la méthode", href: "/vsl" },
   trustLine: "Entraînement personnalisé · Nutrition flexible · Suivi individuel",
   chip: {
@@ -40,14 +40,14 @@ export const hero = {
  */
 export const problem = {
   label: "01 - LE VRAI PROBLÈME",
-  heading: "Tu ne manques pas de volonté. Ton plan ne survit pas aux semaines chargées.",
+  heading: "Le problème, ce n'est pas ta motivation. C'est que personne ne vérifie où tu en es.",
   subheading:
-    "Les plans rigides fonctionnent quand tout va bien. Le vrai test, c'est une réunion tardive, un resto ou une mauvaise nuit - quand tu dois quand même savoir quoi faire ensuite.",
+    "Quand il n'y a que toi et une application, manquer une journée n'a aucune conséquence. Quand quelqu'un vérifie vraiment où tu en es, ça en a une, et c'est toute la différence.",
   statements: [
-    "Tu manques une séance, puis toute ta semaine te semble perdue.",
-    "Tu manges parfaitement… jusqu'au premier imprévu.",
-    "Tu changes de programme parce que tu ne sais pas si le tien fonctionne.",
-    "Tu veux progresser sans dire non aux soupers, aux voyages et à ta vraie vie.",
+    "Tu as peur de t'engager dans un autre programme parce que les trois derniers n'ont pas fonctionné non plus.",
+    "Tu sais quoi faire, mais tu ne sais pas si tu le fais correctement.",
+    "Tous les plans supposent que tu as deux heures devant toi et un frigo rempli de repas déjà préparés. Ce n'est pas ton cas.",
+    "Tu veux de vrais progrès sans éliminer les soupers, les voyages et ta vraie vie.",
   ],
   /**
    * The CTA answers the block it closes, and nothing else on the page repeats
@@ -56,7 +56,7 @@ export const problem = {
    * read about yet.
    */
   cta: {
-    label: "Construire un plan qui tient les semaines chargées",
+    label: "OBTIENS UN COACH QUI FAIT UN VRAI SUIVI",
     href: "/#postuler",
     note: "Cinq questions sur ta semaine, puis tu choisis ton créneau d'appel.",
   },

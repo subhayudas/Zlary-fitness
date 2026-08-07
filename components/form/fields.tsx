@@ -35,7 +35,7 @@ function ErrorText({ id, error }: { id: string; error?: FieldErrorLike }) {
 function Hint({ id, children }: { id: string; children?: ReactNode }) {
   if (!children) return null;
   return (
-    <p id={id} className="mt-2 text-[0.8125rem] leading-relaxed text-ink-muted">
+    <p id={id} className="mt-2 text-[0.8125rem] leading-relaxed text-ink-strong">
       {children}
     </p>
   );
@@ -176,7 +176,7 @@ export function ChoiceField({
       aria-invalid={error ? true : undefined}
       aria-describedby={cn(hint ? hintId : null, error ? errorId : null) || undefined}
     >
-      <legend className="type-micro text-ink/45">{label}</legend>
+      <legend className="type-micro text-ink-strong">{label}</legend>
       <Hint id={hintId}>{hint}</Hint>
 
       <div
@@ -260,10 +260,10 @@ export function FieldLabel({
   optionalLabel?: string;
 }) {
   return (
-    <label htmlFor={htmlFor} className="type-micro flex gap-2 text-ink/45">
+    <label htmlFor={htmlFor} className="type-micro flex gap-2 text-ink-strong">
       <span>{children}</span>
       {optional && optionalLabel ? (
-        <span className="text-ink/30">{optionalLabel}</span>
+        <span className="text-ink-strong">{optionalLabel}</span>
       ) : null}
     </label>
   );
