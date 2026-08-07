@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import { FAQAccordion } from "@/components/FAQAccordion";
+import { BookingFlow } from "@/components/form/BookingFlow";
 import { FunnelHeader } from "@/components/nav/FunnelHeader";
-import { ResultsEmptyState } from "@/components/FeaturedCaseStudy";
-import { ResultCard } from "@/components/ResultCard";
+import { ResultsSection } from "@/components/sections/ResultsSection";
 import { FaqSchema, VideoSchema } from "@/components/StructuredData";
 import { VideoFrame } from "@/components/VideoFrame";
 import { LimeFeaturePanel, Panel } from "@/components/ui/panels";
@@ -10,10 +10,9 @@ import { PillCTA } from "@/components/ui/PillCTA";
 import { Reveal } from "@/components/ui/Reveal";
 import { SectionShell } from "@/components/ui/SectionShell";
 import { EditorialHeading, Rule } from "@/components/ui/typography";
-import { approvedCaseStudies, getResultsDisclaimer } from "@/content/case-studies";
 import { getVslFaqItems } from "@/content/faq";
 import { getMedia } from "@/content/media";
-import { applyHref, getNav } from "@/content/navigation";
+import { getNav, sectionIds } from "@/content/navigation";
 import { getRouteSeo } from "@/content/seo";
 import { getSiteCopy, site } from "@/content/site";
 import { getUi } from "@/content/ui";
@@ -66,7 +65,7 @@ export default async function VslPage({
   const media = getMedia(locale);
   const { navCta } = getNav(locale);
   const t = getUi(locale);
-  const proof = approvedCaseStudies.slice(0, 2);
+  const formHref = `${localePath("/vsl", locale)}?source=vsl#${sectionIds.apply}`;
 
   return (
     <>
@@ -75,7 +74,7 @@ export default async function VslPage({
         backLabel={vslContent.backLabel}
         cta={{
           label: navCta.label,
-          href: applyHref(locale, "vsl"),
+          href: formHref,
         }}
       />
 
@@ -110,7 +109,7 @@ export default async function VslPage({
           <Reveal delay={140}>
             <div className="mt-12 flex justify-center">
               <PillCTA
-                href={vslContent.cta.href}
+                href={formHref}
                 variant="lime"
                 withArrow
                 event="primary_cta_click"
@@ -161,55 +160,7 @@ export default async function VslPage({
           </div>
         </SectionShell>
 
-        {/* Approved proof, or an honest empty state. */}
-        <SectionShell ariaLabelledBy="vsl-proof-title" padding="md">
-          <Reveal>
-            <h2 id="vsl-proof-title" className="type-sub text-balance text-ink">
-              {vslContent.proof.heading}
-            </h2>
-            <p className="measure-lg mt-4 text-pretty text-[0.9375rem] leading-relaxed text-ink-muted">
-              {vslContent.proof.body}
-            </p>
-          </Reveal>
-
-          <div className="mt-10">
-            {proof.length > 0 ? (
-              <>
-                <div className="grid gap-4 md:grid-cols-2">
-                  {proof.map((study, index) => (
-                    <Reveal key={study.id} delay={index * 90}>
-                      <ResultCard
-                        locale={locale}
-                        study={study}
-                        className="h-full"
-                      />
-                    </Reveal>
-                  ))}
-                </div>
-                <p className="mt-8 max-w-[64ch] text-[0.8125rem] leading-relaxed text-ink/50">
-                  {getResultsDisclaimer(locale)}
-                </p>
-              </>
-            ) : (
-              <Reveal>
-                <ResultsEmptyState
-                  heading={t.vslPage.emptyHeading}
-                  body={t.vslPage.emptyBody}
-                  action={
-                    <PillCTA
-                      href={site.instagramUrl}
-                      external
-                      variant="outline"
-                      withArrow
-                    >
-                      {t.common.seeInstagram}
-                    </PillCTA>
-                  }
-                />
-              </Reveal>
-            )}
-          </div>
-        </SectionShell>
+        <ResultsSection locale={locale} />
 
         {/* FAQ. */}
         {vslFaqItems.length > 0 ? (
@@ -232,8 +183,12 @@ export default async function VslPage({
           </SectionShell>
         ) : null}
 
-        {/* Repeated CTA. */}
-        <SectionShell padding="sm" ariaLabelledBy="vsl-final-title">
+        {/* Application and booking flow. */}
+        <SectionShell
+          id={sectionIds.apply}
+          padding="sm"
+          ariaLabelledBy="vsl-final-title"
+        >
           <LimeFeaturePanel className="px-6 py-14 text-center sm:px-10 md:py-20">
             <Reveal className="mx-auto max-w-2xl">
               <EditorialHeading
@@ -247,20 +202,12 @@ export default async function VslPage({
               <p className="mx-auto mt-6 max-w-[44ch] text-pretty text-[0.9375rem] leading-relaxed text-ink/70">
                 {vslContent.finalCta.body}
               </p>
-              <div className="mt-9 flex justify-center">
-                <PillCTA
-                  href={vslContent.cta.href}
-                  variant="white"
-                  withArrow
-                  event="primary_cta_click"
-                  eventProps={{ location: "vsl_final" }}
-                  className="w-full sm:w-auto"
-                >
-                  {vslContent.cta.label}
-                </PillCTA>
-              </div>
             </Reveal>
           </LimeFeaturePanel>
+
+          <div className="mt-3 md:mt-4">
+            <BookingFlow locale={locale} />
+          </div>
         </SectionShell>
 
         {/* Minimal footer: legal + disclaimer only. */}

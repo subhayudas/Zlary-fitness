@@ -31,17 +31,17 @@ export const hero = {
 
 export const problem = {
   label: "01 - THE REAL PROBLEM",
-  heading: "You don't lack willpower. Your plan breaks when life gets busy.",
+  heading: "Motivation's not the problem. Having no one checking on you is.",
   subheading:
-    "Rigid plans work when everything goes right. The real test is a late meeting, dinner out, or a bad night's sleep - when you still need to know what to do next.",
+    "When it's just you and an app, skipping a day costs nothing. When someone's actually checking on you, it costs something, and that's the difference.",
   statements: [
-    "You miss one workout, then the whole week feels lost.",
-    "You eat perfectly… until the first unexpected plan.",
-    "You switch programs because you can't tell if yours is working.",
-    "You want progress without saying no to dinners, travel, and your real life.",
+    "You're scared to commit to another program because the last three didn't work either.",
+    "You know what to do, you just don't know if you're doing it right.",
+    "Every plan assumes you have 2 hours and a meal prepped fridge. You don't.",
+    "You want real progress without cutting out dinners, trips, and your actual life.",
   ],
   cta: {
-    label: "Build a plan that works on busy weeks",
+    label: "GET A COACH WHO CHECKS IN",
     href: "/en/#postuler",
     note: "Five questions about your week, then you pick your call slot.",
   },
