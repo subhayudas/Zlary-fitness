@@ -412,7 +412,7 @@ function renderConfirmation(
     <p style="margin:20px 0 0;font-size:13px;line-height:1.5;color:#5A686E;">${escapeHtml(copy.inviteNote)}</p>
     ${
       context.eventLink
-        ? `<p style="margin:16px 0 0;"><a href="${escapeHtml(context.eventLink)}" style="display:inline-block;background:#E6FF4D;color:#092532;text-decoration:none;border-radius:999px;padding:14px 28px;font-size:12px;letter-spacing:.12em;text-transform:uppercase;font-weight:500;">${escapeHtml(copy.detailsLabel)}</a></p>`
+        ? `<p style="margin:16px 0 0;"><a href="${escapeHtml(context.eventLink)}" style="display:inline-block;background:#E76669;color:#092532;text-decoration:none;border-radius:999px;padding:14px 28px;font-size:12px;letter-spacing:.12em;text-transform:uppercase;font-weight:500;">${escapeHtml(copy.detailsLabel)}</a></p>`
         : ""
     }
 

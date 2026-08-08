@@ -4,11 +4,11 @@
    ZLARY FITNESS - DESIGN SYSTEM
    --------------------------------------------------------------------------
    A single art-directed system: warm-grey canvas, large rounded white shells,
-   acid-lime feature panels, deep petroleum contrast areas, full-bleed
+   warm coral-red feature panels, deep petroleum contrast areas, full-bleed
    photography, concentric radii, almost no traditional shadows.
 
    The site is deliberately light-only. There is no dark-mode variant: the
-   palette *is* the brand, and a dark inversion would break the lime/petroleum
+   palette *is* the brand, and a dark inversion would break the coral/petroleum
    relationship the whole layout depends on.
    ========================================================================== */
 
@@ -30,9 +30,11 @@
   /* Decorative only: rules, disabled glyphs, placeholders. Never body copy. */
   --color-ink-faint: #8d979b;
 
-  --color-lime: #e6ff4d;
-  --color-lime-hover: #d8f83c;
-  --color-lime-soft: #f0ff89;
+  /* Warm coral-red accent. Legacy token names are retained to keep the
+     component API stable while the visual palette changes. */
+  --color-lime: #e76669;
+  --color-lime-hover: #e06165;
+  --color-lime-soft: #f3a4a6;
 
   --color-line: rgba(16, 45, 58, 0.1);
   --color-line-strong: rgba(16, 45, 58, 0.16);
@@ -921,7 +923,7 @@
     background-color: var(--color-line);
   }
 
-  /* A short lime segment sliding along the rail. Fixed length, pure translate:
+  /* A short accent segment sliding along the rail. Fixed length, pure translate:
      no scaling, so the pill keeps its shape between rows of different heights. */
   .statement-marker {
     margin-left: -1px;

@@ -129,8 +129,8 @@ export function Panel({
 }
 
 /**
- * Acid-lime feature panel. Deliberately limited to one or two per page -
- * lime is an accent, not a background.
+ * Coral-red feature panel. Deliberately limited to one or two per page -
+ * the warm red is an accent, not a background.
  */
 export function LimeFeaturePanel({
   children,

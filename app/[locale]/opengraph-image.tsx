@@ -79,7 +79,7 @@ export default async function OpengraphImage({
                   width: 14,
                   height: 14,
                   borderRadius: 999,
-                  background: "#E6FF4D",
+                  background: "#E76669",
                 }}
               />
               <div
@@ -130,7 +130,7 @@ export default async function OpengraphImage({
               <div
                 style={{
                   display: "flex",
-                  background: "#E6FF4D",
+                  background: "#E76669",
                   color: "#092532",
                   borderRadius: 999,
                   padding: "14px 28px",

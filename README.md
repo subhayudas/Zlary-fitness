@@ -486,15 +486,15 @@ Tout est défini dans `app/globals.css`.
 | `--color-canvas`   | `#E7E9E1` | fond de page                           |
 | `--color-surface-pure` | `#FFFFFF` | grandes coquilles de section       |
 | `--color-ink`      | `#102D3A` | texte principal                        |
-| `--color-lime`     | `#E6FF4D` | CTA, étiquettes, panneaux d'accent     |
+| `--color-lime`     | `#E76669` | CTA, étiquettes, panneaux d'accent     |
 | `--color-ink-muted`| `#5A686E` | texte secondaire                       |
 
 `--color-ink-muted` a été assombri par rapport à la valeur suggérée (`#687579`),
 qui mesurait 3,89:1 sur le fond canvas - sous le seuil AA de 4,5:1. La valeur
 retenue passe partout (canvas 4,63:1 · surface 5,33:1 · blanc 5,68:1).
 
-Le lime ne sert **jamais** de couleur de texte sur blanc - uniquement comme fond,
-avec du navy dessus (12,88:1).
+L'accent corail ne sert **jamais** de couleur de texte sur blanc - uniquement comme fond,
+avec du navy dessus (4,92:1).
 
 **Rayons concentriques** - un élément intérieur suit toujours la courbe de son
 parent : coquille 36 px → média 24 px → carte 20 px → pastille 999 px.
