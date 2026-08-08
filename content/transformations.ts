@@ -14,9 +14,8 @@ import type { MediaAsset } from "./types";
  *      site with no other change.
  *
  *   2. Nothing here may be invented. There are no names, no durations and no
- *      measurements, because none were supplied - the only figure in the file
- *      is the one the client printed on their own photograph (see `t04`).
- *      A number nobody stated is a number nobody said.
+ *      measurements, because none were supplied. A number nobody stated is a
+ *      number nobody said.
  *
  * ---------------------------------------------------------------------------
  * THE SOURCE FILES AND HOW THESE CROPS WERE MADE
@@ -32,7 +31,6 @@ import type { MediaAsset } from "./types";
  *   t01 ← PHOTO-2026-08-03-17-59-53.jpg / PHOTO-2026-08-03-18-00-27.jpg
  *   t02 ← AC7E1F86-…jpg   (front view)
  *   t03 ← B183DAEE-…jpg
- *   t04 ← IMG_0283.PNG
  *
  * t01 is the exception to the composite rule: it arrived as two separate
  * photographs, an outdoor full-body shot and a locker-room mirror selfie. They
@@ -104,15 +102,6 @@ export const transformations: readonly Transformation[] = [
     before: frame("t03-before", "Client de Zlary Fitness avant l'accompagnement, debout de profil."),
     after: frame("t03-after", "Le même client après l'accompagnement : silhouette plus sèche et plus dessinée."),
     weight: null,
-    approved: true,
-  },
-  {
-    id: "t04",
-    before: frame("t04-before", "Client de Zlary Fitness avant l'accompagnement, photo prise devant un miroir."),
-    after: frame("t04-after", "Le même client après l'accompagnement, devant un miroir : épaules et bras plus développés."),
-    // The only figures anywhere in this file: both are printed on the client's
-    // own before/after image.
-    weight: { from: 183.6, to: 191 },
     approved: true,
   },
 ];

@@ -18,7 +18,4 @@ export const transformationAlt = {
   "t03-before": "A Zlary Fitness client before coaching, standing in profile.",
   "t03-after":
     "The same client after coaching: a leaner, more defined silhouette.",
-  "t04-before": "A Zlary Fitness client before coaching, photographed in a mirror.",
-  "t04-after":
-    "The same client after coaching, in a mirror: broader shoulders and arms.",
 };
